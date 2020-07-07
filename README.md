@@ -38,14 +38,16 @@ A social media to share music, meet people based on your music taste and be able
     * structured post
 * user can add an optional picture to the post
 * user can like posts
+* user can tap on post and view details
 * user can search for other users
 * user can follow/unfollow other users
 * user can search for posts (e.g. songs, playlists)
 
 **Optional Nice-to-have Stories**
 * user can comment/reply to other user's post
-* user can tap on post and view details of post with comment
+* user view comments on post in the details screen
 * user can see their profile
+* use Spotify API to render playlist 
 
 
 
@@ -58,6 +60,8 @@ A social media to share music, meet people based on your music taste and be able
 * Stream
     * user can view a feed of posts
     * user can like posts
+* Details
+    * user can tap on post and view details 
 * Creation 
     * user can create a post on feed
     * user can add an optional picture to the post
@@ -77,20 +81,20 @@ A social media to share music, meet people based on your music taste and be able
 **Flow Navigation** (Screen to Screen)
 
 * Login Screen
-   * Stream
+   => Stream
 * Register Screen
-   * Stream
+   => Stream
 * Stream
-    * Details (if completed, if not then a future version will have the Details screen).
+    => Details Screen.
 * Creation 
-    * Stream
+    => Stream (after post is finished)
 * Search
-     * Details of searched user or post (if completed, if not then a future version will have the Details screen).
+     => Details of searched user or post (if completed).
     
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="file:///Users/fabiolarobles19/Downloads/musicSharingAppWireframes.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 

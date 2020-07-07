@@ -94,7 +94,7 @@ A social media to share music, meet people based on your music taste and be able
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="file:///Users/fabiolarobles19/Downloads/musicSharingAppWireframes.jpg" width=600>
+<img src="https://github.com/fabiolarobles1/OriginalApp-MusicSharing/blob/master/musicSharingAppWireframes.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 

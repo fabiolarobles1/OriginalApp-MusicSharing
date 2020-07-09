@@ -103,7 +103,22 @@ A social media to share music, meet people based on your music taste and be able
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### Post
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user post (default field) |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+   | author        | Pointer to User     | post's author |
+   | musicLink     | String   | URL string of song or playlist which the post is about |
+   | caption       | String   | song/playlist's caption by author |
+   | likesCount    | Number   | number of likes for the post |
+   | commentsCount | Number   | number of comments for the post |
+   | genre         | String   | post's song genre|
+   | mood          | String   | small description of how the song makes the author feel|
+   
+   
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]

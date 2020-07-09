@@ -134,6 +134,21 @@ A social media to share music, meet people based on your music taste and be able
    
    
 ### Networking
-- [Add list of network requests by screen ]
+#### List of network requests by screen
+   - Home Feed Screen
+      - (Read/GET) Query posts for user's feed
+      - (Create/POST) Create a new like on a post
+      - (Delete) Delete existing like
+   - Create Post Screen
+      - (Create/POST) Create a new post object
+   - Details Screen
+      - (Read/GET) Get post details and comments
+      - (Create/POST) Create a new like on a post
+      - (Delete) Delete existing like
+      - (Create/POST) Create a new comment on a post
+      - (Delete) Delete existing comment
+   - Search Screen
+      - (Read/GET) Query posts that meet search constrains
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]

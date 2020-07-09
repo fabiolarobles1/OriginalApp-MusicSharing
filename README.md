@@ -100,8 +100,9 @@ A social media to share music, meet people based on your music taste and be able
 
 ### [BONUS] Interactive Prototype
 
+
+
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
 #### Post
 
@@ -113,10 +114,23 @@ A social media to share music, meet people based on your music taste and be able
    | author        | Pointer to User     | post's author |
    | musicLink     | String   | URL string of song or playlist which the post is about |
    | caption       | String   | song/playlist's caption by author |
+   | image         | File     | post's song descriptive image (optional)|
    | likesCount    | Number   | number of likes for the post |
    | commentsCount | Number   | number of comments for the post |
    | genre         | String   | post's song genre|
    | mood          | String   | small description of how the song makes the author feel|
+   
+#### User
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user post (default field) |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+   | username      | String   | user's screenname |
+   | posts         | Arrays   | Array of all the user's posts |
+   | password      | String   |user's login password |
+   | email         | String   | user's email address |
    
    
 ### Networking

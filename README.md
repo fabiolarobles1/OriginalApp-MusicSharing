@@ -39,8 +39,6 @@ A social media to share music, meet people based on your music taste and be able
 * user can add an optional picture to the post
 * user can like posts
 * user can tap on post and view details
-* user can search for other users
-* user can follow/unfollow other users
 * user can search for posts (e.g. songs, playlists)
 
 **Optional Nice-to-have Stories**
@@ -48,6 +46,8 @@ A social media to share music, meet people based on your music taste and be able
 * user view comments on post in the details screen
 * user can see their profile
 * use Spotify API to render playlist 
+* user can search for other users
+* user can follow/unfollow other users
 
 
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AF337E9D3930B06442E2F6A /* Pods_Music_Sharing_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80B1B1CCD91F47B20743FBA /* Pods_Music_Sharing_AppTests.framework */; };
+		8EA13468000B4437BD98475A /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */; };
+		D940D8B665E56C9BFC0F6AEE /* Pods_Music_Sharing_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */; };
 		EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF26824BCC36C004270FF /* AppDelegate.m */; };
 		EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF26B24BCC36C004270FF /* SceneDelegate.m */; };
 		EB5AF26F24BCC36C004270FF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF26E24BCC36C004270FF /* ViewController.m */; };
@@ -36,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A77D2F5AFC7C8B111C0176C /* Pods-Music_Sharing_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_App.release.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App.release.xcconfig"; sourceTree = "<group>"; };
+		3AE87115237E8FB2B49FBCA2 /* Pods-Music_Sharing_App-Music_Sharing_AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_App-Music_Sharing_AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_App-Music_Sharing_AppUITests/Pods-Music_Sharing_App-Music_Sharing_AppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A46114591C5838F1876D53E2 /* Pods-Music_Sharing_App-Music_Sharing_AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_App-Music_Sharing_AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_App-Music_Sharing_AppUITests/Pods-Music_Sharing_App-Music_Sharing_AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A7098075798776BB0F9F64DA /* Pods-Music_Sharing_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_App.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App.debug.xcconfig"; sourceTree = "<group>"; };
+		C38149145132459E6D17627B /* Pods-Music_Sharing_AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.release.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		D80B1B1CCD91F47B20743FBA /* Pods_Music_Sharing_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5AF26424BCC36C004270FF /* Music_Sharing_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music_Sharing_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5AF26724BCC36C004270FF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EB5AF26824BCC36C004270FF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +63,9 @@
 		EB5AF28A24BCC36E004270FF /* Music_Sharing_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Music_Sharing_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music_Sharing_AppUITests.m; sourceTree = "<group>"; };
 		EB5AF29024BCC36E004270FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D940D8B665E56C9BFC0F6AEE /* Pods_Music_Sharing_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF337E9D3930B06442E2F6A /* Pods_Music_Sharing_AppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +89,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EA13468000B4437BD98475A /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A792130785211EE06B9638A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A7098075798776BB0F9F64DA /* Pods-Music_Sharing_App.debug.xcconfig */,
+				1A77D2F5AFC7C8B111C0176C /* Pods-Music_Sharing_App.release.xcconfig */,
+				A46114591C5838F1876D53E2 /* Pods-Music_Sharing_App-Music_Sharing_AppUITests.debug.xcconfig */,
+				3AE87115237E8FB2B49FBCA2 /* Pods-Music_Sharing_App-Music_Sharing_AppUITests.release.xcconfig */,
+				F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */,
+				C38149145132459E6D17627B /* Pods-Music_Sharing_AppTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C4D5B282AD4BBDB21E0FB764 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */,
+				F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */,
+				D80B1B1CCD91F47B20743FBA /* Pods_Music_Sharing_AppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EB5AF25B24BCC36C004270FF = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +127,8 @@
 				EB5AF28224BCC36E004270FF /* Music_Sharing_AppTests */,
 				EB5AF28D24BCC36E004270FF /* Music_Sharing_AppUITests */,
 				EB5AF26524BCC36C004270FF /* Products */,
+				A792130785211EE06B9638A8 /* Pods */,
+				C4D5B282AD4BBDB21E0FB764 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB5AF29324BCC36E004270FF /* Build configuration list for PBXNativeTarget "Music_Sharing_App" */;
 			buildPhases = (
+				2D4898A2E8E2B0115C8EDC73 /* [CP] Check Pods Manifest.lock */,
 				EB5AF26024BCC36C004270FF /* Sources */,
 				EB5AF26124BCC36C004270FF /* Frameworks */,
 				EB5AF26224BCC36C004270FF /* Resources */,
+				68D3F147C44ECAFAFF0BE096 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB5AF29624BCC36E004270FF /* Build configuration list for PBXNativeTarget "Music_Sharing_AppTests" */;
 			buildPhases = (
+				F4247D437E0578EDBEA216B5 /* [CP] Check Pods Manifest.lock */,
 				EB5AF27B24BCC36E004270FF /* Sources */,
 				EB5AF27C24BCC36E004270FF /* Frameworks */,
 				EB5AF27D24BCC36E004270FF /* Resources */,
@@ -179,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB5AF29924BCC36E004270FF /* Build configuration list for PBXNativeTarget "Music_Sharing_AppUITests" */;
 			buildPhases = (
+				4D91CB3B1C643DDD2428C23A /* [CP] Check Pods Manifest.lock */,
 				EB5AF28624BCC36E004270FF /* Sources */,
 				EB5AF28724BCC36E004270FF /* Frameworks */,
 				EB5AF28824BCC36E004270FF /* Resources */,
+				6E41F6CBC864ED64A6653272 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,6 +307,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D4898A2E8E2B0115C8EDC73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Music_Sharing_App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D91CB3B1C643DDD2428C23A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Music_Sharing_App-Music_Sharing_AppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68D3F147C44ECAFAFF0BE096 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E41F6CBC864ED64A6653272 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App-Music_Sharing_AppUITests/Pods-Music_Sharing_App-Music_Sharing_AppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App-Music_Sharing_AppUITests/Pods-Music_Sharing_App-Music_Sharing_AppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App-Music_Sharing_AppUITests/Pods-Music_Sharing_App-Music_Sharing_AppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4247D437E0578EDBEA216B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Music_Sharing_AppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EB5AF26024BCC36C004270FF /* Sources */ = {
@@ -437,9 +586,11 @@
 		};
 		EB5AF29424BCC36E004270FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7098075798776BB0F9F64DA /* Pods-Music_Sharing_App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9STP6M4864;
 				INFOPLIST_FILE = Music_Sharing_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,9 +604,11 @@
 		};
 		EB5AF29524BCC36E004270FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A77D2F5AFC7C8B111C0176C /* Pods-Music_Sharing_App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9STP6M4864;
 				INFOPLIST_FILE = Music_Sharing_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -469,6 +622,7 @@
 		};
 		EB5AF29724BCC36E004270FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -488,6 +642,7 @@
 		};
 		EB5AF29824BCC36E004270FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C38149145132459E6D17627B /* Pods-Music_Sharing_AppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +662,7 @@
 		};
 		EB5AF29A24BCC36E004270FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A46114591C5838F1876D53E2 /* Pods-Music_Sharing_App-Music_Sharing_AppUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Music_Sharing_AppUITests/Info.plist;
@@ -524,6 +680,7 @@
 		};
 		EB5AF29B24BCC36E004270FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AE87115237E8FB2B49FBCA2 /* Pods-Music_Sharing_App-Music_Sharing_AppUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Music_Sharing_AppUITests/Info.plist;

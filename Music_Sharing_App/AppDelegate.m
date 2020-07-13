@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse/Parse.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+  
+    //Initializing Parse and setting server
+    ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        
+        configuration.applicationId = @"musicSharingApp-Fab";
+        configuration.server = @"http://musicsharingapp.herokuapp.com/parse";
+    }];
+    
+    [Parse initializeWithConfiguration:config];
     return YES;
 }
 

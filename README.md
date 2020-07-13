@@ -32,7 +32,7 @@ A social media to share music, meet people based on your music taste and be able
 **Required Must-have Stories**
  
 * user can login
-* user can sing up with a new account
+* user can sign up with a new account
 * user can view a feed of posts
 * user can create a post on feed
     * structured post

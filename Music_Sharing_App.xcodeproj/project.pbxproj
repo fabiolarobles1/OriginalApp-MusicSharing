@@ -21,6 +21,7 @@
 		EB5AF28424BCC36E004270FF /* Music_Sharing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28324BCC36E004270FF /* Music_Sharing_AppTests.m */; };
 		EB5AF28F24BCC36E004270FF /* Music_Sharing_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */; };
 		EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */; };
+		EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		EB5AF29024BCC36E004270FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB1F4DA24BCEF46007BE75C /* SignUpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpVC.h; sourceTree = "<group>"; };
 		EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpVC.m; sourceTree = "<group>"; };
+		EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFeedVC.h; sourceTree = "<group>"; };
+		EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeFeedVC.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +135,8 @@
 				EB2F8ED724BCD3C000A47685 /* LoginVC.m */,
 				EBB1F4DA24BCEF46007BE75C /* SignUpVC.h */,
 				EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */,
+				EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */,
+				EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				EB2F8ED824BCD3C000A47685 /* LoginVC.m in Sources */,
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
+				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

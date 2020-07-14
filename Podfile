@@ -8,6 +8,7 @@ target 'Music_Sharing_App' do
   # Pods for Music_Sharing_App
   pod 'Parse'
   pod 'Parse/UI'
+  pod 'DateTools'
 
   target 'Music_Sharing_AppTests' do
     inherit! :search_paths

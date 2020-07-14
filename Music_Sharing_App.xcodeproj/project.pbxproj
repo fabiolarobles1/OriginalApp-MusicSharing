@@ -27,6 +27,7 @@
 		EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EA24BD0E3F007BE75C /* PostView.m */; };
 		EBB1F4ED24BD0EB6007BE75C /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB1F4EC24BD0EB6007BE75C /* PostView.xib */; };
 		EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EF24BD1110007BE75C /* PostCell.m */; };
+		EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18724BDF0B1001C3497 /* ComposeVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		EBB1F4EC24BD0EB6007BE75C /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
 		EBB1F4EE24BD1110007BE75C /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		EBB1F4EF24BD1110007BE75C /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		EBBAF18624BDF0B1001C3497 /* ComposeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeVC.h; sourceTree = "<group>"; };
+		EBBAF18724BDF0B1001C3497 /* ComposeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeVC.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +154,8 @@
 				EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */,
 				EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */,
 				EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */,
+				EBBAF18624BDF0B1001C3497 /* ComposeVC.h */,
+				EBBAF18724BDF0B1001C3497 /* ComposeVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 				EB2F8ED824BCD3C000A47685 /* LoginVC.m in Sources */,
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
+				EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,
 			);

@@ -19,10 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *musicLinkLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
-
+@property (weak, nonatomic) NSDate *date;
 @end
 
 @implementation PostView
+
+
 -(instancetype)initWithCoder:(NSCoder *)coder{
     self = [super initWithCoder:coder];
     if(self){
@@ -59,6 +61,7 @@
     self.musicLinkLabel.text = post.musicLink;
     self.captionLabel.text = post.caption;
     
+    self.date = post.createdAt;
     self.postImageView.file = post[@"image"];
     [self.postImageView loadInBackground];
     

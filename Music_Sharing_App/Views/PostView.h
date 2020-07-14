@@ -12,10 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PostView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 -(void)customInit;
 -(void) setWithPost:(Post *)post;
-
 
 @end
 

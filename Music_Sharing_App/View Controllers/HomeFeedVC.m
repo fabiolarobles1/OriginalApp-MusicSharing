@@ -12,6 +12,7 @@
 #import "SceneDelegate.h"
 #import "Post.h"
 #import "PostCell.h"
+#import "DateTools.h"
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,23 +26,28 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self fetchPosts];
 }
 
+- (IBAction)didTapCompose:(id)sender {
+    [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
+}
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
        Post *post = self.posts[indexPath.row];
-      // [cell.postView setWithPost:post];
-       
+       [cell.postView setWithPost:post];
+       cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    
        return cell;
     
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    //return self.posts.count;
-    return 10;
+    return self.posts.count;
+   
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -84,7 +90,7 @@
             
             self.posts= [posts mutableCopy];
             [self.tableView reloadData];
-            
+            NSLog(@"Post count = %lu", (unsigned long)self.posts.count);
         } else {
             NSLog(@"%@", error.localizedDescription);
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];

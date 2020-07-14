@@ -15,6 +15,7 @@
 #import "DateTools.h"
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 
@@ -26,6 +27,12 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    //setting up refresh control
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
     [self fetchPosts];
 }
 
@@ -91,6 +98,8 @@
             self.posts= [posts mutableCopy];
             [self.tableView reloadData];
             NSLog(@"Post count = %lu", (unsigned long)self.posts.count);
+            // stop indicators
+            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
@@ -104,7 +113,7 @@
             
             //creating OK action
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                //try to load movies again
+                //try to load post again
                 [self fetchPosts];
             }];
             
@@ -112,7 +121,8 @@
             [alert addAction:okAction];
             
             [self presentViewController:alert animated:YES completion:^{
-                
+                // stop indicators
+                [self.refreshControl endRefreshing];
             }];
         }
     }];

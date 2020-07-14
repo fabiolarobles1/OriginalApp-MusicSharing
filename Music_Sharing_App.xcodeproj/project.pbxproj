@@ -22,6 +22,11 @@
 		EB5AF28F24BCC36E004270FF /* Music_Sharing_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */; };
 		EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */; };
 		EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */; };
+		EBB1F4E324BD0841007BE75C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4E224BD0841007BE75C /* Post.m */; };
+		EBB1F4E624BD08D4007BE75C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4E524BD08D4007BE75C /* User.m */; };
+		EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EA24BD0E3F007BE75C /* PostView.m */; };
+		EBB1F4ED24BD0EB6007BE75C /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB1F4EC24BD0EB6007BE75C /* PostView.xib */; };
+		EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EF24BD1110007BE75C /* PostCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,15 @@
 		EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpVC.m; sourceTree = "<group>"; };
 		EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFeedVC.h; sourceTree = "<group>"; };
 		EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeFeedVC.m; sourceTree = "<group>"; };
+		EBB1F4E124BD0841007BE75C /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		EBB1F4E224BD0841007BE75C /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		EBB1F4E424BD08D4007BE75C /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		EBB1F4E524BD08D4007BE75C /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		EBB1F4E924BD0E3F007BE75C /* PostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostView.h; sourceTree = "<group>"; };
+		EBB1F4EA24BD0E3F007BE75C /* PostView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostView.m; sourceTree = "<group>"; };
+		EBB1F4EC24BD0EB6007BE75C /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
+		EBB1F4EE24BD1110007BE75C /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		EBB1F4EF24BD1110007BE75C /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +180,8 @@
 		EB5AF26624BCC36C004270FF /* Music_Sharing_App */ = {
 			isa = PBXGroup;
 			children = (
+				EBB1F4E724BD0E1E007BE75C /* Views */,
+				EBB1F4E024BD0800007BE75C /* Models */,
 				EB2F8ED524BCD38000A47685 /* View Controllers */,
 				EB5AF26724BCC36C004270FF /* AppDelegate.h */,
 				EB5AF26824BCC36C004270FF /* AppDelegate.m */,
@@ -198,6 +214,37 @@
 				EB5AF29024BCC36E004270FF /* Info.plist */,
 			);
 			path = Music_Sharing_AppUITests;
+			sourceTree = "<group>";
+		};
+		EBB1F4E024BD0800007BE75C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EBB1F4E124BD0841007BE75C /* Post.h */,
+				EBB1F4E224BD0841007BE75C /* Post.m */,
+				EBB1F4E424BD08D4007BE75C /* User.h */,
+				EBB1F4E524BD08D4007BE75C /* User.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EBB1F4E724BD0E1E007BE75C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EBB1F4EC24BD0EB6007BE75C /* PostView.xib */,
+				EBB1F4E924BD0E3F007BE75C /* PostView.h */,
+				EBB1F4EA24BD0E3F007BE75C /* PostView.m */,
+				EBB1F4E824BD0E28007BE75C /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EBB1F4E824BD0E28007BE75C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EBB1F4EE24BD1110007BE75C /* PostCell.h */,
+				EBB1F4EF24BD1110007BE75C /* PostCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +357,7 @@
 			files = (
 				EB5AF27724BCC36D004270FF /* LaunchScreen.storyboard in Resources */,
 				EB5AF27424BCC36D004270FF /* Assets.xcassets in Resources */,
+				EBB1F4ED24BD0EB6007BE75C /* PostView.xib in Resources */,
 				EB5AF27224BCC36C004270FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,13 +486,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
 				EB5AF26F24BCC36C004270FF /* ViewController.m in Sources */,
+				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,
 				EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */,
+				EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */,
 				EB2F8ED824BCD3C000A47685 /* LoginVC.m in Sources */,
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
+				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

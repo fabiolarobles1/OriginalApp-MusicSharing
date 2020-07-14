@@ -9,7 +9,7 @@
 #import "SignUpVC.h"
 #import "LoginVC.h"
 #import "SceneDelegate.h"
-#import "Parse/Parse.h"
+#import <Parse/Parse.h>
 
 @interface SignUpVC ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;

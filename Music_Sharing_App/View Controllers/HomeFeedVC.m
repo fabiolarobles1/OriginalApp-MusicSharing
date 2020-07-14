@@ -7,11 +7,15 @@
 //
 
 #import "HomeFeedVC.h"
-#import "Parse/Parse.h"
+#import <Parse/Parse.h>
 #import "LoginVC.h"
 #import "SceneDelegate.h"
+#import "Post.h"
+#import "PostCell.h"
 
-@interface HomeFeedVC ()
+@interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *posts;
 
 @end
 
@@ -19,7 +23,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+       Post *post = self.posts[indexPath.row];
+      // [cell.postView setWithPost:post];
+       
+       return cell;
+    
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    //return self.posts.count;
+    return 10;
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -45,14 +67,61 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)fetchPosts{
+    // construct query
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    //    if(self.isMoreDataLoading && self.posts.count>self.skipcount ){
+    //        postQuery.skip = self.skipcount;
+    //    }
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            
+            self.posts= [posts mutableCopy];
+            [self.tableView reloadData];
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
+            
+            //creating cancel action
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"  style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                // doing nothing will dismiss the view
+            }];
+            //   adding cancel action to the alertController
+            [alert addAction:cancelAction];
+            
+            //creating OK action
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //try to load movies again
+                [self fetchPosts];
+            }];
+            
+            //adding OK action to the alertController
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+        }
+    }];
 }
-*/
+
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 
 @end

@@ -53,13 +53,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOT-nt-dx8">
-                                <rect key="frame" x="117.5" y="761" width="179" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="112.5" y="784.5" width="189" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ov-EE-61d">
-                                <rect key="frame" x="180" y="782" width="54" height="30"/>
+                                <rect key="frame" x="172" y="806" width="70" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <segue destination="XIA-aS-zYB" kind="show" identifier="toSignUpSegue" id="BcW-No-aLy"/>
@@ -72,7 +73,7 @@
                             <constraint firstItem="qOT-nt-dx8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Qh-aU-bxi"/>
                             <constraint firstItem="Dc8-sH-Pa6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="BTd-N7-aSj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dc8-sH-Pa6" secondAttribute="trailing" constant="30" id="Igt-pL-cpC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Ov-EE-61d" secondAttribute="bottom" constant="50" id="KJv-wa-uMt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Ov-EE-61d" secondAttribute="bottom" constant="20" id="KJv-wa-uMt"/>
                             <constraint firstItem="J9Z-9f-WYU" firstAttribute="top" secondItem="MC0-oM-gc4" secondAttribute="bottom" constant="20" id="MHb-5C-YGV"/>
                             <constraint firstItem="MC0-oM-gc4" firstAttribute="top" secondItem="Dc8-sH-Pa6" secondAttribute="bottom" constant="5" id="QLb-Q4-czy"/>
                             <constraint firstItem="MC0-oM-gc4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rxe-qD-bye"/>
@@ -209,7 +210,46 @@
                     <view key="view" contentMode="scaleToFill" id="04z-bt-fhj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WLQ-NU-E3G">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="235" id="2dX-v2-YJz" customClass="PostCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="235"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2dX-v2-YJz" id="Dwo-1m-ogn">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="235"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqn-u0-y3C" customClass="PostView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="235"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="hG2-wq-p8c"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Bqn-u0-y3C" secondAttribute="trailing" id="0aG-ZR-JcE"/>
+                                                <constraint firstAttribute="bottom" secondItem="Bqn-u0-y3C" secondAttribute="bottom" id="74P-k0-FnJ"/>
+                                                <constraint firstItem="Bqn-u0-y3C" firstAttribute="leading" secondItem="Dwo-1m-ogn" secondAttribute="leading" id="xFN-bt-QBe"/>
+                                                <constraint firstItem="Bqn-u0-y3C" firstAttribute="top" secondItem="Dwo-1m-ogn" secondAttribute="top" id="zDc-zl-eGq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="postView" destination="Bqn-u0-y3C" id="LQ2-KZ-mMf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WLQ-NU-E3G" firstAttribute="top" secondItem="JTz-oq-mn3" secondAttribute="top" id="2Tr-o8-9va"/>
+                            <constraint firstItem="JTz-oq-mn3" firstAttribute="bottom" secondItem="WLQ-NU-E3G" secondAttribute="bottom" id="Wbf-S1-0kq"/>
+                            <constraint firstItem="WLQ-NU-E3G" firstAttribute="trailing" secondItem="JTz-oq-mn3" secondAttribute="trailing" id="eJm-Rw-Egk"/>
+                            <constraint firstItem="WLQ-NU-E3G" firstAttribute="leading" secondItem="JTz-oq-mn3" secondAttribute="leading" id="lSg-oc-fJJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JTz-oq-mn3"/>
                     </view>
                     <navigationItem key="navigationItem" id="33Z-PB-md1">
@@ -219,10 +259,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="WLQ-NU-E3G" id="wBC-oJ-1sC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNS-Vc-Ync" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="1767"/>
+            <point key="canvasLocation" x="131.8840579710145" y="1766.5178571428571"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zM2-AA-qNc">
@@ -276,11 +319,11 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
         </scene>
-        <!--Item 1-->
+        <!--Home-->
         <scene sceneID="fIv-5b-VOV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xxb-p9-I5S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="sxc-hI-Cpr"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="sxc-hI-Cpr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vca-Ms-VOL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -295,11 +338,11 @@
             </objects>
             <point key="canvasLocation" x="-796" y="1767"/>
         </scene>
-        <!--Item 2-->
+        <!--Search-->
         <scene sceneID="02r-aL-vvm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="toA-pF-dbC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="cGk-WA-jq2"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="cGk-WA-jq2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Te3-cu-y5A">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -316,6 +359,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="house" catalog="system" width="128" height="110"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="icon" width="1024" height="1024"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
     </resources>
 </document>

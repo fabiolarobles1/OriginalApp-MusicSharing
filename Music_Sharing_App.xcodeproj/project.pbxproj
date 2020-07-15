@@ -20,6 +20,10 @@
 		EB5AF27A24BCC36D004270FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF27924BCC36D004270FF /* main.m */; };
 		EB5AF28424BCC36E004270FF /* Music_Sharing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28324BCC36E004270FF /* Music_Sharing_AppTests.m */; };
 		EB5AF28F24BCC36E004270FF /* Music_Sharing_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */; };
+		EB627B1124BF8B6100F75655 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */; };
+		EB627B1424BF922000F75655 /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB627B1324BF922000F75655 /* SpotifyManager.m */; };
+		EB627B1A24BFBAA000F75655 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EB627B1924BFBAA000F75655 /* ConnectButton.m */; };
+		EB627B1D24BFBB0500F75655 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB627B1C24BFBB0500F75655 /* ConnectView.m */; };
 		EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */; };
 		EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */; };
 		EBB1F4E324BD0841007BE75C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4E224BD0841007BE75C /* Post.m */; };
@@ -75,6 +79,13 @@
 		EB5AF28A24BCC36E004270FF /* Music_Sharing_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Music_Sharing_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music_Sharing_AppUITests.m; sourceTree = "<group>"; };
 		EB5AF29024BCC36E004270FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		EB627B1224BF922000F75655 /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
+		EB627B1324BF922000F75655 /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
+		EB627B1824BFBAA000F75655 /* ConnectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectButton.h; sourceTree = "<group>"; };
+		EB627B1924BFBAA000F75655 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
+		EB627B1B24BFBB0500F75655 /* ConnectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectView.h; sourceTree = "<group>"; };
+		EB627B1C24BFBB0500F75655 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
 		EBB1F4DA24BCEF46007BE75C /* SignUpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpVC.h; sourceTree = "<group>"; };
 		EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpVC.m; sourceTree = "<group>"; };
 		EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFeedVC.h; sourceTree = "<group>"; };
@@ -103,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D940D8B665E56C9BFC0F6AEE /* Pods_Music_Sharing_App.framework in Frameworks */,
+				EB627B1124BF8B6100F75655 /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +153,7 @@
 		C4D5B282AD4BBDB21E0FB764 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */,
 				F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */,
 				F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */,
 				D80B1B1CCD91F47B20743FBA /* Pods_Music_Sharing_AppTests.framework */,
@@ -202,6 +215,12 @@
 				EB5AF27524BCC36D004270FF /* LaunchScreen.storyboard */,
 				EB5AF27824BCC36D004270FF /* Info.plist */,
 				EB5AF27924BCC36D004270FF /* main.m */,
+				EB627B1224BF922000F75655 /* SpotifyManager.h */,
+				EB627B1324BF922000F75655 /* SpotifyManager.m */,
+				EB627B1824BFBAA000F75655 /* ConnectButton.h */,
+				EB627B1924BFBAA000F75655 /* ConnectButton.m */,
+				EB627B1B24BFBB0500F75655 /* ConnectView.h */,
+				EB627B1C24BFBB0500F75655 /* ConnectView.m */,
 			);
 			path = Music_Sharing_App;
 			sourceTree = "<group>";
@@ -499,14 +518,17 @@
 				EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */,
 				EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
+				EB627B1A24BFBAA000F75655 /* ConnectButton.m in Sources */,
 				EB5AF26F24BCC36C004270FF /* ViewController.m in Sources */,
 				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,
 				EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */,
 				EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */,
 				EB2F8ED824BCD3C000A47685 /* LoginVC.m in Sources */,
+				EB627B1424BF922000F75655 /* SpotifyManager.m in Sources */,
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
 				EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */,
+				EB627B1D24BFBB0500F75655 /* ConnectView.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,
 			);
@@ -680,10 +702,50 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9STP6M4864;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Music_Sharing_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"DateTools\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabiolarobles19.Music-Sharing-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -698,10 +760,50 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9STP6M4864;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Music_Sharing_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"DateTools\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabiolarobles19.Music-Sharing-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";

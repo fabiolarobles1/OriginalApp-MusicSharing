@@ -2,21 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSAppTransportSecurity</key>
-      <dict>
-          <key>NSAllowsArbitraryLoads</key>
-          <true/>
-          <key>NSExceptionDomains</key>
-          <dict>
-              <key>yourdomain.com</key>
-              <dict>
-                  <key>NSIncludesSubdomains</key>
-                  <true/>
-                  <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                  <false/>
-              </dict>
-         </dict>
-    </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -31,10 +16,46 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.fabiolarobles19.Music-Sharing-App</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>spotify-ios-quick-start</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>spotify</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>yourdomain.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access to take pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need library access to upload images</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -75,24 +96,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>spotify</string>
-    </array>
     <key>CFBundleURLTypes</key>
     <array>
       <dict>
         <key>CFBundleURLName</key>
-        <string>com.spotify.iOS-SDK-Quick-Start</string>
+        <string>com.fabiolarobles19.Music-Sharing-App</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>spotify-ios-quick-start</string>
+          <string>music-sharing-app-login</string>
         </array>
       </dict>
     </array>
-    <key>NSPhotoLibraryUsageDescription</key>               <!-- added this for photo library permission -->
-    <string>Need library access to upload images</string> <!-- added this for photo library permission -->
-    <key>NSCameraUsageDescription</key> <!-- added this for camera permission -->
-    <string>Need camera access to take pictures</string> <!-- added this for camera permission -->
 </dict>
 </plist>

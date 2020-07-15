@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SpotifyiOS/SpotifyiOS.h>
 
-@interface ViewController : UIViewController
 
+@interface ViewController : UIViewController <SPTSessionManagerDelegate>
+@property (nonatomic, strong) SPTSessionManager *sessionManager;
 
 @end
 

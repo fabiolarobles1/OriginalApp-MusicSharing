@@ -13,11 +13,15 @@
 #import "Post.h"
 #import "PostCell.h"
 #import "DateTools.h"
+#import "InfiniteScrollActivityView.h"
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
+@property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (assign, nonatomic) int skipcount;
 
 @end
 
@@ -27,11 +31,22 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.isMoreDataLoading = NO;
+    self.skipcount = 0;
     
     //setting up refresh control
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    // Set up Infinite Scroll loading indicator
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
     
     [self fetchPosts];
 }
@@ -87,19 +102,28 @@
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
     postQuery.limit = 20;
-    //    if(self.isMoreDataLoading && self.posts.count>self.skipcount ){
-    //        postQuery.skip = self.skipcount;
-    //    }
+        if(self.isMoreDataLoading){
+            postQuery.skip = self.skipcount;
+        }
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             
-            self.posts= [posts mutableCopy];
+             if(self.isMoreDataLoading){
+                           [self.posts addObjectsFromArray:posts];
+                       }else{
+                           self.posts= [posts mutableCopy];
+                       }
+                       //update flag
+                       self.isMoreDataLoading = NO;
+                       
             [self.tableView reloadData];
             NSLog(@"Post count = %lu", (unsigned long)self.posts.count);
             // stop indicators
             [self.refreshControl endRefreshing];
+            [self.loadingMoreView stopAnimating];
+
         } else {
             NSLog(@"%@", error.localizedDescription);
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
@@ -123,9 +147,39 @@
             [self presentViewController:alert animated:YES completion:^{
                 // stop indicators
                 [self.refreshControl endRefreshing];
+                [self.loadingMoreView stopAnimating];
+
             }];
         }
     }];
+}
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.skipcount +=20;
+            self.isMoreDataLoading = YES;
+            
+            // Update position of loadingMoreView, and start loading indicator
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            
+            //load more results
+            if (self.posts.count>=self.skipcount){
+                [self fetchPosts];
+                NSLog(@"MORE");
+            }else{
+                [self.loadingMoreView stopAnimating];
+                self.isMoreDataLoading = NO;
+            }
+        }
+    }
 }
 
 

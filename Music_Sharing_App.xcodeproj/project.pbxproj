@@ -28,6 +28,7 @@
 		EBB1F4ED24BD0EB6007BE75C /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB1F4EC24BD0EB6007BE75C /* PostView.xib */; };
 		EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EF24BD1110007BE75C /* PostCell.m */; };
 		EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18724BDF0B1001C3497 /* ComposeVC.m */; };
+		EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		EBB1F4EF24BD1110007BE75C /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		EBBAF18624BDF0B1001C3497 /* ComposeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeVC.h; sourceTree = "<group>"; };
 		EBBAF18724BDF0B1001C3497 /* ComposeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeVC.m; sourceTree = "<group>"; };
+		EBBAF18B24BE6AC2001C3497 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +242,8 @@
 				EBB1F4E924BD0E3F007BE75C /* PostView.h */,
 				EBB1F4EA24BD0E3F007BE75C /* PostView.m */,
 				EBB1F4E824BD0E28007BE75C /* Cells */,
+				EBBAF18B24BE6AC2001C3497 /* InfiniteScrollActivityView.h */,
+				EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */,
+				EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
 				EB5AF26F24BCC36C004270FF /* ViewController.m in Sources */,
 				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,

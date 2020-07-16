@@ -55,8 +55,6 @@
 }
 
 
-
-
 - (IBAction)didTapPost:(id)sender {
     self.postButton.enabled = !self.postButton.enabled;
     [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
@@ -103,14 +101,15 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
+
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         return self.moods.count;
     }else{
         return self.genres.count;
     }
-    
 }
+
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         return [NSString stringWithFormat:@"%@",self.moods[(long)row]];
@@ -129,16 +128,9 @@
     }
     
 }
--(IBAction)disablePostButton{
-    self.postButton.enabled = !self.postButton.enabled;
-}
-
-
-
 
 - (IBAction)didTapCancel:(id)sender {
     [self toFeed];
-    //  [self performSegueWithIdentifier:@"toFeed" sender:nil];
 }
 
 //-(void) viewWillAppear:(BOOL)animated{

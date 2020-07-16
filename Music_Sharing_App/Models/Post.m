@@ -23,8 +23,6 @@
 @dynamic genre;
 @dynamic mood;
 
-
-
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }

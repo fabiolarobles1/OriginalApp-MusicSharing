@@ -8,17 +8,10 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import <SpotifyiOS/SpotifyiOS.h>
-#import "ViewController.h"
-
-static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
-static NSString * const spotifyRedirectURLString = @"music-sharing-app-login://callback";
-static NSString * const tokenSwapURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/token";
-static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/refresh_token";
-
 
 @interface AppDelegate ()
-@property(nonatomic, strong) ViewController *rootViewController;
+
+
 @end
 
 @implementation AppDelegate
@@ -34,12 +27,6 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     }];
     
     [Parse initializeWithConfiguration:config];
-    
-    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.window.rootViewController = [ViewController new];
-    self.rootViewController = [ViewController new];
-    self.window.rootViewController = self.rootViewController;
-    [self.window makeKeyAndVisible];
  
 
     return YES;
@@ -62,28 +49,5 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)URL
-            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
-{
-    [self.rootViewController.sessionManager application:application openURL:URL options:options];
-    NSLog(@"%@ %@", URL, options);
-    return YES;
-}
-
-
-#pragma mark - SPTSeeionManagerDelegate
-
-- (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session{
-    NSLog(@"success: %@", session);
-}
-
--(void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"fail: %@", error);
-}
-
--(void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session{
-    NSLog(@"renewed: %@", session);
-}
 
 @end

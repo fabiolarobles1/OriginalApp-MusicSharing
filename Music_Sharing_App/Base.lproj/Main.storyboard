@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7MY-5l-0yv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JRp-E9-b4Z">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -203,6 +203,72 @@
             </objects>
             <point key="canvasLocation" x="1988" y="138"/>
         </scene>
+        <!--Connect SpotifyVC-->
+        <scene sceneID="6rH-mx-Vkg">
+            <objects>
+                <viewController id="JRp-E9-b4Z" customClass="ConnectSpotifyVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ARe-Tf-loG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYt-Ph-k4A">
+                                <rect key="frame" x="30" y="430" width="354" height="36"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="BGi-gk-ga0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapConnect:" destination="JRp-E9-b4Z" eventType="touchUpInside" id="N8u-tf-TLq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjD-ja-aB3">
+                                <rect key="frame" x="126.5" y="409" width="161" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZa-bD-tT1">
+                                <rect key="frame" x="0.0" y="566" width="414" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fuy-xK-gf9"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapLogin:" destination="JRp-E9-b4Z" eventType="touchUpInside" id="DS9-e3-2TL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cjD-ja-aB3" firstAttribute="centerX" secondItem="ARe-Tf-loG" secondAttribute="centerX" id="3Hu-ST-d2B"/>
+                            <constraint firstItem="vZa-bD-tT1" firstAttribute="top" secondItem="EYt-Ph-k4A" secondAttribute="bottom" constant="100" id="GnB-Xm-oMk"/>
+                            <constraint firstItem="EYt-Ph-k4A" firstAttribute="leading" secondItem="WVn-xx-MgK" secondAttribute="leading" constant="30" id="aHp-Ny-O2e"/>
+                            <constraint firstItem="EYt-Ph-k4A" firstAttribute="centerX" secondItem="ARe-Tf-loG" secondAttribute="centerX" id="cJA-AO-r5g"/>
+                            <constraint firstItem="WVn-xx-MgK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EYt-Ph-k4A" secondAttribute="trailing" constant="30" id="cWG-10-Xj7"/>
+                            <constraint firstItem="vZa-bD-tT1" firstAttribute="leading" secondItem="WVn-xx-MgK" secondAttribute="leading" id="iA5-vi-Wyi"/>
+                            <constraint firstItem="EYt-Ph-k4A" firstAttribute="centerY" secondItem="ARe-Tf-loG" secondAttribute="centerY" id="ld0-Dh-CYm"/>
+                            <constraint firstItem="EYt-Ph-k4A" firstAttribute="top" secondItem="cjD-ja-aB3" secondAttribute="bottom" id="m9E-N6-CVF"/>
+                            <constraint firstItem="WVn-xx-MgK" firstAttribute="trailing" secondItem="vZa-bD-tT1" secondAttribute="trailing" id="zde-1w-1IH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WVn-xx-MgK"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="EYt-Ph-k4A" id="Ldg-LR-GKM"/>
+                        <outlet property="loginButton" destination="vZa-bD-tT1" id="RX3-Z2-fjv"/>
+                        <segue destination="hCI-Pw-5dh" kind="presentation" identifier="toLogin" modalPresentationStyle="fullScreen" id="0Sw-b1-e4K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6x9-ux-lAU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003" y="-901"/>
+        </scene>
         <!--Home Feed-->
         <scene sceneID="MPB-P9-UN6">
             <objects>
@@ -345,8 +411,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vru-ti-B7a">
                                 <rect key="frame" x="284" y="354" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="9QZ-kO-9Wv"/>
                                     <constraint firstAttribute="height" constant="100" id="Rsq-1e-byo"/>
+                                    <constraint firstAttribute="width" secondItem="vru-ti-B7a" secondAttribute="height" multiplier="1:1" id="f2c-We-oVS"/>
                                 </constraints>
                                 <state key="normal" title="Add Photo" image="musicNotes"/>
                                 <connections>
@@ -392,6 +458,7 @@
                             <constraint firstItem="ciq-yJ-Mbm" firstAttribute="leading" secondItem="w61-K0-wws" secondAttribute="trailing" constant="10" id="hzc-Bh-LnW"/>
                             <constraint firstItem="D51-pr-gli" firstAttribute="trailing" secondItem="TMg-Nk-X9a" secondAttribute="trailing" constant="10" id="j06-ou-DbC"/>
                             <constraint firstItem="YmN-oC-hmF" firstAttribute="leading" secondItem="D51-pr-gli" secondAttribute="leading" constant="20" id="jLq-hz-fV2"/>
+                            <constraint firstItem="vru-ti-B7a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Msg-yI-hbr" secondAttribute="trailing" constant="5" id="k6V-7k-oFN"/>
                             <constraint firstItem="ciq-yJ-Mbm" firstAttribute="centerY" secondItem="w61-K0-wws" secondAttribute="centerY" id="wev-aS-vhr"/>
                             <constraint firstItem="NWI-VI-OZf" firstAttribute="top" secondItem="eSN-ms-wdS" secondAttribute="bottom" constant="8" id="wpa-yP-BTL"/>
                             <constraint firstItem="CTe-YN-ndy" firstAttribute="leading" secondItem="D51-pr-gli" secondAttribute="leading" constant="20" id="xBi-ck-YAe"/>
@@ -458,31 +525,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uph-7w-k6o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042" y="970"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="L7P-jk-NM8">
-            <objects>
-                <viewController id="7MY-5l-0yv" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vAg-g7-DDZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKR-2O-NY4">
-                                <rect key="frame" x="184" y="433" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="nKR-2O-NY4" firstAttribute="centerX" secondItem="vAg-g7-DDZ" secondAttribute="centerX" id="gTL-yJ-52w"/>
-                            <constraint firstItem="nKR-2O-NY4" firstAttribute="centerY" secondItem="vAg-g7-DDZ" secondAttribute="centerY" id="icY-bE-Hcp"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="J23-8B-NE2"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qxd-Uj-JDc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-747" y="-1235"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YqN-Et-hfL">

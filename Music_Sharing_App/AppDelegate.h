@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SpotifyiOS/SpotifyiOS.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, SPTSessionManagerDelegate>
-@property (strong, nonatomic) UIWindow *window;
-
-//@property (nonatomic, strong) SPTSessionManager *sessionManager;
-//@property (nonatomic, strong) SPTConfiguration *configuration;
-
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 
 @end

@@ -304,7 +304,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="postView" destination="Bqn-u0-y3C" id="LQ2-KZ-mMf"/>
-                                            <segue destination="wuv-jQ-1WW" kind="show" id="xW4-d2-LWN"/>
+                                            <segue destination="wuv-jQ-1WW" kind="show" identifier="toDetailsVCSegue" id="xW4-d2-LWN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -513,17 +513,28 @@
                                     <action selector="didTapPlayButton:" destination="wuv-jQ-1WW" eventType="touchUpInside" id="AIV-sV-cwz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcY-do-6Rc">
+                                <rect key="frame" x="186" y="570" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="UcY-do-6Rc" firstAttribute="centerX" secondItem="eD2-23-25U" secondAttribute="centerX" id="9x4-TC-6Vf"/>
                             <constraint firstItem="hh3-2X-eia" firstAttribute="centerY" secondItem="eD2-23-25U" secondAttribute="centerY" id="FVZ-bb-7G1"/>
+                            <constraint firstItem="UcY-do-6Rc" firstAttribute="top" secondItem="hh3-2X-eia" secondAttribute="bottom" constant="100" id="LO0-zi-3Lz"/>
+                            <constraint firstItem="wUZ-gj-8WV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UcY-do-6Rc" secondAttribute="trailing" constant="10" id="TPa-cY-8C0"/>
                             <constraint firstItem="hh3-2X-eia" firstAttribute="centerX" secondItem="eD2-23-25U" secondAttribute="centerX" id="WEq-HN-1cJ"/>
+                            <constraint firstItem="UcY-do-6Rc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wUZ-gj-8WV" secondAttribute="leading" constant="10" id="Z9L-A9-hm6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wUZ-gj-8WV"/>
                     </view>
                     <navigationItem key="navigationItem" id="P0K-zB-PIL"/>
                     <connections>
                         <outlet property="playButton" destination="hh3-2X-eia" id="8ZZ-p0-ddO"/>
+                        <outlet property="songLabel" destination="UcY-do-6Rc" id="WJV-Ws-k5P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKS-RB-G5f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

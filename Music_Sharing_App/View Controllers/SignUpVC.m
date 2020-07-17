@@ -65,7 +65,7 @@
             SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
             myDelegate.window.alpha = 0;
             myDelegate.window.rootViewController = loginViewController;
             

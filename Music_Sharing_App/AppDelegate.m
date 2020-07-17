@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
+
 static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
 static NSString * const spotifyRedirectURLString = @"music-sharing-app-login://callback";
 static NSString * const tokenSwapURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/token";
@@ -32,6 +33,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     }];
     
     [Parse initializeWithConfiguration:config];
+    
     [self configurate];
     [self initiateSession];
     NSLog(@"DONE");
@@ -45,17 +47,19 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     self.configuration.playURI = @"";
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
     self.appRemote.delegate = self;
+   
 }
 
 -(void)initiateSession{
-    SPTScope scopes = SPTPlaylistReadPrivateScope | SPTPlaylistModifyPublicScope | SPTPlaylistModifyPrivateScope |SPTUserFollowReadScope | SPTUserFollowModifyScope | SPTUserLibraryReadScope | SPTUserLibraryModifyScope | SPTUserTopReadScope | SPTAppRemoteControlScope;
+    SPTScope requestedscopes = SPTAppRemoteControlScope;
+   // SPTScope scopes = SPTPlaylistReadPrivateScope | SPTPlaylistModifyPublicScope | SPTPlaylistModifyPrivateScope |SPTUserFollowReadScope | SPTUserFollowModifyScope | SPTUserLibraryReadScope | SPTUserLibraryModifyScope | SPTUserTopReadScope | SPTAppRemoteControlScope;
     self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:self.configuration delegate:self];
-    [self.sessionManager initiateSessionWithScope:scopes options:SPTDefaultAuthorizationOption];
+    [self.sessionManager initiateSessionWithScope:requestedscopes options:SPTDefaultAuthorizationOption];
     
 }
 // called from AppDelegate
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
-{
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    NSLog(@"CALLLLLLEEEEEDDD");
     return [self.sessionManager application:app openURL:url options:options];
 }
 
@@ -77,12 +81,14 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 -(void)applicationWillResignActive:(UIApplication *)application{
     if(self.appRemote.isConnected){
         [self.appRemote disconnect];
+        NSLog(@"DISCONNECTED");
     }
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application{
     if(self.appRemote.connectionParameters.accessToken){
         [self.appRemote connect];
+         NSLog(@"CONNECTED");
     }
 }
 
@@ -94,20 +100,27 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 -(void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session{
     NSLog(@"Success: %@", session);
     self.appRemote.connectionParameters.accessToken = session.accessToken;
-    [self.appRemote connect];
+   // [self.appRemote authorizeAndPlayURI:@""];
+   // [self.appRemote connect];
 }
 
 -(void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"Error: %@", error);
 }
 #pragma mark - SPTAppRemoteDelegate
+
 - (void)appRemoteDidEstablishConnection:(SPTAppRemote *)appRemote{
+    NSLog(@"Trying to connection");
     self.appRemote.playerAPI.delegate = self;
     [self.appRemote.playerAPI subscribeToPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
-        NSLog(@"%@",error.localizedDescription);
+        if(error){
+        NSLog(@"ERROR WITH CONNECTION%@",error.localizedDescription);
+        }else{
+            NSLog(@"WOO");
+        }
     }];
-    
 }
+
 
 - (void)appRemote:(SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(nullable NSError *)error{
     NSLog(@"Error connecting to Spotify app %@",error);

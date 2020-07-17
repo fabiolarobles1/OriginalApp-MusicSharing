@@ -9,14 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <SpotifyiOS/SpotifyiOS.h>
 #import "SpotifyManager.h"
+#import "Post.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailsVC : UIViewController <SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate>
-@property (nonatomic, strong) SpotifyManager *manager;
-@property (nonatomic, strong) SPTAppRemote *appRemote;
-@property (nonatomic, strong) SPTSessionManager *sessionManager;
+@interface DetailsVC : UIViewController
+@property (strong, nonatomic)Post *post;
 
 @end
 

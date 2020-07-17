@@ -20,43 +20,17 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     static SpotifyManager *sharedObject = nil;
     dispatch_once(&once, ^{
         sharedObject = [[self alloc] init];
-        
-        sharedObject.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL: [NSURL URLWithString:spotifyRedirectURLString]];
-        
-        // Set these url's to your backend which contains the secret to exchange for an access token
-        sharedObject.configuration.tokenSwapURL = [NSURL URLWithString:tokenSwapURLString];
-        sharedObject.configuration.tokenRefreshURL = [NSURL URLWithString:tokenRefreshURLString];
-        
-        //will resume playback of user's last track
-        sharedObject.configuration.playURI = @"";
-        
-        // The session manager lets you authorize, get access tokens, and so on.
+      
        
     });
     return sharedObject;
 }
 
 
- - (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session{
-     NSLog(@"success: %@", session);
- //    [self presentAlertControllerWithTitle:@"Authorization Succeeded"
- //                                  message:session.description
- //                              buttonTitle:@"Nice"];
- }
+-(void)getSong:(NSString *)song completion:(void (^)(NSString * _Nonnull, NSError * _Nonnull))completion{
+    
+}
 
- - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error{
-     NSLog(@"fail: %@", error);
- //    [self presentAlertControllerWithTitle:@"Authorization Failed"
- //                                  message:error.description
- //                              buttonTitle:@"Bummer"];
- }
-
- - (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session{
-    NSLog(@"renewed: %@", session);
- //    [self presentAlertControllerWithTitle:@"Session Renewed"
- //                                  message:session.description
- //                              buttonTitle:@"Sweet"];
- }
      
 
 @end

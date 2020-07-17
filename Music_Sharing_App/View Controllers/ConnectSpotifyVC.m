@@ -27,7 +27,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     
     [super viewDidLoad];
     self.manager = [SpotifyManager shared];
-    self.configuration = self.manager.configuration;
+ //   self.configuration = self.manager.configuration;
     // The session manager lets you authorize, get access tokens, and so on.
     self.sessionManager = [[SPTSessionManager alloc]initWithConfiguration:self.configuration delegate:self];
    
@@ -97,7 +97,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 - (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session{
     NSLog(@"success: %@", session);
     self.sessionManager.session = session;
-    self.manager.sessionManager.session = session;
+  //  self.manager.sessionManager.session = session;
     self.successSession = YES;
     [self presentAlertControllerWithTitle:@"Authorization Succesful"
                                   message:@"Continue to App"//session.description

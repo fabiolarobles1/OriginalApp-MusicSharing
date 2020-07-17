@@ -10,16 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SpotifyManager : SPTSessionManager <SPTSessionManagerDelegate>
+@interface SpotifyManager : SPTSessionManager
 
-@property (nonatomic, strong) SPTSessionManager *sessionManager;
-@property (nonatomic, strong) SPTConfiguration *configuration;
 
 +(instancetype)shared;
-- (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session;
-- (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error;
-- (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session;
 
+- (void)getSong:(NSString *)song completion:(void (^)(NSString *, NSError *))completion;
 @end
 
 NS_ASSUME_NONNULL_END

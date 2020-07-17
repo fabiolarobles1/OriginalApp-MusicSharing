@@ -7,15 +7,20 @@
 //
 
 #import "DetailsVC.h"
+#import "AppDelegate.h"
+#import "Post.h"
 static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
 static NSString * const spotifyRedirectURLString = @"music-sharing-app-login://callback";
 static NSString * const tokenSwapURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/token";
 static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/refresh_token";
 
 
-@interface DetailsVC ()<SPTSessionManagerDelegate>
+@interface DetailsVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (strong, nonatomic) AppDelegate *delegate;
+@property (weak, nonatomic) IBOutlet UILabel *songLabel;
+
 
 @end
 
@@ -23,59 +28,31 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    SPTConfiguration *configuration = [SPTConfiguration configurationWithClientID:spotifyClientID redirectURL:[NSURL URLWithString:spotifyRedirectURLString]];
-    //will resume playback of user's last track
-    
-    configuration.tokenSwapURL = [NSURL URLWithString:tokenSwapURLString];
-    configuration.tokenRefreshURL = [NSURL URLWithString:tokenRefreshURLString];
-    configuration.playURI = @"";
-    self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:configuration delegate:self];
-     SPTScope scopes = SPTPlaylistReadPrivateScope | SPTPlaylistModifyPublicScope | SPTPlaylistModifyPrivateScope |SPTUserFollowReadScope | SPTUserFollowModifyScope | SPTUserLibraryReadScope | SPTUserLibraryModifyScope | SPTUserTopReadScope | SPTAppRemoteControlScope;
-     [self.sessionManager initiateSessionWithScope:scopes options:SPTDefaultAuthorizationOption];
-
-    
+    self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.delegate.appRemote isConnected];
+  
+    NSLog(@"APP? %d", [self.delegate.sessionManager isSpotifyAppInstalled]);
    
-    self.appRemote = [[SPTAppRemote alloc]initWithConfiguration:self.manager.configuration logLevel:SPTAppRemoteLogLevelDebug];
-   
-    self.appRemote.delegate = self;
-    self.appRemote.connectionParameters.accessToken = self.manager.sessionManager.session.accessToken;
-    [self.appRemote connect];
-    
 }
-#pragma mark - SPTAppRemoteDelegate
 
-- (void)appRemoteDidEstablishConnection:(SPTAppRemote *)appRemote{
-  NSLog(@"connected");
-    
-    self.appRemote.playerAPI.delegate = self;
-    [self.appRemote.playerAPI subscribeToPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
-        if(error){
-            NSLog(@"error: %@", error.localizedDescription);
-        }
-    }];
-}
+
 - (IBAction)didTapPlayButton:(id)sender {
-    [self.appRemote.playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
-        NSLog(@"Are you here?");
+    
+    NSString *song = self.post.musicLink;
+   song = [song substringWithRange:NSMakeRange(31, 22)];
+    NSString *songURI = [@"spotify:track:" stringByAppendingString:song];
+    NSLog(@"URI: %@", songURI);
+    [self.delegate.appRemote connect];
+    
+    [self.delegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+         NSLog(@"Please work");
     }];
+    
+//    [self.delegate.appRemote.playerAPI play:@"spotify:track:20I6sIOMTCkB6w7ryavxtO" callback:^(id  _Nullable result, NSError * _Nullable error) {
+//         NSLog(@"Please work");
+//    }];
+      NSLog(@"CONNECTED ? %d", [self.delegate.appRemote isConnected]);
 }
-
-- (void)appRemote:(SPTAppRemote *)appRemote didDisconnectWithError:(NSError *)error
-{
-  NSLog(@"disconnected");
-}
-
-- (void)appRemote:(SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(NSError *)error
-{
-  NSLog(@"failed");
-}
-
-- (void)playerStateDidChange:(id<SPTAppRemotePlayerState>)playerState{
-  NSLog(@"player state changed");
-    NSLog(@"Track name: %@", playerState.track.name);
-}
-
 
 /*
 #pragma mark - Navigation
@@ -86,18 +63,5 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     // Pass the selected object to the new view controller.
 }
 */
-
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
-    NSLog(@"error: %@", error.description);
-}
-
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
-    NSLog(@"success: %@", session.description);
-    self.appRemote.connectionParameters.accessToken = session.accessToken;
-       self.appRemote.delegate = self;
-       [self.appRemote connect];
-}
-
-
 
 @end

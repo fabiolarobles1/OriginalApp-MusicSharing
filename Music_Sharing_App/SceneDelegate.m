@@ -8,9 +8,11 @@
 
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
+#import <SpotifyiOS/SpotifyiOS.h>
 
 @interface SceneDelegate ()
-
+@property (strong, nonatomic) AppDelegate *delegate;
 @end
 
 @implementation SceneDelegate
@@ -25,6 +27,8 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedController"];
     }
+     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   
 }
 
 
@@ -58,6 +62,17 @@
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
+}
+-(void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts{
+    NSLog(@"CALLING in Scene Delegate %@", URLContexts);
+    UIOpenURLContext *ctx = [URLContexts allObjects][0];
+  
+    
+   // [appDelegate application:[UIApplication sharedApplication] openURL:ctx.URL options:appDelegate.sessionManager.session.accessToken];
+   // [UIApplicationOpenURLOptionsAnnotationKey valueForKey:ctx.options];
+    [self.delegate application:[UIApplication sharedApplication] openURL:ctx.URL options:ctx.options];
+    
+    
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "ConnectSpotifyVC.h"
+#import "SpotifyManager.h"
 static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
 static NSString * const spotifyRedirectURLString = @"music-sharing-app-login://callback";
 static NSString * const tokenSwapURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/token";
@@ -15,30 +16,24 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 @interface ConnectSpotifyVC ()
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (assign, nonatomic) BOOL successSession;
 
 @end
 
 @implementation ConnectSpotifyVC
 
+
 - (void)viewDidLoad {
     
-    self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL: [NSURL URLWithString:spotifyRedirectURLString]];
-    
-    // Set these url's to your backend which contains the secret to exchange for an access token
-    self.configuration.tokenSwapURL = [NSURL URLWithString:tokenSwapURLString];
-    self.configuration.tokenRefreshURL = [NSURL URLWithString:tokenRefreshURLString];
-    
-    //will resume playback of user's last track
-    self.configuration.playURI = @"";
-    
-    
+    [super viewDidLoad];
+    self.manager = [SpotifyManager shared];
+    self.configuration = self.manager.configuration;
     // The session manager lets you authorize, get access tokens, and so on.
     self.sessionManager = [[SPTSessionManager alloc]initWithConfiguration:self.configuration delegate:self];
-    
-    
-    [super viewDidLoad];
-
+   
 }
+
+
 - (IBAction)didTapConnect:(id)sender {
     
     NSLog(@"Spotify AVAILABLE: %d", [self.sessionManager isSpotifyAppInstalled]);
@@ -52,13 +47,19 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     
     if([self.sessionManager isSpotifyAppInstalled]){
         //invoke authorization screen
-        SPTScope  requestedScope = SPTAppRemoteControlScope;
+        SPTScope scopes = SPTPlaylistReadPrivateScope | SPTPlaylistModifyPublicScope | SPTPlaylistModifyPrivateScope |SPTUserFollowReadScope | SPTUserFollowModifyScope | SPTUserLibraryReadScope | SPTUserLibraryModifyScope | SPTUserTopReadScope | SPTAppRemoteControlScope;
+        SPTScope  requestedScope = SPTAppRemoteControlScope | SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope;
         [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
-        NSLog(@"SESSION: %@", self.sessionManager.session);
         [self performSegueWithIdentifier:@"toLogin" sender:nil];
+        
+    }else{
+        SPTScope  requestedScope = SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope;
+        [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
+        
     }
-  
+    
 }
+
 
 //to go login directly if not app TEST ONLY!!!!!!
 - (IBAction)didTapLogin:(id)sender {
@@ -71,6 +72,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault  handler:^(UIAlertAction * _Nonnull action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"toLogin" sender:nil];
         }];
         
         [alertController addAction:dismissAction];
@@ -94,9 +96,14 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 
 - (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session{
     NSLog(@"success: %@", session);
-    [self presentAlertControllerWithTitle:@"Authorization Succeeded"
-                                  message:session.description
-                              buttonTitle:@"Nice"];
+    self.sessionManager.session = session;
+    self.manager.sessionManager.session = session;
+    self.successSession = YES;
+    [self presentAlertControllerWithTitle:@"Authorization Succesful"
+                                  message:@"Continue to App"//session.description
+                              buttonTitle:@"Play"];
+    
+    NSLog(@"FINALLY, %@", self.sessionManager.session);
 }
 
 - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error{

@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
-@interface AppDelegate ()
 
+@interface AppDelegate ()
 
 @end
 
@@ -27,7 +27,6 @@
     }];
     
     [Parse initializeWithConfiguration:config];
- 
 
     return YES;
 }

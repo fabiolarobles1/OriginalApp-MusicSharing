@@ -8,6 +8,7 @@
 
 #import "LoginVC.h"
 #import <Parse/Parse.h>
+#import "SpotifyManager.h"
 
 @interface LoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -21,6 +22,10 @@
     [super viewDidLoad];
     
     [self.passwordField setSecureTextEntry:YES];
+     SpotifyManager *manager = [SpotifyManager shared];
+
+    NSLog(@"TOKEN LOGIN: %@", manager.configuration.tokenRefreshURL);
+    
 }
 
 

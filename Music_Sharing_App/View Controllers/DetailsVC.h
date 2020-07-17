@@ -1,5 +1,5 @@
 //
-//  ConnectSpotifyVCViewController.h
+//  DetailsVC.h
 //  Music_Sharing_App
 //
 //  Created by Fabiola E. Robles Vega on 7/16/20.
@@ -10,14 +10,13 @@
 #import <SpotifyiOS/SpotifyiOS.h>
 #import "SpotifyManager.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ConnectSpotifyVC : UIViewController <SPTSessionManagerDelegate>
-
+@interface DetailsVC : UIViewController <SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate>
 @property (nonatomic, strong) SpotifyManager *manager;
+@property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic, strong) SPTSessionManager *sessionManager;
-@property (nonatomic, strong) SPTConfiguration *configuration;
-
 
 @end
 

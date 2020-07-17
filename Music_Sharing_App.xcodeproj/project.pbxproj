@@ -30,6 +30,8 @@
 		EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18724BDF0B1001C3497 /* ComposeVC.m */; };
 		EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */; };
 		EBD6369B24C0C73A00979EBE /* ConnectSpotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD6369A24C0C73A00979EBE /* ConnectSpotifyVC.m */; };
+		EBD636E824C1080700979EBE /* DetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636E724C1080700979EBE /* DetailsVC.m */; };
+		EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636EA24C127CE00979EBE /* SpotifyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,10 @@
 		EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		EBD6369924C0C73A00979EBE /* ConnectSpotifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectSpotifyVC.h; sourceTree = "<group>"; };
 		EBD6369A24C0C73A00979EBE /* ConnectSpotifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectSpotifyVC.m; sourceTree = "<group>"; };
+		EBD636E624C1080700979EBE /* DetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsVC.h; sourceTree = "<group>"; };
+		EBD636E724C1080700979EBE /* DetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsVC.m; sourceTree = "<group>"; };
+		EBD636E924C127CE00979EBE /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
+		EBD636EA24C127CE00979EBE /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +171,8 @@
 				EBBAF18724BDF0B1001C3497 /* ComposeVC.m */,
 				EBD6369924C0C73A00979EBE /* ConnectSpotifyVC.h */,
 				EBD6369A24C0C73A00979EBE /* ConnectSpotifyVC.m */,
+				EBD636E624C1080700979EBE /* DetailsVC.h */,
+				EBD636E724C1080700979EBE /* DetailsVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -172,6 +180,8 @@
 		EB5AF25B24BCC36C004270FF = {
 			isa = PBXGroup;
 			children = (
+				EBD636E924C127CE00979EBE /* SpotifyManager.h */,
+				EBD636EA24C127CE00979EBE /* SpotifyManager.m */,
 				EB5AF26624BCC36C004270FF /* Music_Sharing_App */,
 				EB5AF28224BCC36E004270FF /* Music_Sharing_AppTests */,
 				EB5AF28D24BCC36E004270FF /* Music_Sharing_AppUITests */,
@@ -245,9 +255,9 @@
 				EBB1F4EC24BD0EB6007BE75C /* PostView.xib */,
 				EBB1F4E924BD0E3F007BE75C /* PostView.h */,
 				EBB1F4EA24BD0E3F007BE75C /* PostView.m */,
-				EBB1F4E824BD0E28007BE75C /* Cells */,
 				EBBAF18B24BE6AC2001C3497 /* InfiniteScrollActivityView.h */,
 				EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */,
+				EBB1F4E824BD0E28007BE75C /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -502,6 +512,7 @@
 			files = (
 				EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */,
 				EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */,
+				EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
 				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,
 				EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */,
@@ -511,6 +522,7 @@
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
 				EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */,
+				EBD636E824C1080700979EBE /* DetailsVC.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,
 			);

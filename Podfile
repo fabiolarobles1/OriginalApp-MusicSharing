@@ -10,7 +10,7 @@ target 'Music_Sharing_App' do
   pod 'Parse/UI'
   pod 'DateTools'
   pod 'AFNetworking'
-  pod 'AFOAuth2Manager', :git => 'git://github.com/AFNetworking/AFOAuth2Manager.git'
+  pod 'AFOAuth2Manager'
 
   target 'Music_Sharing_AppTests' do
     inherit! :search_paths

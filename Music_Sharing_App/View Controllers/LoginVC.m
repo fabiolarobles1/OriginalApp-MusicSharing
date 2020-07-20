@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
     [self.passwordField setSecureTextEntry:YES];
-     SpotifyManager *manager = [SpotifyManager shared];
     
 }
 

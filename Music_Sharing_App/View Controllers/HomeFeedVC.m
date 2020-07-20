@@ -59,8 +59,16 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    
        Post *post = self.posts[indexPath.row];
+    NSLog(@"POST: %@", post.image);
+    
        [cell.postView setWithPost:post];
+    if(post.image ==nil){
+        [cell.postView.postImageView setHidden:YES];
+    }else{
+        [cell.postView.postImageView setHidden:NO];
+    }
        cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
     
        return cell;
@@ -198,7 +206,7 @@
             Post *post = self.posts[indexPath.row];
             DetailsVC *detailViewController = [segue destinationViewController];
             detailViewController.post = post;
-            
+            [detailViewController loadDetails];
         }
  }
 

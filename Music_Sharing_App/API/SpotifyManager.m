@@ -36,15 +36,11 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
 
 -(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{
     
-   // self.requestSerializer = [AFHTTPRequestSerializer serializer];
- //  [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
+    self.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
     [self GET:[trackRequestBase stringByAppendingString:songURI]
     parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
         
-         //Success, create array of Tweets
-         //NSMutableArray *song =[response mutableCopy];
-//        NSDictionary *artists =response[@"artists"];
-//        NSDictionary *som =artists[@"external_urls"] ;
          NSLog(@"Response from GET: %@", response );
           completion(response, nil);
                           

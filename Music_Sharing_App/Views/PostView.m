@@ -55,9 +55,10 @@
     self.captionLabel.text = post.caption;
     
     self.date = post.createdAt;
-    self.postImageView.file = post[@"image"];
-    [self.postImageView loadInBackground];
     
+    self.postImageView.file = post.image;
+    [self.postImageView loadInBackground];
+   
 }
 
 - (IBAction)didTapView:(id)sender {

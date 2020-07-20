@@ -23,8 +23,6 @@
     
     [self.passwordField setSecureTextEntry:YES];
      SpotifyManager *manager = [SpotifyManager shared];
-
-   // NSLog(@"TOKEN LOGIN: %@", manager.configuration.tokenRefreshURL);
     
 }
 

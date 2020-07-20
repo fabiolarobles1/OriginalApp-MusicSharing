@@ -36,7 +36,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     
     [self configurate];
     [self initiateSession];
-    NSLog(@"DONE");
+    NSLog(@"SPT configuration completed.");
 
     return YES;
 }
@@ -51,15 +51,14 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 }
 
 -(void)initiateSession{
-    SPTScope requestedscopes = SPTAppRemoteControlScope;
-   // SPTScope scopes = SPTPlaylistReadPrivateScope | SPTPlaylistModifyPublicScope | SPTPlaylistModifyPrivateScope |SPTUserFollowReadScope | SPTUserFollowModifyScope | SPTUserLibraryReadScope | SPTUserLibraryModifyScope | SPTUserTopReadScope | SPTAppRemoteControlScope;
+    
+    SPTScope scopes = SPTPlaylistReadPrivateScope | SPTPlaylistModifyPublicScope | SPTPlaylistModifyPrivateScope |SPTUserFollowReadScope | SPTUserFollowModifyScope | SPTUserLibraryReadScope | SPTUserLibraryModifyScope | SPTUserTopReadScope | SPTAppRemoteControlScope | SPTUserReadEmailScope | SPTUserReadPrivateScope | SPTStreamingScope;
     self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:self.configuration delegate:self];
-    [self.sessionManager initiateSessionWithScope:requestedscopes options:SPTDefaultAuthorizationOption];
+    [self.sessionManager initiateSessionWithScope:scopes options:SPTDefaultAuthorizationOption];
     
 }
 // called from AppDelegate
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
-    NSLog(@"CALLLLLLEEEEEDDD");
     return [self.sessionManager application:app openURL:url options:options];
 }
 
@@ -81,14 +80,14 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 -(void)applicationWillResignActive:(UIApplication *)application{
     if(self.appRemote.isConnected){
         [self.appRemote disconnect];
-        NSLog(@"DISCONNECTED");
+        NSLog(@"App Remote disconnected.");
     }
 }
 
 -(void)applicationDidBecomeActive:(UIApplication *)application{
     if(self.appRemote.connectionParameters.accessToken){
         [self.appRemote connect];
-         NSLog(@"CONNECTED");
+         NSLog(@"App Remote connected");
     }
 }
 
@@ -110,13 +109,12 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 #pragma mark - SPTAppRemoteDelegate
 
 - (void)appRemoteDidEstablishConnection:(SPTAppRemote *)appRemote{
-    NSLog(@"Trying to connection");
     self.appRemote.playerAPI.delegate = self;
     [self.appRemote.playerAPI subscribeToPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
         if(error){
-        NSLog(@"ERROR WITH CONNECTION%@",error.localizedDescription);
+        NSLog(@"SPTAppRemote player error: %@",error.description);
         }else{
-            NSLog(@"WOO");
+            NSLog(@"SPTAppRemote player connected.");
         }
     }];
 }

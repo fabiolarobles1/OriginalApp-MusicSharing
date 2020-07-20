@@ -1,4 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App-Music_Sharing_AppUITests/Pods-Music_Sharing_App-Music_Sharing_AppUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/AFOAuth2Manager/AFOAuth2Manager.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework

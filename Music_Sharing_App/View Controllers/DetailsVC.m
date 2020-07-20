@@ -31,7 +31,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [self.delegate.appRemote isConnected];
   
-    NSLog(@"APP? %d", [self.delegate.sessionManager isSpotifyAppInstalled]);
+    NSLog(@"Spofify APP instaled? %d", [self.delegate.sessionManager isSpotifyAppInstalled]);
    
 }
 
@@ -39,19 +39,20 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 - (IBAction)didTapPlayButton:(id)sender {
     
     NSString *song = self.post.musicLink;
-   song = [song substringWithRange:NSMakeRange(31, 22)];
+    song = [song substringWithRange:NSMakeRange(31, 22)];
     NSString *songURI = [@"spotify:track:" stringByAppendingString:song];
-    NSLog(@"URI: %@", songURI);
+    NSLog(@"Song URI: %@", songURI);
     [self.delegate.appRemote connect];
     
     [self.delegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
-         NSLog(@"Please work");
+         NSLog(@"Playing song.");
     }];
-    
-//    [self.delegate.appRemote.playerAPI play:@"spotify:track:20I6sIOMTCkB6w7ryavxtO" callback:^(id  _Nullable result, NSError * _Nullable error) {
-//         NSLog(@"Please work");
-//    }];
-      NSLog(@"CONNECTED ? %d", [self.delegate.appRemote isConnected]);
+
+    [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
+      
+    }];
+
+      NSLog(@"Connected to Spotify? %d", [self.delegate.appRemote isConnected]);
 }
 
 /*

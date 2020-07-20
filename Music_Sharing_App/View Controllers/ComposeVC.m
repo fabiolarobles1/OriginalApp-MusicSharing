@@ -56,6 +56,7 @@
 
 
 - (IBAction)didTapPost:(id)sender {
+    NSLog(@"Tapping post.");
     self.postButton.enabled = !self.postButton.enabled;
     [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
@@ -63,7 +64,6 @@
                       [self toFeed];
                   }
               }];
-       NSLog(@"Tapping post.");
 }
 
 
@@ -80,7 +80,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    NSLog(@"IMAGE UPLOADED");
+    NSLog(@"Image Uploaded.");
     [self.addPhotoButton setImage:editedImage forState:self.addPhotoButton.state];
     self.postImage = editedImage;
     // Dismiss UIImagePickerController to go back to your original view controller

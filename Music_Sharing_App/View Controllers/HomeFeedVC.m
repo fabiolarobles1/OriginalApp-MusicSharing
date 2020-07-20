@@ -126,7 +126,8 @@
             [self.loadingMoreView stopAnimating];
 
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"Error getting posts: %@", error.description);
+            //ADD TO CHECK IF IT IS BECAUSE NO CONNECTION!!
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
             
             //creating cancel action
@@ -174,7 +175,7 @@
             //load more results
             if (self.posts.count>=self.skipcount){
                 [self fetchPosts];
-                NSLog(@"MORE");
+                NSLog(@"Loading MORE Posts.");
             }else{
                 [self.loadingMoreView stopAnimating];
                 self.isMoreDataLoading = NO;
@@ -197,7 +198,6 @@
             Post *post = self.posts[indexPath.row];
             DetailsVC *detailViewController = [segue destinationViewController];
             detailViewController.post = post;
-//            NSLog(@"%@", post[@"createdAt"]);
             
         }
  }

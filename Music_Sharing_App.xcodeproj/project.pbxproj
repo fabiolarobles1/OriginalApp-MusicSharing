@@ -180,8 +180,6 @@
 		EB5AF25B24BCC36C004270FF = {
 			isa = PBXGroup;
 			children = (
-				EBD636E924C127CE00979EBE /* SpotifyManager.h */,
-				EBD636EA24C127CE00979EBE /* SpotifyManager.m */,
 				EB5AF26624BCC36C004270FF /* Music_Sharing_App */,
 				EB5AF28224BCC36E004270FF /* Music_Sharing_AppTests */,
 				EB5AF28D24BCC36E004270FF /* Music_Sharing_AppUITests */,
@@ -204,6 +202,7 @@
 		EB5AF26624BCC36C004270FF /* Music_Sharing_App */ = {
 			isa = PBXGroup;
 			children = (
+				EBD2A70424C4EB6C00C89B41 /* API */,
 				EBB1F4E724BD0E1E007BE75C /* Views */,
 				EBB1F4E024BD0800007BE75C /* Models */,
 				EB2F8ED524BCD38000A47685 /* View Controllers */,
@@ -269,6 +268,15 @@
 				EBB1F4EF24BD1110007BE75C /* PostCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EBD2A70424C4EB6C00C89B41 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EBD636E924C127CE00979EBE /* SpotifyManager.h */,
+				EBD636EA24C127CE00979EBE /* SpotifyManager.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -64,12 +64,8 @@
     // to restore the scene back to its current state.
 }
 -(void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts{
-    NSLog(@"CALLING in Scene Delegate %@", URLContexts);
-    UIOpenURLContext *ctx = [URLContexts allObjects][0];
-  
     
-   // [appDelegate application:[UIApplication sharedApplication] openURL:ctx.URL options:appDelegate.sessionManager.session.accessToken];
-   // [UIApplicationOpenURLOptionsAnnotationKey valueForKey:ctx.options];
+    UIOpenURLContext *ctx = [URLContexts allObjects][0];
     [self.delegate application:[UIApplication sharedApplication] openURL:ctx.URL options:ctx.options];
     
     

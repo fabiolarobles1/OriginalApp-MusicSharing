@@ -36,7 +36,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 
 - (IBAction)didTapConnect:(id)sender {
     
-    NSLog(@"Spotify AVAILABLE: %d", [self.sessionManager isSpotifyAppInstalled]);
+    NSLog(@"Spotify App instaled: %d", [self.sessionManager isSpotifyAppInstalled]);
     
     /*
      Scopes let you specify exactly what types of data your application wants to
@@ -102,8 +102,6 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     [self presentAlertControllerWithTitle:@"Authorization Succesful"
                                   message:@"Continue to App"//session.description
                               buttonTitle:@"Play"];
-    
-    NSLog(@"FINALLY, %@", self.sessionManager.session);
 }
 
 - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error{

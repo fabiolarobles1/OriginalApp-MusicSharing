@@ -11,8 +11,6 @@
 
 
 @interface PostView()
-
-
 @end
 
 @implementation PostView
@@ -53,7 +51,7 @@
     self.moodLabel.text = post.mood;
     self.musicLinkLabel.text = post.musicLink;
     self.captionLabel.text = post.caption;
-    
+    self.post = post;
     self.date = post.createdAt;
     
     self.postImageView.file = post.image;

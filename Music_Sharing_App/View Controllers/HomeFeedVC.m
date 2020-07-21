@@ -19,7 +19,7 @@
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
@@ -62,7 +62,6 @@
     
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     Post *post = self.posts[indexPath.row];
-    cell.post = post;
     NSLog(@"POST: %@", post.image);
     [cell.postView setWithPost:post];
     
@@ -214,10 +213,8 @@
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     
      if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
-//            UITableViewCell *tappedCell = sender;
-//            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-//            Post *post = self.posts[indexPath.row];
             DetailsVC *detailViewController = [segue destinationViewController];
             detailViewController.post = self.post;
             [detailViewController loadDetails];

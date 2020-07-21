@@ -13,15 +13,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PostView : UIView
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UIView *postView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moodLabel;
-@property (weak, nonatomic) IBOutlet UILabel *musicLinkLabel;
-@property (weak, nonatomic) IBOutlet PFImageView *postImageView;
-@property (weak, nonatomic) IBOutlet UILabel *captionLabel;
-@property (weak, nonatomic) NSDate *date;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *genreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *moodLabel;
+@property (strong, nonatomic) IBOutlet UILabel *musicLinkLabel;
+@property (strong, nonatomic) IBOutlet PFImageView *postImageView;
+@property (strong, nonatomic) IBOutlet UILabel *captionLabel;
+@property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) NSDate *date;
 
 -(void)customInit;
 -(void) setWithPost:(Post *)post;

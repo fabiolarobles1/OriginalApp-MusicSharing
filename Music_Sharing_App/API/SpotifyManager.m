@@ -9,11 +9,11 @@
 #import "SpotifyManager.h"
 #import "AppDelegate.h"
 
-static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
-static NSString * const spotifySecretClientID = @"fb3638b9860646bfbe55845dd9ccdbd9";
-static NSString * const spotifyRedirectURLString = @"music-sharing-app-login://callback";
-static NSString * const tokenSwapURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/token";
-static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotify.herokuapp.com/api/refresh_token";
+static NSString * const spotifyClientID = @"YOUR CLIENT HERE";
+static NSString * const spotifySecretClientID = @"YOUR SECRET CLIENT HERE";
+static NSString * const spotifyRedirectURLString = @"YOUR REDIRECT LINK";
+static NSString * const tokenSwapURLString = @"TOKEN SWAP";
+static NSString * const tokenRefreshURLString = @"REFRESH TOKEN";
 static NSString * const baseURL =@"https://api.spotify.com";
 static NSString * const trackRequestBase = @"/v1/tracks/";
 

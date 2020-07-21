@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
+@property (strong, nonatomic)Post *post;
 
 @end
 
@@ -56,29 +57,42 @@
     [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
 }
 
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    
-       Post *post = self.posts[indexPath.row];
+    Post *post = self.posts[indexPath.row];
+    cell.post = post;
     NSLog(@"POST: %@", post.image);
+    [cell.postView setWithPost:post];
     
-       [cell.postView setWithPost:post];
     if(post.image ==nil){
         [cell.postView.postImageView setHidden:YES];
     }else{
         [cell.postView.postImageView setHidden:NO];
     }
-       cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
-    
+    cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    cell.delegate= self;
        return cell;
     
 }
+
+-(void)postCell:(PostCell *)postCell didTap:(Post *)post{
+     NSLog(@"TAPING POST");
+    self.post = post;
+    [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:nil];
+}
+
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return self.posts.count;
    
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    //Unselect cell after entering details
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -201,11 +215,11 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
      if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
-            UITableViewCell *tappedCell = sender;
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-            Post *post = self.posts[indexPath.row];
+//            UITableViewCell *tappedCell = sender;
+//            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+//            Post *post = self.posts[indexPath.row];
             DetailsVC *detailViewController = [segue destinationViewController];
-            detailViewController.post = post;
+            detailViewController.post = self.post;
             [detailViewController loadDetails];
         }
  }

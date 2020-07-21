@@ -61,14 +61,7 @@
    
 }
 
-- (IBAction)didTapView:(id)sender {
-    [self.postView.layer setBackgroundColor:[UIColor grayColor].CGColor];
-    [self.postView.layer setOpacity:0.5];
-    [UIView animateWithDuration:1 animations:^{
-          [self.postView.layer setBackgroundColor:[UIColor clearColor].CGColor];
-        [self.postView.layer setOpacity:1.0];;
-       }];
-}
+
 
 
 @end

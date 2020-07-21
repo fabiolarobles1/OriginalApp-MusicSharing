@@ -39,7 +39,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     [self.delegate.appRemote connect];
     [self.delegate.appRemote isConnected];
  
-  
+    
     [self loadDetails];
     
   
@@ -79,13 +79,17 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     song = [song substringWithRange:NSMakeRange(31, 22)];
     NSString *songURI = [@"spotify:track:" stringByAppendingString:song];
     NSLog(@"Song URI: %@", songURI);
-    [self.delegate.appRemote connect];
-    
-    [self.delegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
-         NSLog(@"Playing song.");
-    }];
+    [self playSong:songURI];
 
-      NSLog(@"Connected to Spotify? %d", [self.delegate.appRemote isConnected]);
+    //  NSLog(@"Connected to Spotify? %d", [self.delegate.appRemote isConnected]);
+}
+
+-(void)playSong:(NSString *)songURI{
+    [self.delegate.appRemote connect];
+       
+    [self.delegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+            NSLog(@"Playing song.");
+       }];
 }
 
 /*

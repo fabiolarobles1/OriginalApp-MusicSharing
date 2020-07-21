@@ -95,16 +95,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="Lsq-cU-i1d" appends="YES" id="yTy-AZ-W5e"/>
-            </connections>
             <point key="canvasLocation" x="318.84057971014494" y="151.67410714285714"/>
         </view>
-        <tapGestureRecognizer id="Lsq-cU-i1d">
-            <connections>
-                <action selector="didTapView:" destination="-1" id="rMw-IE-5P2"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="camera.circle.fill" catalog="system" width="128" height="121"/>

@@ -30,6 +30,7 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
 
 -(instancetype)init{
     self = [super initWithBaseURL:[NSURL URLWithString:baseURL] clientID:spotifyClientID secret:spotifySecretClientID];
+    
     return self;
 
 }

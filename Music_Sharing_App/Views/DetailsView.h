@@ -1,17 +1,16 @@
 //
-//  HomeFeedVC.h
+//  DetailsView.h
 //  Music_Sharing_App
 //
-//  Created by Fabiola E. Robles Vega on 7/13/20.
+//  Created by Fabiola E. Robles Vega on 7/21/20.
 //  Copyright © 2020 Fabiola E. Robles Vega. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "PostCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeFeedVC : UIViewController <PostCellDelegate>
+@interface DetailsView : UIView
 
 @end
 

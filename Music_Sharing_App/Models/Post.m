@@ -22,6 +22,7 @@
 @dynamic commentsCount;
 @dynamic genre;
 @dynamic mood;
+@dynamic favorited;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -43,9 +44,9 @@
     newPost.author = [PFUser currentUser];
     newPost.caption = caption;
     newPost.image = [self getPFFileFromImage:image];
-    newPost.likesCount = @(0);
-    newPost.commentsCount = @(0);
-    
+    newPost.likesCount = 0;
+    newPost.commentsCount = 0;
+    newPost.favorited = NO;
     [newPost saveInBackgroundWithBlock: completion];
 }
 
@@ -64,4 +65,7 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
++(void)updatePost:(Post *)post{
+    [post saveInBackground];
+}
 @end

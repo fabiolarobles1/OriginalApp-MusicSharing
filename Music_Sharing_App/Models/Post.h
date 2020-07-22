@@ -22,10 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *musicLink;
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) PFFileObject *image;
-@property (nonatomic, strong) NSNumber *likesCount;
-@property (nonatomic, strong) NSNumber *commentsCount;
+@property (nonatomic) int likesCount;
+@property (nonatomic) int commentsCount;
 @property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *mood;
+@property (nonatomic) BOOL favorited;
 
 
 + (void) createUserPost: ( NSString *)title
@@ -35,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
             withCaption: ( NSString * _Nullable)caption
               withImage: ( UIImage * _Nullable)image
          withCompletion: ( PFBooleanResultBlock  _Nullable)completion;
+
++(void)updatePost:(Post *)post;
 @end
 
 NS_ASSUME_NONNULL_END

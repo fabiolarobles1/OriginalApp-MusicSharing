@@ -65,9 +65,25 @@
     if(post.image == nil){
         [self.postImageView removeFromSuperview];
     }
-    
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
+    
+    self.favoriteButton.selected = post.favorited;
+    self.likeCountLabel.text =[@(self.post.likesCount)stringValue];
+    
+}
+- (IBAction)didTapLike:(id)sender {
+    [self.favoriteButton setSelected:!self.favoriteButton.selected];
+    if(!self.post.favorited){
+        self.post.likesCount +=1;
+        self.post.favorited = YES;
+        [Post updatePost:self.post];
+    }else{
+        self.post.likesCount -=1;
+        self.post.favorited = NO;
+        [Post updatePost:self.post];
+    }
+     self.likeCountLabel.text = [@(self.post.likesCount)stringValue];
     
 }
 

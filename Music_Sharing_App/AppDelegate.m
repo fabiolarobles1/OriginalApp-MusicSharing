@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "SpotifyManager.h"
 
 
 static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
@@ -26,7 +27,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
     //Initializing Parse and setting server
-    ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+    ParseClientConfiguration *config = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
         configuration.applicationId = @"musicSharingApp-Fab";
         configuration.server = @"http://musicsharingapp.herokuapp.com/parse";
@@ -36,6 +37,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     
     [self configurate];
     [self initiateSession];
+   
     NSLog(@"SPT configuration completed.");
 
     return YES;

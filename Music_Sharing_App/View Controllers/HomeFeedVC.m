@@ -15,6 +15,8 @@
 #import "DateTools.h"
 #import "InfiniteScrollActivityView.h"
 #import "DetailsVC.h"
+#import "ComposeVC.h"
+
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
@@ -24,6 +26,7 @@
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic)Post *post;
+
 
 @end
 
@@ -62,31 +65,24 @@
     
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     Post *post = self.posts[indexPath.row];
-    NSLog(@"POST: %@", post.image);
     [cell.postView setWithPost:post];
-    
-    if(post.image ==nil){
-        [cell.postView.postImageView setHidden:YES];
-    }else{
-        [cell.postView.postImageView setHidden:NO];
-    }
     cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
     cell.delegate= self;
-       return cell;
+    [cell layoutIfNeeded];
+    
+    
+    return cell;
     
 }
 
 -(void)postCell:(PostCell *)postCell didTap:(Post *)post{
-     NSLog(@"TAPING POST");
     self.post = post;
     [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:nil];
 }
 
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.posts.count;
-   
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -124,28 +120,28 @@
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
     postQuery.limit = 20;
-        if(self.isMoreDataLoading){
-            postQuery.skip = self.skipcount;
-        }
+    if(self.isMoreDataLoading){
+        postQuery.skip = self.skipcount;
+    }
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             
-             if(self.isMoreDataLoading){
-                           [self.posts addObjectsFromArray:posts];
-                       }else{
-                           self.posts= [posts mutableCopy];
-                       }
-                       //update flag
-                       self.isMoreDataLoading = NO;
-                       
+            if(self.isMoreDataLoading){
+                [self.posts addObjectsFromArray:posts];
+            }else{
+                self.posts= [posts mutableCopy];
+            }
+            //update flag
+            self.isMoreDataLoading = NO;
+            
             [self.tableView reloadData];
             NSLog(@"Post count = %lu", (unsigned long)self.posts.count);
             // stop indicators
             [self.refreshControl endRefreshing];
             [self.loadingMoreView stopAnimating];
-
+            
         } else {
             NSLog(@"Error getting posts: %@", error.description);
             //ADD TO CHECK IF IT IS BECAUSE NO CONNECTION!!
@@ -171,10 +167,11 @@
                 // stop indicators
                 [self.refreshControl endRefreshing];
                 [self.loadingMoreView stopAnimating];
-
+                
             }];
         }
     }];
+    [self.tableView reloadData];
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -205,21 +202,20 @@
     }
 }
 
+#pragma mark - Navigation
 
-
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     
-     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
-            DetailsVC *detailViewController = [segue destinationViewController];
-            detailViewController.post = self.post;
-            [detailViewController loadDetails];
-        }
- }
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
+        DetailsVC *detailViewController = [segue destinationViewController];
+        detailViewController.post = self.post;
+        [detailViewController loadDetails];
+    }
+    
+}
 
 
 

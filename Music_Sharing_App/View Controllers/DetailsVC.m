@@ -74,7 +74,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 
 
 - (IBAction)didTapPlayButton:(id)sender {
-    
+    [self.delegate.appRemote connect];
     NSString *song = self.post.musicLink;
     song = [song substringWithRange:NSMakeRange(31, 22)];
     NSString *songURI = [@"spotify:track:" stringByAppendingString:song];

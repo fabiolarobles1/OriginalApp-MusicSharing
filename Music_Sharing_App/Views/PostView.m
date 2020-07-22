@@ -47,16 +47,28 @@
 
 -(void) setWithPost:(Post *)post{
     self.titleLabel.text = post.title;
-    self.genreLabel.text = post.genre;
-    self.moodLabel.text = post.mood;
-    self.musicLinkLabel.text = post.musicLink;
-    self.captionLabel.text = post.caption;
+    if(post.genre!=nil){
+        self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
+    }
+    if(post.mood!=nil){
+        self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
+    }
+    if(post.caption.length!=0){
+        self.captionLabel.text = [@"Caption: " stringByAppendingString:post.caption];
+    }else{
+        self.captionLabel.text = @"";
+        [self.captionLabel removeFromSuperview];
+    }
     self.post = post;
     self.date = post.createdAt;
     
+    if(post.image == nil){
+        [self.postImageView removeFromSuperview];
+    }
+    
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
-   
+    
 }
 
 

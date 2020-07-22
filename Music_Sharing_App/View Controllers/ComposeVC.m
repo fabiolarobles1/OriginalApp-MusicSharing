@@ -10,12 +10,12 @@
 #import "SceneDelegate.h"
 #import "HomeFeedVC.h"
 #import "Post.h"
+#import "SpotifyManager.h"
 
 @interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *genrePickerView;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UIPickerView *moodPickerView;
-@property (strong, nonatomic)NSMutableArray *genres;
 @property (strong, nonatomic)NSMutableArray *moods;
 @property (strong, nonatomic)Post *post;
 @property (strong, nonatomic) UIImage *postImage;
@@ -26,15 +26,33 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 @property (weak, nonatomic) IBOutlet UITextField *musicLinkField;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
+@property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
+
 
 @end
 
 @implementation ComposeVC
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.genres = [NSMutableArray arrayWithObjects: @"Pop", @"Latin", @"Rock",@"R&B", @"House", @"Other", nil];
-    self.moods = [NSMutableArray arrayWithObjects: @"Loving", @"Lazy", @"Happy",@"Sad", @"Relax", @"Other", nil];
+    
+    self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    [[SpotifyManager shared] getGenres:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary *genres, NSError *error) {
+        if(!error){
+            self.genres =[[NSMutableArray alloc]initWithArray:genres[@"genres"]];
+            NSLog(@"finally: %@", self.genres);
+            
+        }else{
+            NSLog(@"SUPER ERROR: %@", error);
+        }
+    }];
+    
+    self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
     self.titleField.delegate = self;
     self.genrePickerView.delegate = self;
     self.genrePickerView.dataSource = self;
@@ -51,12 +69,17 @@
         NSLog(@"Camera 🚫 available so we will use photo library instead");
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    
+}
+- (IBAction)didTapScreen:(id)sender {
+   [self.view endEditing:YES];
 }
 
 
 - (IBAction)didTapPost:(id)sender {
     NSLog(@"Tapping post.");
+//    if(self.postImage==nil){
+//        self.postImage = [UIImage imageNamed:@"camera.circle.fill"];
+//    }
     self.postButton.enabled = !self.postButton.enabled;
     [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
@@ -106,6 +129,7 @@
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         return self.moods.count;
     }else{
+         NSLog(@"HOPE: %lu" , (unsigned long)self.genres.count);
         return self.genres.count;
     }
 }
@@ -121,10 +145,17 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         self.mood= [self.moods objectAtIndex:row];
-        self.moodPickerView.backgroundColor = [UIColor greenColor];
+        [self.moodPickerView setHidden:YES];
+        [self.selectMoodButton setTitle:self.mood.capitalizedString forState:self.selectMoodButton.state];
+        [self.selectMoodButton setHidden:NO];
+        [self.selectGenreButton setHidden:NO];
     }else{
         self.genre =[self.genres objectAtIndex:row];
-        self.genrePickerView.backgroundColor = [UIColor greenColor];
+        [self.genrePickerView setHidden:YES];
+        [self.selectGenreButton setTitle:self.genre.capitalizedString forState:self.selectGenreButton.state];
+        [self.selectGenreButton setHidden:NO];
+        [self.selectMoodButton setHidden:NO];
+       
     }
     
 }
@@ -133,20 +164,11 @@
     [self toFeed];
 }
 
-//-(void) viewWillAppear:(BOOL)animated{
-//    self.view.alpha = 0.5;
-//}
-//
-//-(void)viewDidAppear:(BOOL)animated{
-//    [UIView animateWithDuration:.25 animations:^{
-//                  self.view.alpha = 1;
-//              }];
-//}
 
 -(void) toFeed{
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HomeFeedVC *feedViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedController"];
+    HomeFeedVC *feedViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedController"];
     
     myDelegate.window.alpha = 0.25;
     myDelegate.window.rootViewController = feedViewController;
@@ -154,7 +176,18 @@
     [UIView animateWithDuration:1 animations:^{
         myDelegate.window.alpha = 1;
     }];
-    
+}
+- (IBAction)didTapSelectGenre:(id)sender {
+    [self.genrePickerView reloadAllComponents];
+    [self.genrePickerView setHidden:NO];
+    [self.selectGenreButton setHidden:YES];
+    [self.selectMoodButton setHidden:YES];
+}
+- (IBAction)didTapSelectMood:(id)sender {
+    [self.moodPickerView reloadAllComponents];
+    [self.moodPickerView setHidden:NO];
+    [self.selectMoodButton setHidden:YES];
+    [self.selectGenreButton setHidden:YES];
 }
 
 /*

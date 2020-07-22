@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *genreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *moodLabel;
-@property (strong, nonatomic) IBOutlet UILabel *musicLinkLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *postImageView;
 @property (strong, nonatomic) IBOutlet UILabel *captionLabel;
 @property (strong, nonatomic) Post *post;

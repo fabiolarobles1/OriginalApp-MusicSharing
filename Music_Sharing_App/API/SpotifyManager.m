@@ -39,7 +39,6 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
     self = [super initWithBaseURL:[NSURL URLWithString:baseURL] clientID:spotifyClientID secret:spotifySecretClientID];
     
     return self;
-
 }
 
 -(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{

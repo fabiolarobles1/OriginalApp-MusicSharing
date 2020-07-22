@@ -6,11 +6,13 @@
 //  Copyright © 2020 Fabiola E. Robles Vega. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+
+@import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface User : PFUser
+@property (nonatomic, strong) NSString *username;
 
 @end
 

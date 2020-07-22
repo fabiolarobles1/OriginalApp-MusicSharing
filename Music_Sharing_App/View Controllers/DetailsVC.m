@@ -38,7 +38,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [self.delegate.appRemote connect];
     [self.delegate.appRemote isConnected];
- 
+    NSLog(@"THIS POST: %@", self.post.author);
     
     [self loadDetails];
     

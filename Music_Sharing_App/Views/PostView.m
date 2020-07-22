@@ -8,6 +8,7 @@
 
 #import "PostView.h"
 #import "Post.h"
+#import "User.h"
 
 
 @interface PostView()
@@ -67,23 +68,56 @@
     }
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
+    __block BOOL isFavorited = NO;
+    PFQuery *query = [User query];
+    [query whereKey:@"objectId" equalTo:[User currentUser].objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User *> *_Nullable objects, NSError * _Nullable error) {
+        for(User *user in objects){
+            PFRelation *relation = [user relationForKey:@"likes"];
+            PFQuery *relationQuery = [relation query];
+            [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+                NSLog(@"POST: %lu", objects.count);
+                for(Post *post in objects){
+                    if([post.objectId isEqual:self.post.objectId]){
+                        NSLog(@"HEY");
+                        isFavorited = YES;
+                        [self.favoriteButton setSelected:YES];
+                    }
+                }
+                if(!isFavorited){
+                    [self.favoriteButton setSelected:NO];
+                }
+            }];
+        }
+    }];
     
-    self.favoriteButton.selected = post.favorited;
     self.likeCountLabel.text =[@(self.post.likesCount)stringValue];
     
 }
 - (IBAction)didTapLike:(id)sender {
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
-    if(!self.post.favorited){
+    User *user = [User currentUser];
+    PFRelation *relation = [user relationForKey:@"likes"];
+    
+    
+    if([self.favoriteButton isSelected]){
         self.post.likesCount +=1;
-        self.post.favorited = YES;
-        [Post updatePost:self.post];
+        [relation addObject:self.post];
     }else{
         self.post.likesCount -=1;
-        self.post.favorited = NO;
-        [Post updatePost:self.post];
+        [relation removeObject:self.post];
     }
-     self.likeCountLabel.text = [@(self.post.likesCount)stringValue];
+    
+    [Post updatePost:self.post];
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            NSLog(@"Relation succeded.");
+        }else{
+            NSLog(@"Error on relation: %@", error.description );
+        }
+    }];
+    
+    self.likeCountLabel.text = [@(self.post.likesCount)stringValue];
     
 }
 

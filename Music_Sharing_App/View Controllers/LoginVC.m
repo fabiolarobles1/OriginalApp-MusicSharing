@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import <Parse/Parse.h>
 #import "SpotifyManager.h"
+#import "User.h"
 
 @interface LoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -50,6 +51,7 @@
             
         }else{
             NSLog(@"User logged in successfully.");
+            
             [self performSegueWithIdentifier:@"toFeedSegue" sender:nil];
         }
     }];

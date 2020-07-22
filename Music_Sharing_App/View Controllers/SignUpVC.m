@@ -10,6 +10,7 @@
 #import "LoginVC.h"
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface SignUpVC ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -29,11 +30,11 @@
 -(void) registerUser{
     
     //initializing user
-    PFUser *newUser = [PFUser user];
+    User *newUser = [User new];
     
     //setting up properties
     newUser.username = self.usernameField.text;
-    
+
     if(![self.passwordField.text isEqual:self.confirmPasswordField.text]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Password Confirmation" message:@"Please, your confirmation password must be equal to your password to complete the register." preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -61,9 +62,9 @@
                 [self presentViewController:alert animated:YES completion:^{ }];
             }
         }else{
+            
             NSLog(@"User registered succesfully.");
             SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-            
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
             myDelegate.window.alpha = 0;
@@ -89,6 +90,7 @@
         
     }else{
         [self registerUser];
+       
     }
 }
 

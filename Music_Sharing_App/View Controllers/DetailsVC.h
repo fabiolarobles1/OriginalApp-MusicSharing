@@ -11,12 +11,14 @@
 #import "SpotifyManager.h"
 #import "Post.h"
 #import "DetailsView.h"
+#import "CommentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsVC : UIViewController
 @property (strong, nonatomic) Post *post;
 @property (weak, nonatomic) IBOutlet DetailsView *detailsView;
+@property (weak, nonatomic) IBOutlet CommentView *commentView;
 
 @end
 

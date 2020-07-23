@@ -84,6 +84,7 @@
     self.backgroundImage.file = self.post.image;
     [self.backgroundImage loadInBackground];
     self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
+    self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
     self.usernameLabel.text = [@"shared by " stringByAppendingString:post.author.username];
     [self.favoriteButton setSelected:post.favorited];
 }

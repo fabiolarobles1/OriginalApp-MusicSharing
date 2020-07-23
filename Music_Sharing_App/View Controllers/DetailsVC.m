@@ -19,7 +19,9 @@
     // Do any additional setup after loading the view.
     
      [self.detailsView setView:self.post];
-//     [self.detailsView.delegate.appRemote connect];
+     [self.commentView setPost:self.post];
+
+    //SET THE POST TO COMMENTS ALSO
 }
 
 /*

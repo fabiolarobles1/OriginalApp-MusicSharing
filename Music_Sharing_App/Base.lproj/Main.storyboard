@@ -684,19 +684,29 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-PZ-8Xy" customClass="DetailsView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="362.5"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mu-Dg-IQj" customClass="CommentView">
+                                <rect key="frame" x="0.0" y="450.5" width="414" height="362.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="3Mu-Dg-IQj" firstAttribute="top" secondItem="5hb-PZ-8Xy" secondAttribute="bottom" id="HX6-Ny-1an"/>
+                            <constraint firstItem="3Mu-Dg-IQj" firstAttribute="leading" secondItem="LEh-nx-fH5" secondAttribute="leading" id="JY2-wx-JgY"/>
                             <constraint firstItem="5hb-PZ-8Xy" firstAttribute="leading" secondItem="nP0-LI-SLI" secondAttribute="leading" id="OYD-Jm-wgp"/>
+                            <constraint firstItem="LEh-nx-fH5" firstAttribute="trailing" secondItem="3Mu-Dg-IQj" secondAttribute="trailing" id="VwW-fL-oua"/>
                             <constraint firstItem="5hb-PZ-8Xy" firstAttribute="height" secondItem="LEh-nx-fH5" secondAttribute="height" multiplier="0.5" id="eLf-za-2zj"/>
                             <constraint firstItem="5hb-PZ-8Xy" firstAttribute="top" secondItem="LEh-nx-fH5" secondAttribute="top" id="phV-e8-DQn"/>
                             <constraint firstAttribute="trailing" secondItem="5hb-PZ-8Xy" secondAttribute="trailing" id="sTS-PE-MXK"/>
+                            <constraint firstItem="LEh-nx-fH5" firstAttribute="bottom" secondItem="3Mu-Dg-IQj" secondAttribute="bottom" id="voN-cM-Qln"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LEh-nx-fH5"/>
                     </view>
                     <navigationItem key="navigationItem" id="kT2-6r-Vka"/>
                     <connections>
+                        <outlet property="commentView" destination="3Mu-Dg-IQj" id="igF-Mi-kb8"/>
                         <outlet property="detailsView" destination="5hb-PZ-8Xy" id="ZBB-Xn-ePu"/>
                     </connections>
                 </viewController>

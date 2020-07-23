@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int commentsCount;
 @property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *mood;
-//@property (nonatomic) BOOL favorited;
+@property (nonatomic) BOOL favorited;
 
 + (void) createUserPost: ( NSString *)title
               withGenre: ( NSString *)genre //maybe is required (delete nullable)

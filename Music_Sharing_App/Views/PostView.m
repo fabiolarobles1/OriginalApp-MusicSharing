@@ -55,16 +55,19 @@
         self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
     }
     if(post.caption.length!=0){
+         [self.captionLabel setHidden:NO];
         self.captionLabel.text = [@"Caption: " stringByAppendingString:post.caption];
     }else{
         self.captionLabel.text = @"";
-        [self.captionLabel removeFromSuperview];
+        [self.captionLabel setHidden:YES];
     }
     self.post = post;
     self.date = post.createdAt;
     
     if(post.image == nil){
-        [self.postImageView removeFromSuperview];
+         [self.postImageView setHidden:YES];
+    }else{
+         [self.postImageView setHidden:NO];
     }
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
@@ -76,35 +79,36 @@
             PFRelation *relation = [user relationForKey:@"likes"];
             PFQuery *relationQuery = [relation query];
             [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
-                NSLog(@"POST: %lu", objects.count);
                 for(Post *post in objects){
                     if([post.objectId isEqual:self.post.objectId]){
-                        NSLog(@"HEY");
                         isFavorited = YES;
                         [self.favoriteButton setSelected:YES];
+                        
                     }
                 }
                 if(!isFavorited){
                     [self.favoriteButton setSelected:NO];
                 }
+                post.favorited = isFavorited;
             }];
         }
     }];
     
     self.likeCountLabel.text =[@(self.post.likesCount)stringValue];
-    
+    self.usernameLabel.text = post.author.username;
 }
 - (IBAction)didTapLike:(id)sender {
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
     User *user = [User currentUser];
     PFRelation *relation = [user relationForKey:@"likes"];
     
-    
     if([self.favoriteButton isSelected]){
         self.post.likesCount +=1;
+        self.post.favorited = YES;
         [relation addObject:self.post];
     }else{
         self.post.likesCount -=1;
+        self.post.favorited = NO;
         [relation removeObject:self.post];
     }
     

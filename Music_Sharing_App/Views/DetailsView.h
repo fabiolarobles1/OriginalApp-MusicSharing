@@ -7,10 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+#import "AppDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsView : UIView
+@property (strong, nonatomic) IBOutlet UIView *detailsView;
+@property (weak, nonatomic) IBOutlet PFImageView *backgroundImage;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *albumCoverImageView;
+@property (weak, nonatomic) IBOutlet UIButton *songInfoButton;
+@property (weak, nonatomic) IBOutlet UILabel *moodLabel;
+@property (weak, nonatomic) IBOutlet UITextView *captionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) AppDelegate *delegate;
+
+-(void)setView:(Post *)post;
 
 @end
 

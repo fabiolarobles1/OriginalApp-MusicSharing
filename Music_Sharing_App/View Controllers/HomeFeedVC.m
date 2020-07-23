@@ -14,8 +14,9 @@
 #import "PostCell.h"
 #import "DateTools.h"
 #import "InfiniteScrollActivityView.h"
-#import "DetailsVC.h"
+#import "DetailsPlayerVC.h"
 #import "ComposeVC.h"
+#import "DetailsVC.h"
 
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
@@ -31,6 +32,10 @@
 @end
 
 @implementation HomeFeedVC
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -212,7 +217,8 @@
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;
-        [detailViewController loadDetails];
+//        detailViewController.detailsView.post = self.post;
+//        [detailViewController.detailsView setView:self.post];
     }
     
 }

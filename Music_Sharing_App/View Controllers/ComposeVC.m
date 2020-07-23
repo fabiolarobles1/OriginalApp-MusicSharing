@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 @property (weak, nonatomic) IBOutlet UITextField *musicLinkField;
-@property (weak, nonatomic) IBOutlet UITextField *captionField;
+@property (weak, nonatomic) IBOutlet UITextView *captionField;
 @property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
 
@@ -41,7 +41,9 @@
     [super viewDidLoad];
     
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
+    self.captionField.layer.borderWidth = 1.0;
+    self.captionField.layer.cornerRadius = 5;
+    self.captionField.layer.borderColor =[[UIColor grayColor] CGColor];
     [[SpotifyManager shared] getGenres:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary *genres, NSError *error) {
         if(!error){
             self.genres =[[NSMutableArray alloc]initWithArray:genres[@"genres"]];
@@ -129,7 +131,6 @@
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         return self.moods.count;
     }else{
-         NSLog(@"HOPE: %lu" , (unsigned long)self.genres.count);
         return self.genres.count;
     }
 }

@@ -12,6 +12,7 @@
 		D940D8B665E56C9BFC0F6AEE /* Pods_Music_Sharing_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */; };
 		EB2C335024C73FAB008524A0 /* DetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2C334F24C73FAB008524A0 /* DetailsView.m */; };
 		EB2C335224C73FCA008524A0 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB2C335124C73FCA008524A0 /* DetailsView.xib */; };
+		EB2C335524C91A1E008524A0 /* DetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2C335424C91A1E008524A0 /* DetailsVC.m */; };
 		EB2F8ED824BCD3C000A47685 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2F8ED724BCD3C000A47685 /* LoginVC.m */; };
 		EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF26824BCC36C004270FF /* AppDelegate.m */; };
 		EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF26B24BCC36C004270FF /* SceneDelegate.m */; };
@@ -31,7 +32,7 @@
 		EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EF24BD1110007BE75C /* PostCell.m */; };
 		EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18724BDF0B1001C3497 /* ComposeVC.m */; };
 		EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */; };
-		EBD636E824C1080700979EBE /* DetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636E724C1080700979EBE /* DetailsVC.m */; };
+		EBD636E824C1080700979EBE /* DetailsPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636E724C1080700979EBE /* DetailsPlayerVC.m */; };
 		EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636EA24C127CE00979EBE /* SpotifyManager.m */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		EB2C334E24C73FAB008524A0 /* DetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsView.h; sourceTree = "<group>"; };
 		EB2C334F24C73FAB008524A0 /* DetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsView.m; sourceTree = "<group>"; };
 		EB2C335124C73FCA008524A0 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
+		EB2C335324C91A1E008524A0 /* DetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsVC.h; sourceTree = "<group>"; };
+		EB2C335424C91A1E008524A0 /* DetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsVC.m; sourceTree = "<group>"; };
 		EB2F8ED624BCD3C000A47685 /* LoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		EB2F8ED724BCD3C000A47685 /* LoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		EB5AF26424BCC36C004270FF /* Music_Sharing_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music_Sharing_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,8 +101,8 @@
 		EBBAF18724BDF0B1001C3497 /* ComposeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeVC.m; sourceTree = "<group>"; };
 		EBBAF18B24BE6AC2001C3497 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
 		EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
-		EBD636E624C1080700979EBE /* DetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsVC.h; sourceTree = "<group>"; };
-		EBD636E724C1080700979EBE /* DetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsVC.m; sourceTree = "<group>"; };
+		EBD636E624C1080700979EBE /* DetailsPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsPlayerVC.h; sourceTree = "<group>"; };
+		EBD636E724C1080700979EBE /* DetailsPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsPlayerVC.m; sourceTree = "<group>"; };
 		EBD636E924C127CE00979EBE /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
 		EBD636EA24C127CE00979EBE /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +174,10 @@
 				EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */,
 				EBBAF18624BDF0B1001C3497 /* ComposeVC.h */,
 				EBBAF18724BDF0B1001C3497 /* ComposeVC.m */,
-				EBD636E624C1080700979EBE /* DetailsVC.h */,
-				EBD636E724C1080700979EBE /* DetailsVC.m */,
+				EBD636E624C1080700979EBE /* DetailsPlayerVC.h */,
+				EBD636E724C1080700979EBE /* DetailsPlayerVC.m */,
+				EB2C335324C91A1E008524A0 /* DetailsVC.h */,
+				EB2C335424C91A1E008524A0 /* DetailsVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
 				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,
+				EB2C335524C91A1E008524A0 /* DetailsVC.m in Sources */,
 				EB2C335024C73FAB008524A0 /* DetailsView.m in Sources */,
 				EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */,
 				EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */,
@@ -534,7 +540,7 @@
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
 				EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */,
-				EBD636E824C1080700979EBE /* DetailsVC.m in Sources */,
+				EBD636E824C1080700979EBE /* DetailsPlayerVC.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,
 			);

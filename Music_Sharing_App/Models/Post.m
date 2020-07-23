@@ -22,7 +22,7 @@
 @dynamic commentsCount;
 @dynamic genre;
 @dynamic mood;
-//@dynamic favorited;
+@dynamic favorited;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";

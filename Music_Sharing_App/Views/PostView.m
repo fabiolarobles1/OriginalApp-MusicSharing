@@ -34,6 +34,7 @@
     return self;
 }
 
+
 -(void) customInit{
     
     //grabbing xib
@@ -45,6 +46,7 @@
     //contrain xib so it takes entire view
     self.postView.frame = self.bounds;
 }
+
 
 -(void) setWithPost:(Post *)post{
     self.titleLabel.text = post.title;
@@ -97,6 +99,8 @@
     self.likeCountLabel.text =[@(self.post.likesCount)stringValue];
     self.usernameLabel.text = post.author.username;
 }
+
+
 - (IBAction)didTapLike:(id)sender {
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
     User *user = [User currentUser];
@@ -124,8 +128,5 @@
     self.likeCountLabel.text = [@(self.post.likesCount)stringValue];
     
 }
-
-
-
 
 @end

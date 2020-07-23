@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 
-
 @end
 
 @implementation CommentView

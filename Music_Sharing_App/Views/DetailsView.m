@@ -60,8 +60,8 @@
 }
 
 -(void)setView:(Post *)post{
-    [self.commentView setPost:self.post];
     self.post = post;
+    self.commentView.post = post;
     NSString *song = self.post.musicLink;
     song = [song substringWithRange:NSMakeRange(31, 22)];
     [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {

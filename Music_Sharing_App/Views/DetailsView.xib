@@ -13,6 +13,7 @@
                 <outlet property="backgroundImage" destination="Wza-vc-eW5" id="t6V-Yv-7s7"/>
                 <outlet property="captionLabel" destination="a2h-DZ-u9k" id="ZJa-Ln-Lk8"/>
                 <outlet property="commentButton" destination="NCa-KK-mwl" id="1Qs-Hs-79O"/>
+                <outlet property="commentView" destination="c0x-05-Oa3" id="VH7-jM-cVe"/>
                 <outlet property="detailsView" destination="iN0-l3-epB" id="yMj-7t-wvN"/>
                 <outlet property="favoriteButton" destination="zvp-aL-7Le" id="5Rg-x4-CKQ"/>
                 <outlet property="genreLabel" destination="ObB-uf-kvd" id="WQj-4R-hWK"/>

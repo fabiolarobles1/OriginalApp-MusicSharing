@@ -30,7 +30,6 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
     [self.detailsView setView:self.post];
-    [self.commentView setPost:self.post];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self refreshComments];

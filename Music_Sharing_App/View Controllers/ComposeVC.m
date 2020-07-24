@@ -11,6 +11,7 @@
 #import "HomeFeedVC.h"
 #import "Post.h"
 #import "SpotifyManager.h"
+#import "MBProgressHUD.h"
 
 @interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *genrePickerView;
@@ -43,6 +44,7 @@
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.captionField.layer.borderWidth = 1.0;
     self.captionField.layer.cornerRadius = 5;
+    self.captionField.clipsToBounds = true;
     self.captionField.layer.borderColor =[[UIColor grayColor] CGColor];
     [[SpotifyManager shared] getGenres:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary *genres, NSError *error) {
         if(!error){
@@ -73,27 +75,29 @@
     }
 }
 - (IBAction)didTapScreen:(id)sender {
-   [self.view endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 
 - (IBAction)didTapPost:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"Tapping post.");
-//    if(self.postImage==nil){
-//        self.postImage = [UIImage imageNamed:@"camera.circle.fill"];
-//    }
+    //    if(self.postImage==nil){
+    //        self.postImage = [UIImage imageNamed:@"camera.circle.fill"];
+    //    }
     self.postButton.enabled = !self.postButton.enabled;
     [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
-                      NSLog(@"Succesfully posted image.");
-                      [self toFeed];
-                  }
-              }];
+            NSLog(@"Succesfully posted image.");
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self toFeed];
+        }
+    }];
 }
 
 
 - (IBAction)didTapPicture:(id)sender {
-   
+    
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
 }
 
@@ -101,9 +105,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-  //  UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    //  UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-
+    
     // Do something with the images (based on your use case)
     NSLog(@"Image Uploaded.");
     [self.addPhotoButton setImage:editedImage forState:self.addPhotoButton.state];
@@ -156,7 +160,7 @@
         [self.selectGenreButton setTitle:self.genre.capitalizedString forState:self.selectGenreButton.state];
         [self.selectGenreButton setHidden:NO];
         [self.selectMoodButton setHidden:NO];
-       
+        
     }
     
 }

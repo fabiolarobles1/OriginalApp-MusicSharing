@@ -7,6 +7,7 @@
 //
 
 #import "CommentView.h"
+#import "Comment.h"
 @import Parse;
 
 @interface CommentView()
@@ -44,15 +45,19 @@
     
     //contrain xib so it takes entire view
     self.commentView.frame = self.bounds;
+    self.commentTextField.layer.cornerRadius = 8;
+    self.commentTextField.clipsToBounds = true;
 }
 - (IBAction)didTapSend:(id)sender {
     [self.sendButton setEnabled:NO];
     Post *post = self.post;
-    PFObject *comment = [PFObject objectWithClassName:@"PostComment"];
+    Comment *comment = [[Comment alloc]init];
+    comment.text =self.commentTextField.text;
+    comment.author = [User currentUser];
+    
     PFRelation *relation = [post relationForKey:@"comments"];
     post.commentsCount =+1;
     
-    comment[@"text"] = self.commentTextField.text;
     [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             [relation addObject:comment];

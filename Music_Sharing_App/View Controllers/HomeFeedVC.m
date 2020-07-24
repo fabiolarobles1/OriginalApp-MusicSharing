@@ -17,6 +17,7 @@
 #import "DetailsPlayerVC.h"
 #import "ComposeVC.h"
 #import "DetailsVC.h"
+#import "MBProgressHUD.h"
 
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
@@ -57,6 +58,7 @@
     UIEdgeInsets insets = self.tableView.contentInset;
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
+    
     
     [self fetchPosts];
 }
@@ -121,6 +123,7 @@
 
 -(void)fetchPosts{
     // construct query
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -176,6 +179,7 @@
             }];
         }
     }];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.tableView reloadData];
 }
 

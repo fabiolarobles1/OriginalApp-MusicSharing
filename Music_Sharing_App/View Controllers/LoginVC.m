@@ -51,7 +51,6 @@
             
         }else{
             NSLog(@"User logged in successfully.");
-            
             [self performSegueWithIdentifier:@"toFeedSegue" sender:nil];
         }
     }];

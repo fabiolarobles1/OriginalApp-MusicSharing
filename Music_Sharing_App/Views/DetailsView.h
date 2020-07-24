@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 #import "AppDelegate.h"
+#import "CommentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) AppDelegate *delegate;
+@property (weak, nonatomic) IBOutlet CommentView *commentView;
 
 -(void)setView:(Post *)post;
 

@@ -11,6 +11,7 @@ target 'Music_Sharing_App' do
   pod 'DateTools'
   pod 'AFNetworking'
   pod 'AFOAuth2Manager'
+  pod 'MBProgressHUD'
 
   target 'Music_Sharing_AppTests' do
     inherit! :search_paths

@@ -60,7 +60,7 @@
 }
 
 -(void)setView:(Post *)post{
-    
+    [self.commentView setPost:self.post];
     self.post = post;
     NSString *song = self.post.musicLink;
     song = [song substringWithRange:NSMakeRange(31, 22)];
@@ -81,8 +81,8 @@
     }];
 
     self.captionLabel.text = post.caption;
-    self.backgroundImage.file = self.post.image;
-    [self.backgroundImage loadInBackground];
+//    self.backgroundImage.file = self.post.image;
+//    [self.backgroundImage loadInBackground];
     self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
     self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
     self.usernameLabel.text = [@"shared by " stringByAppendingString:post.author.username];

@@ -21,7 +21,7 @@
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="o94-aM-fWY">
                     <rect key="frame" x="10" y="10" width="353" height="84"/>
-                    <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -34,7 +34,6 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="GcZ-U8-d89" firstAttribute="centerY" secondItem="o94-aM-fWY" secondAttribute="centerY" id="EN9-fB-kA9"/>
                 <constraint firstAttribute="trailing" secondItem="GcZ-U8-d89" secondAttribute="trailing" constant="10" id="M9L-ga-Sxd"/>

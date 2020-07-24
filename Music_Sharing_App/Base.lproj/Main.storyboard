@@ -565,21 +565,68 @@
             </objects>
             <point key="canvasLocation" x="306" y="2591"/>
         </scene>
-        <!--View Controller-->
+        <!--SearchVC-->
         <scene sceneID="zM2-AA-qNc">
             <objects>
-                <viewController id="EFp-Dq-KVq" sceneMemberID="viewController">
+                <viewController id="EFp-Dq-KVq" customClass="SearchVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HBd-ei-2Bq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ufI-QC-lQR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="gCa-3Q-9WM">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="7fo-wh-nR2" customClass="SearchCell">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7fo-wh-nR2" id="YlP-RA-W0U">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2F-GR-xWk" customClass="PostView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="a2F-GR-xWk" secondAttribute="trailing" id="Fg3-Gf-T4b"/>
+                                                <constraint firstAttribute="bottom" secondItem="a2F-GR-xWk" secondAttribute="bottom" id="bKa-4o-7UV"/>
+                                                <constraint firstItem="a2F-GR-xWk" firstAttribute="leading" secondItem="YlP-RA-W0U" secondAttribute="leading" id="h9P-Jv-Ald"/>
+                                                <constraint firstItem="a2F-GR-xWk" firstAttribute="top" secondItem="YlP-RA-W0U" secondAttribute="top" id="hpz-xz-Rg3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="postView" destination="a2F-GR-xWk" id="EFs-eY-r9s"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ufI-QC-lQR" firstAttribute="top" secondItem="Kvy-wj-zfr" secondAttribute="top" id="LiN-eQ-ahz"/>
+                            <constraint firstItem="ufI-QC-lQR" firstAttribute="leading" secondItem="Kvy-wj-zfr" secondAttribute="leading" id="LnC-z4-WLh"/>
+                            <constraint firstItem="Kvy-wj-zfr" firstAttribute="trailing" secondItem="ufI-QC-lQR" secondAttribute="trailing" id="O6X-ex-xOf"/>
+                            <constraint firstItem="Kvy-wj-zfr" firstAttribute="bottom" secondItem="ufI-QC-lQR" secondAttribute="bottom" id="sKy-Ay-kJr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Kvy-wj-zfr"/>
                     </view>
                     <navigationItem key="navigationItem" id="FHz-b3-WaH"/>
+                    <connections>
+                        <outlet property="searchBar" destination="gCa-3Q-9WM" id="X8s-q5-wQC"/>
+                        <outlet property="tableView" destination="ufI-QC-lQR" id="xvQ-5C-iOx"/>
+                        <segue destination="su8-OU-IqO" kind="show" identifier="toDetailsVCSegue" id="nEh-27-HRL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFl-no-FGR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="1767"/>
+            <point key="canvasLocation" x="2924.6376811594205" y="1766.5178571428571"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ez9-d0-S7P">
@@ -771,6 +818,9 @@
             <point key="canvasLocation" x="2121.739130434783" y="2590.8482142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nEh-27-HRL"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

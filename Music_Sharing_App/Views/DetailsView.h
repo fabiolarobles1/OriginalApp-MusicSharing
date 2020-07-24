@@ -20,14 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *albumCoverImageView;
 @property (weak, nonatomic) IBOutlet UIButton *songInfoButton;
 @property (weak, nonatomic) IBOutlet UILabel *moodLabel;
-@property (weak, nonatomic) IBOutlet UITextView *captionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet CommentView *commentView;
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) AppDelegate *delegate;
-@property (weak, nonatomic) IBOutlet CommentView *commentView;
 
 -(void)setView:(Post *)post;
 

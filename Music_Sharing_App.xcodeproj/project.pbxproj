@@ -23,6 +23,8 @@
 		EB5AF28424BCC36E004270FF /* Music_Sharing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28324BCC36E004270FF /* Music_Sharing_AppTests.m */; };
 		EB5AF28F24BCC36E004270FF /* Music_Sharing_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */; };
 		EB627B1124BF8B6100F75655 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */; };
+		EBA19FA124CB5FAC00FFBF09 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */; };
+		EBA19FA424CB648A00FFBF09 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA19FA324CB648A00FFBF09 /* SearchCell.m */; };
 		EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */; };
 		EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */; };
 		EBB1F4E324BD0841007BE75C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4E224BD0841007BE75C /* Post.m */; };
@@ -88,6 +90,10 @@
 		EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music_Sharing_AppUITests.m; sourceTree = "<group>"; };
 		EB5AF29024BCC36E004270FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		EBA19F9F24CB5FAC00FFBF09 /* SearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
+		EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
+		EBA19FA224CB648A00FFBF09 /* SearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
+		EBA19FA324CB648A00FFBF09 /* SearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		EBB1F4DA24BCEF46007BE75C /* SignUpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpVC.h; sourceTree = "<group>"; };
 		EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpVC.m; sourceTree = "<group>"; };
 		EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFeedVC.h; sourceTree = "<group>"; };
@@ -189,6 +195,8 @@
 				EBD636E724C1080700979EBE /* DetailsPlayerVC.m */,
 				EB2C335324C91A1E008524A0 /* DetailsVC.h */,
 				EB2C335424C91A1E008524A0 /* DetailsVC.m */,
+				EBA19F9F24CB5FAC00FFBF09 /* SearchVC.h */,
+				EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -292,6 +300,8 @@
 				EBB1F4EF24BD1110007BE75C /* PostCell.m */,
 				EBCFC8A024CA1E9C00C62AEE /* CommentCell.h */,
 				EBCFC8A124CA1E9C00C62AEE /* CommentCell.m */,
+				EBA19FA224CB648A00FFBF09 /* SearchCell.h */,
+				EBA19FA324CB648A00FFBF09 /* SearchCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -549,11 +559,13 @@
 				EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */,
 				EBCFC8A224CA1E9C00C62AEE /* CommentCell.m in Sources */,
 				EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */,
+				EBA19FA424CB648A00FFBF09 /* SearchCell.m in Sources */,
 				EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
 				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,
 				EBCFC89D24C9F7B300C62AEE /* CommentView.m in Sources */,
 				EB2C335524C91A1E008524A0 /* DetailsVC.m in Sources */,
+				EBA19FA124CB5FAC00FFBF09 /* SearchVC.m in Sources */,
 				EB2C335024C73FAB008524A0 /* DetailsView.m in Sources */,
 				EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */,
 				EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */,

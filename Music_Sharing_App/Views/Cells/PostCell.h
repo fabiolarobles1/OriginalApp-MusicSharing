@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PostCell : UITableViewCell
 
+
 @property (weak, nonatomic) IBOutlet PostView *postView;
 @property (weak, nonatomic) id<PostCellDelegate> delegate;
 

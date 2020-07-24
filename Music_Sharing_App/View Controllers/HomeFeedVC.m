@@ -221,8 +221,6 @@
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;
-//        detailViewController.detailsView.post = self.post;
-//        [detailViewController.detailsView setView:self.post];
     }
     
 }

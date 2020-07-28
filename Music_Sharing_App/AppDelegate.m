@@ -25,7 +25,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
+    
     //Initializing Parse and setting server
     ParseClientConfiguration *config = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
@@ -37,9 +37,9 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     
     [self configurate];
     [self initiateSession];
-   
+    
     NSLog(@"SPT configuration completed.");
-
+    
     return YES;
 }
 -(void)configurate{
@@ -49,7 +49,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     self.configuration.playURI = @"";
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
     self.appRemote.delegate = self;
-   
+    
 }
 
 -(void)initiateSession{
@@ -89,7 +89,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 -(void)applicationDidBecomeActive:(UIApplication *)application{
     if(self.appRemote.connectionParameters.accessToken){
         [self.appRemote connect];
-         NSLog(@"App Remote connected");
+        NSLog(@"App Remote connected");
     }
 }
 
@@ -101,8 +101,8 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 -(void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session{
     NSLog(@"Success: %@", session);
     self.appRemote.connectionParameters.accessToken = session.accessToken;
-   // [self.appRemote authorizeAndPlayURI:@""];
-   // [self.appRemote connect];
+    // [self.appRemote authorizeAndPlayURI:@""];
+    // [self.appRemote connect];
 }
 
 -(void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error{
@@ -114,7 +114,7 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     self.appRemote.playerAPI.delegate = self;
     [self.appRemote.playerAPI subscribeToPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
         if(error){
-        NSLog(@"SPTAppRemote player error: %@",error.description);
+            NSLog(@"SPTAppRemote player error: %@",error.description);
         }else{
             NSLog(@"SPTAppRemote player connected.");
         }

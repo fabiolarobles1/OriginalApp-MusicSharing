@@ -15,9 +15,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsPlayerVC : UIViewController
-@property (strong, nonatomic)Post *post;
+@property (strong, nonatomic) Post *post;
 
 -(void)loadDetails;
+
 @end
 
 NS_ASSUME_NONNULL_END

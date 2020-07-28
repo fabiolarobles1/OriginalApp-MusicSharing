@@ -12,9 +12,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate>
 
-@property (nonatomic, strong)SPTSessionManager *sessionManager;
-@property (nonatomic, strong)SPTConfiguration *configuration;
-@property (nonatomic, strong)SPTAppRemote *appRemote;
+@property (nonatomic, strong) SPTSessionManager *sessionManager;
+@property (nonatomic, strong) SPTConfiguration *configuration;
+@property (nonatomic, strong) SPTAppRemote *appRemote;
 
 @end
 

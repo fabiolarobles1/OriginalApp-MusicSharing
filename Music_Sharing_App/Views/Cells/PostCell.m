@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-     UITapGestureRecognizer *postTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPost:)];
+    UITapGestureRecognizer *postTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPost:)];
     
     [self.postView addGestureRecognizer:postTapGestureRecognizer];
     [self.postView setUserInteractionEnabled:YES];
@@ -25,14 +25,14 @@
 
 
 - (void) didTapPost:(UITapGestureRecognizer *)sender{
-   
+    
     [self.delegate postCell:self didTap:self.postView.post];
     [self.postView.layer setBackgroundColor:[UIColor grayColor].CGColor];
-       [self.postView.layer setOpacity:0.5];
-       [UIView animateWithDuration:1 animations:^{
-             [self.postView.layer setBackgroundColor:[UIColor clearColor].CGColor];
-           [self.postView.layer setOpacity:1.0];;
-          }];
+    [self.postView.layer setOpacity:0.5];
+    [UIView animateWithDuration:1 animations:^{
+        [self.postView.layer setBackgroundColor:[UIColor clearColor].CGColor];
+        [self.postView.layer setOpacity:1.0];;
+    }];
 }
 
 @end

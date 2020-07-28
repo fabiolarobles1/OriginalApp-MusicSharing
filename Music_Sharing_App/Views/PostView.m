@@ -12,6 +12,8 @@
 
 
 @interface PostView()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthConstraint;
 @end
 
 @implementation PostView
@@ -57,7 +59,7 @@
         self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
     }
     if(post.caption.length!=0){
-         [self.captionLabel setHidden:NO];
+        [self.captionLabel setHidden:NO];
         self.captionLabel.text = [@"Caption: " stringByAppendingString:post.caption];
     }else{
         self.captionLabel.text = @"";
@@ -66,10 +68,16 @@
     self.post = post;
     self.date = post.createdAt;
     
+    //see if works
     if(post.image == nil){
-         [self.postImageView setHidden:YES];
+        [self.postImageView setHidden:YES];
+        self.imageHeightConstraint.constant = 0.0;
+        self.imageWidthConstraint.constant = 0.0;
+       
     }else{
-         [self.postImageView setHidden:NO];
+        [self.postImageView setHidden:NO];
+        self.imageHeightConstraint.constant = 100.0;
+        self.imageWidthConstraint.constant = 100.0;
     }
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
@@ -91,7 +99,7 @@
                 if(!isFavorited){
                     [self.favoriteButton setSelected:NO];
                 }
-                post.favorited = isFavorited;
+               
             }];
         }
     }];
@@ -108,11 +116,9 @@
     
     if([self.favoriteButton isSelected]){
         self.post.likesCount +=1;
-        self.post.favorited = YES;
         [relation addObject:self.post];
     }else{
         self.post.likesCount -=1;
-        self.post.favorited = NO;
         [relation removeObject:self.post];
     }
     

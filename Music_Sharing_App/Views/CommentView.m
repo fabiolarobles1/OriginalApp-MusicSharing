@@ -56,12 +56,12 @@
     comment.author = [User currentUser];
     
     PFRelation *relation = [post relationForKey:@"comments"];
-   
-
+    
+    
     
     [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
-             post.commentsCount +=1;
+            post.commentsCount +=1;
             [relation addObject:comment];
             NSLog(@"The comment was saved!");
             [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {

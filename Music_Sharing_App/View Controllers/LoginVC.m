@@ -58,7 +58,7 @@
 
 
 - (IBAction)didTapScreen:(id)sender {
-     [self.view endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 

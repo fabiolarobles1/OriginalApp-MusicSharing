@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) AppDelegate *delegate;
 
--(void)setView:(Post *)post;
+-(void)setView:(Post *)post isFavorited:(BOOL)isFavorited;
 
 @end
 

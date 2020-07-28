@@ -14,15 +14,19 @@
 @dynamic createdAt;
 @dynamic userID;
 @dynamic author;
-@dynamic title;
-@dynamic musicLink;
-@dynamic caption;
-@dynamic image;
+@dynamic title;//
+@dynamic musicLink;//
+@dynamic caption;//
+@dynamic image;//
 @dynamic likesCount;
 @dynamic commentsCount;
-@dynamic genre;
-@dynamic mood;
-@dynamic favorited;
+@dynamic genre;//
+@dynamic mood;//
+@dynamic album;//
+@dynamic artist;//
+@dynamic songName;//
+@dynamic albumCoverURLString;
+@dynamic songURI;//
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -30,10 +34,15 @@
 
 + (void) createUserPost: ( NSString *)title
               withGenre: ( NSString *)genre 
-               withMood: ( NSString * _Nullable)mood   //maybe is required (delete nullable)
+               withMood: ( NSString *)mood   
                withLink: ( NSString *)musicLink
             withCaption: ( NSString * _Nullable)caption
               withImage: ( UIImage * _Nullable)image
+              withAlbum: ( NSString *)albumName
+withAlbumCoverURLString: (NSString *)albumCoverURLString
+               withSong: ( NSString *)songName
+             withArtist: ( NSString *)artistName
+            withSongURI: ( NSString *)songURI
          withCompletion: ( PFBooleanResultBlock  _Nullable)completion {
     
     Post *newPost = [Post new];
@@ -44,6 +53,11 @@
     newPost.author = [PFUser currentUser];
     newPost.caption = caption;
     newPost.image = [self getPFFileFromImage:image];
+    newPost.album = albumName;
+    newPost.albumCoverURLString = albumCoverURLString;
+    newPost.songName = songName;
+    newPost.artist = artistName;
+    newPost.songURI = songURI;
     newPost.likesCount = 0;
     newPost.commentsCount = 0;
     [newPost saveInBackgroundWithBlock: completion];

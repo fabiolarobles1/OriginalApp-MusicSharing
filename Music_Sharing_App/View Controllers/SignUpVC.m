@@ -34,7 +34,7 @@
     
     //setting up properties
     newUser.username = self.usernameField.text;
-
+    
     if(![self.passwordField.text isEqual:self.confirmPasswordField.text]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Password Confirmation" message:@"Please, your confirmation password must be equal to your password to complete the register." preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -90,7 +90,7 @@
         
     }else{
         [self registerUser];
-       
+        
     }
 }
 

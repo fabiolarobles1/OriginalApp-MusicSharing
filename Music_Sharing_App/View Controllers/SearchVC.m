@@ -66,7 +66,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     SearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
     Post *post =self.filteredData[indexPath.row];
-  //  cell.textLabel.text = post.title;
+    //  cell.textLabel.text = post.title;
     [cell.postView setWithPost:post];
     cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
     cell.delegate= self;
@@ -81,21 +81,35 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if(searchText.length !=0){
         NSPredicate *predicate = [[NSPredicate alloc]init];
-//        if([[searchText substringToIndex:3] isEqualToString:@"song"]){
-//
-//            predicate = [NSPredicate predicateWithBlock:^BOOL(Post * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-//                [[SpotifyManager shared] getSong:evaluatedObject.musicLink accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
-//                       NSDictionary *songName = song[@"name"];
-//                   }];
-//                return [evaluatedObject.title containsString:searchText];
-//            }];
-//
-//        }else{
-            
-            predicate = [NSPredicate predicateWithBlock:^BOOL(Post * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                return [evaluatedObject.title containsString:searchText];
-            }];
-//     }
+        
+        
+        predicate = [NSPredicate predicateWithBlock:^BOOL(Post * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+           
+            if( [evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString ];
+            }
+            else if([evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString ];
+            }
+            else if([evaluatedObject.mood.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.mood.lowercaseString containsString:searchText.lowercaseString ];
+            }
+            else if([evaluatedObject.genre.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.genre.lowercaseString containsString:searchText.lowercaseString ];
+            }
+            else if([evaluatedObject.artist.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.artist.lowercaseString containsString:searchText.lowercaseString ];
+            }
+            else if([evaluatedObject.album.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.album.lowercaseString containsString:searchText.lowercaseString ];
+            }
+            else if([evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString ]){
+                return [evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString ];
+            }else{
+                return [evaluatedObject.caption.lowercaseString containsString:searchText.lowercaseString ];
+            }
+        }];
+        
         self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
         NSLog(@"%@", self.filteredData);
     }else{
@@ -117,18 +131,18 @@
 
 
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
-         DetailsVC *detailViewController = [segue destinationViewController];
-         detailViewController.post = self.post;
-     }
- }
- 
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
+        DetailsVC *detailViewController = [segue destinationViewController];
+        detailViewController.post = self.post;
+    }
+}
+
 
 -(void)postCell:(SearchCell *)postCell didTap:(Post *)post{
     self.post = post;

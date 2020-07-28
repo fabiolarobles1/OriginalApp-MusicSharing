@@ -13,6 +13,8 @@
                 <outlet property="dateLabel" destination="qzJ-N7-nm7" id="oQ0-2M-H1s"/>
                 <outlet property="favoriteButton" destination="rQT-IL-tt3" id="VfZ-VY-GRa"/>
                 <outlet property="genreLabel" destination="L80-IF-DpT" id="mbd-JR-5zn"/>
+                <outlet property="imageHeightConstraint" destination="3IQ-if-hwC" id="d15-ZV-vEt"/>
+                <outlet property="imageWidthConstraint" destination="aXr-pt-MHb" id="zG5-Uh-1Jg"/>
                 <outlet property="likeCountLabel" destination="UdA-43-iEH" id="xvy-vD-wh0"/>
                 <outlet property="moodLabel" destination="pMJ-Pi-Uui" id="bQl-SF-7M9"/>
                 <outlet property="postImageView" destination="zO7-hj-V6d" id="MEe-1t-CaV"/>

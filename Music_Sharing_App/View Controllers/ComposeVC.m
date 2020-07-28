@@ -56,7 +56,8 @@
         }
     }];
     
-    self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
+    //Do enum for moods
+    self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy",@"Hype", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
     self.titleField.delegate = self;
     self.genrePickerView.delegate = self;
     self.genrePickerView.dataSource = self;
@@ -81,23 +82,42 @@
 
 - (IBAction)didTapPost:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSString *song = self.musicLinkField.text;
+    song = [song substringWithRange:NSMakeRange(31, 22)];
+    [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
+        NSArray *artist = song[@"artists"];
+        NSDictionary *insideArtists = artist[0];
+        NSDictionary *songName = song[@"name"];
+        NSDictionary *album = song[@"album"];
+        NSDictionary *albumName = album[@"name"];
+        NSArray *albumImage =album[@"images"];
+        NSDictionary *image = albumImage[0];
+        NSString *imageURL = [NSString stringWithFormat:@"%@", image[@"url"]];
+        NSString *songID = [self.musicLinkField.text substringWithRange:NSMakeRange(31, 22)];
+        NSString *songURI = [@"spotify:track:" stringByAppendingString:songID];
+        
+        [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withAlbum: [NSString stringWithFormat:@"%@",albumName] withAlbumCoverURLString:imageURL withSong:[NSString stringWithFormat:@"%@",songName] withArtist:[NSString stringWithFormat:@"%@",insideArtists[@"name"]] withSongURI:songURI withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if(succeeded){
+                NSLog(@"Succesfully posted image.");
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self toFeed];
+            }
+        }];
+    }];
+    
     NSLog(@"Tapping post.");
     //    if(self.postImage==nil){
     //        self.postImage = [UIImage imageNamed:@"camera.circle.fill"];
     //    }
     self.postButton.enabled = !self.postButton.enabled;
-    [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
-            NSLog(@"Succesfully posted image.");
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self toFeed];
-        }
-    }];
+    
 }
 
 
 - (IBAction)didTapPicture:(id)sender {
     
+    //ADD SELECTION FROM CAMERA OR LIBRARY
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
 }
 
@@ -143,6 +163,8 @@
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         return [NSString stringWithFormat:@"%@",self.moods[(long)row]];
     }else{
+        
+        //When user is not authorize it doesn't work!!!!
         return [NSString stringWithFormat:@"%@",self.genres[(long)row]];
     }
 }

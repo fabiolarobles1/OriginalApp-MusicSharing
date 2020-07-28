@@ -27,7 +27,7 @@
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
-@property (strong, nonatomic)Post *post;
+@property (strong, nonatomic) Post *post;
 
 
 @end
@@ -84,7 +84,7 @@
 
 -(void)postCell:(PostCell *)postCell didTap:(Post *)post{
     self.post = post;
-    [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:nil];
+    [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:postCell];
 }
 
 
@@ -123,7 +123,7 @@
 
 -(void)fetchPosts{
     // construct query
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+  //  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -153,7 +153,7 @@
         } else {
             NSLog(@"Error getting posts: %@", error.description);
             //ADD TO CHECK IF IT IS BECAUSE NO CONNECTION!!
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"An error occured while trying to load feed. Please, try again." preferredStyle:(UIAlertControllerStyleAlert)];
             
             //creating cancel action
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"  style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -178,8 +178,9 @@
                 
             }];
         }
+         [self.tableView reloadData];
     }];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+  //  [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.tableView reloadData];
 }
 
@@ -219,8 +220,11 @@
     // Pass the selected object to the new view controller.
     
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
+        PostCell *senderCell = sender;
+        NSLog(@"sender: %d", senderCell.postView.favoriteButton.isSelected);
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;
+        detailViewController.isFavorited = senderCell.postView.favoriteButton.isSelected;
     }
     
 }

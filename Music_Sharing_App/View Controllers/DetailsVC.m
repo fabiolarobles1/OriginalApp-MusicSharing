@@ -29,7 +29,8 @@
     [self.backgroundImageView loadInBackground];
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
-    [self.detailsView setView:self.post];
+    
+    [self.detailsView setView:self.post isFavorited:self.isFavorited];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self refreshComments];
@@ -87,7 +88,7 @@
     cell.commentBackground.clipsToBounds = true;
     cell.commentLabel.text = comment.text;
     cell.usernameLabel.text =comment.author.username;
-
+    
     return cell;
 }
 

@@ -26,14 +26,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int commentsCount;
 @property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *mood;
-@property (nonatomic) BOOL favorited;
+@property (nonatomic, strong) NSString *artist;
+@property (nonatomic, strong) NSString *album;
+@property (nonatomic, strong) NSString *songName;
+@property (nonatomic, strong) NSString *albumCoverURLString;
+@property (nonatomic, strong) NSString *songURI;
 
 + (void) createUserPost: ( NSString *)title
-              withGenre: ( NSString *)genre //maybe is required (delete nullable)
-               withMood: ( NSString * _Nullable)mood   //maybe is required (delete nullable)
+              withGenre: ( NSString *)genre
+               withMood: ( NSString *)mood
                withLink: ( NSString *)musicLink
             withCaption: ( NSString * _Nullable)caption
               withImage: ( UIImage * _Nullable)image
+              withAlbum: ( NSString *)albumName
+withAlbumCoverURLString: (NSString *)albumCoverURLString
+               withSong: ( NSString *)songName
+             withArtist: ( NSString *)artistName
+            withSongURI: ( NSString *)songURI
          withCompletion: ( PFBooleanResultBlock  _Nullable)completion;
 
 +(void)updatePost:(Post *)post;

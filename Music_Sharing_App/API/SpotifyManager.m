@@ -46,11 +46,11 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
     [self GET:[trackRequestBase stringByAppendingString:songURI]
-    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
+   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
         
-         NSLog(@"Response from GET: %@", response );
-          completion(response, nil);
-                          
+        NSLog(@"Response from GET: %@", response );
+        completion(response, nil);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         //Error
@@ -71,7 +71,7 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
         completion(nil, error);
         
     }];
-  
+    
 }
 
 

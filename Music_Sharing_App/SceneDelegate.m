@@ -27,8 +27,8 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedController"];
     }
-     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-   
+    self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
 }
 
 

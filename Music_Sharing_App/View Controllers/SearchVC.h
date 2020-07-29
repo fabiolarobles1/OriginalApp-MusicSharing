@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PostCell.h"
+#import "HomePostCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

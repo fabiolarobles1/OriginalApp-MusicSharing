@@ -13,16 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PostCellDelegate;
 
-@interface PostCell : UITableViewCell
+@interface HomePostCell : UITableViewCell
 
 
 @property (weak, nonatomic) IBOutlet PostView *postView;
 @property (weak, nonatomic) id<PostCellDelegate> delegate;
 
+- (void) didTapPost:(UITapGestureRecognizer *)sender;
 @end
 
 @protocol PostCellDelegate
--(void)postCell:(PostCell *) postCell didTap:(Post *)post;
+-(void)postCell:(HomePostCell *) postCell didTap:(Post *)post;
 @end
 
 

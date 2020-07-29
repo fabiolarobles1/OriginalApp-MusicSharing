@@ -25,20 +25,22 @@
 		EB627B1124BF8B6100F75655 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */; };
 		EBA19FA124CB5FAC00FFBF09 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */; };
 		EBA19FA424CB648A00FFBF09 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA19FA324CB648A00FFBF09 /* SearchCell.m */; };
+		EBA675E124D07529003CE95C /* ProfilleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA675E024D07529003CE95C /* ProfilleVC.m */; };
+		EBA675E724D0870B003CE95C /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA675E624D0870B003CE95C /* ProfileView.m */; };
+		EBA675E924D09576003CE95C /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA675E824D09576003CE95C /* ProfileView.xib */; };
 		EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */; };
 		EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */; };
 		EBB1F4E324BD0841007BE75C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4E224BD0841007BE75C /* Post.m */; };
 		EBB1F4E624BD08D4007BE75C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4E524BD08D4007BE75C /* User.m */; };
 		EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EA24BD0E3F007BE75C /* PostView.m */; };
 		EBB1F4ED24BD0EB6007BE75C /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB1F4EC24BD0EB6007BE75C /* PostView.xib */; };
-		EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EF24BD1110007BE75C /* PostCell.m */; };
+		EBB1F4F024BD1110007BE75C /* HomePostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB1F4EF24BD1110007BE75C /* HomePostCell.m */; };
 		EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18724BDF0B1001C3497 /* ComposeVC.m */; };
 		EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */; };
 		EBCFC89D24C9F7B300C62AEE /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCFC89C24C9F7B300C62AEE /* CommentView.m */; };
 		EBCFC89F24C9F7D600C62AEE /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBCFC89E24C9F7D600C62AEE /* CommentView.xib */; };
 		EBCFC8A224CA1E9C00C62AEE /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCFC8A124CA1E9C00C62AEE /* CommentCell.m */; };
 		EBCFC8A524CA4A4000C62AEE /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCFC8A424CA4A4000C62AEE /* Comment.m */; };
-		EBD636E824C1080700979EBE /* DetailsPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636E724C1080700979EBE /* DetailsPlayerVC.m */; };
 		EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636EA24C127CE00979EBE /* SpotifyManager.m */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,11 @@
 		EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		EBA19FA224CB648A00FFBF09 /* SearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		EBA19FA324CB648A00FFBF09 /* SearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		EBA675DF24D07529003CE95C /* ProfilleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfilleVC.h; sourceTree = "<group>"; };
+		EBA675E024D07529003CE95C /* ProfilleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfilleVC.m; sourceTree = "<group>"; };
+		EBA675E524D0870B003CE95C /* ProfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		EBA675E624D0870B003CE95C /* ProfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		EBA675E824D09576003CE95C /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		EBB1F4DA24BCEF46007BE75C /* SignUpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpVC.h; sourceTree = "<group>"; };
 		EBB1F4DB24BCEF46007BE75C /* SignUpVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpVC.m; sourceTree = "<group>"; };
 		EBB1F4DD24BD02A2007BE75C /* HomeFeedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFeedVC.h; sourceTree = "<group>"; };
@@ -105,8 +112,8 @@
 		EBB1F4E924BD0E3F007BE75C /* PostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostView.h; sourceTree = "<group>"; };
 		EBB1F4EA24BD0E3F007BE75C /* PostView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostView.m; sourceTree = "<group>"; };
 		EBB1F4EC24BD0EB6007BE75C /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
-		EBB1F4EE24BD1110007BE75C /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
-		EBB1F4EF24BD1110007BE75C /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		EBB1F4EE24BD1110007BE75C /* HomePostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePostCell.h; sourceTree = "<group>"; };
+		EBB1F4EF24BD1110007BE75C /* HomePostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePostCell.m; sourceTree = "<group>"; };
 		EBBAF18624BDF0B1001C3497 /* ComposeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeVC.h; sourceTree = "<group>"; };
 		EBBAF18724BDF0B1001C3497 /* ComposeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeVC.m; sourceTree = "<group>"; };
 		EBBAF18B24BE6AC2001C3497 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
@@ -118,8 +125,6 @@
 		EBCFC8A124CA1E9C00C62AEE /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		EBCFC8A324CA4A4000C62AEE /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		EBCFC8A424CA4A4000C62AEE /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		EBD636E624C1080700979EBE /* DetailsPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsPlayerVC.h; sourceTree = "<group>"; };
-		EBD636E724C1080700979EBE /* DetailsPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsPlayerVC.m; sourceTree = "<group>"; };
 		EBD636E924C127CE00979EBE /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
 		EBD636EA24C127CE00979EBE /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,12 +196,12 @@
 				EBB1F4DE24BD02A2007BE75C /* HomeFeedVC.m */,
 				EBBAF18624BDF0B1001C3497 /* ComposeVC.h */,
 				EBBAF18724BDF0B1001C3497 /* ComposeVC.m */,
-				EBD636E624C1080700979EBE /* DetailsPlayerVC.h */,
-				EBD636E724C1080700979EBE /* DetailsPlayerVC.m */,
 				EB2C335324C91A1E008524A0 /* DetailsVC.h */,
 				EB2C335424C91A1E008524A0 /* DetailsVC.m */,
 				EBA19F9F24CB5FAC00FFBF09 /* SearchVC.h */,
 				EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */,
+				EBA675DF24D07529003CE95C /* ProfilleVC.h */,
+				EBA675E024D07529003CE95C /* ProfilleVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -286,6 +291,9 @@
 				EBCFC89E24C9F7D600C62AEE /* CommentView.xib */,
 				EBCFC89B24C9F7B300C62AEE /* CommentView.h */,
 				EBCFC89C24C9F7B300C62AEE /* CommentView.m */,
+				EBA675E824D09576003CE95C /* ProfileView.xib */,
+				EBA675E524D0870B003CE95C /* ProfileView.h */,
+				EBA675E624D0870B003CE95C /* ProfileView.m */,
 				EBBAF18B24BE6AC2001C3497 /* InfiniteScrollActivityView.h */,
 				EBBAF18C24BE6AC2001C3497 /* InfiniteScrollActivityView.m */,
 				EBB1F4E824BD0E28007BE75C /* Cells */,
@@ -296,8 +304,8 @@
 		EBB1F4E824BD0E28007BE75C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				EBB1F4EE24BD1110007BE75C /* PostCell.h */,
-				EBB1F4EF24BD1110007BE75C /* PostCell.m */,
+				EBB1F4EE24BD1110007BE75C /* HomePostCell.h */,
+				EBB1F4EF24BD1110007BE75C /* HomePostCell.m */,
 				EBCFC8A024CA1E9C00C62AEE /* CommentCell.h */,
 				EBCFC8A124CA1E9C00C62AEE /* CommentCell.m */,
 				EBA19FA224CB648A00FFBF09 /* SearchCell.h */,
@@ -425,6 +433,7 @@
 			files = (
 				EB5AF27724BCC36D004270FF /* LaunchScreen.storyboard in Resources */,
 				EB5AF27424BCC36D004270FF /* Assets.xcassets in Resources */,
+				EBA675E924D09576003CE95C /* ProfileView.xib in Resources */,
 				EBB1F4ED24BD0EB6007BE75C /* PostView.xib in Resources */,
 				EB5AF27224BCC36C004270FF /* Main.storyboard in Resources */,
 				EBCFC89F24C9F7D600C62AEE /* CommentView.xib in Resources */,
@@ -556,7 +565,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB1F4F024BD1110007BE75C /* PostCell.m in Sources */,
+				EBA675E724D0870B003CE95C /* ProfileView.m in Sources */,
+				EBB1F4F024BD1110007BE75C /* HomePostCell.m in Sources */,
 				EBCFC8A224CA1E9C00C62AEE /* CommentCell.m in Sources */,
 				EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */,
 				EBA19FA424CB648A00FFBF09 /* SearchCell.m in Sources */,
@@ -573,10 +583,10 @@
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
 				EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */,
-				EBD636E824C1080700979EBE /* DetailsPlayerVC.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,
 				EBCFC8A524CA4A4000C62AEE /* Comment.m in Sources */,
+				EBA675E124D07529003CE95C /* ProfilleVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

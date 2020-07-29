@@ -39,7 +39,7 @@
             withCaption: ( NSString * _Nullable)caption
               withImage: ( UIImage * _Nullable)image
               withAlbum: ( NSString *)albumName
-withAlbumCoverURLString: (NSString *)albumCoverURLString
+withAlbumCoverURLString: ( NSString *)albumCoverURLString
                withSong: ( NSString *)songName
              withArtist: ( NSString *)artistName
             withSongURI: ( NSString *)songURI

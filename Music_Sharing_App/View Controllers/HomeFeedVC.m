@@ -7,20 +7,18 @@
 //
 
 #import "HomeFeedVC.h"
-#import <Parse/Parse.h>
 #import "LoginVC.h"
 #import "SceneDelegate.h"
 #import "Post.h"
-#import "PostCell.h"
+#import "HomePostCell.h"
 #import "DateTools.h"
 #import "InfiniteScrollActivityView.h"
-#import "DetailsPlayerVC.h"
 #import "ComposeVC.h"
 #import "DetailsVC.h"
 #import "MBProgressHUD.h"
 
-
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
+
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -28,7 +26,6 @@
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic) Post *post;
-
 
 @end
 
@@ -70,7 +67,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    HomePostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     Post *post = self.posts[indexPath.row];
     [cell.postView setWithPost:post];
     cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
@@ -82,7 +79,7 @@
     
 }
 
--(void)postCell:(PostCell *)postCell didTap:(Post *)post{
+-(void)postCell:(HomePostCell *)postCell didTap:(Post *)post{
     self.post = post;
     [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:postCell];
 }
@@ -98,7 +95,10 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
-    
+    [self logout];
+}
+
+-(void)logout{
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error ==nil){
             NSLog(@"Successfully logged out user.");
@@ -118,16 +118,23 @@
     [UIView animateWithDuration:2 animations:^{
         myDelegate.window.alpha = 1;
     }];
+    
+}
+
+-(PFQuery *)defineQuery{
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    return postQuery;
 }
 
 
 -(void)fetchPosts{
     // construct query
   //  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
+    PFQuery *postQuery = [self defineQuery];
     if(self.isMoreDataLoading){
         postQuery.skip = self.skipcount;
     }
@@ -220,7 +227,7 @@
     // Pass the selected object to the new view controller.
     
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
-        PostCell *senderCell = sender;
+        HomePostCell *senderCell = sender;
         NSLog(@"sender: %d", senderCell.postView.favoriteButton.isSelected);
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;

@@ -6,10 +6,10 @@
 //  Copyright © 2020 Fabiola E. Robles Vega. All rights reserved.
 //
 
-#import "PostCell.h"
+#import "HomePostCell.h"
 
 
-@implementation PostCell
+@implementation HomePostCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

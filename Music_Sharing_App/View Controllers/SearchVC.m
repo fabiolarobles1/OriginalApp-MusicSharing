@@ -12,7 +12,7 @@
 #import "SpotifyManager.h"
 #import "Post.h"
 #import "AppDelegate.h"
-#import "PostCell.h"
+#import "HomePostCell.h"
 #import "DateTools.h"
 #import "DetailsVC.h"
 
@@ -105,7 +105,8 @@
             }
             else if([evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString ]){
                 return [evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString ];
-            }else{
+            }
+            else{
                 return [evaluatedObject.caption.lowercaseString containsString:searchText.lowercaseString ];
             }
         }];

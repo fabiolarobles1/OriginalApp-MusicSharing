@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PostView.h"
-#import "PostCell.h"
+#import "HomePostCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchCell : PostCell
+@interface SearchCell : HomePostCell
 //@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet PostView *postView;
 

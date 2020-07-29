@@ -60,7 +60,8 @@
     }
     if(post.caption.length!=0){
         [self.captionLabel setHidden:NO];
-        self.captionLabel.text = [@"Caption: " stringByAppendingString:post.caption];
+        self.captionLabel.text = post.caption;
+       // self.captionLabel.text = [@"Caption: " stringByAppendingString:post.caption];
     }else{
         self.captionLabel.text = @"";
         [self.captionLabel setHidden:YES];
@@ -105,7 +106,7 @@
     }];
     
     self.likeCountLabel.text =[@(self.post.likesCount)stringValue];
-    self.usernameLabel.text = post.author.username;
+    self.usernameLabel.text = [@"@" stringByAppendingString:post.author.username];
 }
 
 

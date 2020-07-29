@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PostCell.h"
+#import <Parse/Parse.h>
+#import "HomePostCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeFeedVC : UIViewController <PostCellDelegate>
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView;
+-(void)fetchPosts;
+-(PFQuery *)defineQuery;
+-(void)logout;
 
 @end
 

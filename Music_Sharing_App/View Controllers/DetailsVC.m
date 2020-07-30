@@ -21,6 +21,7 @@
 @implementation DetailsVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -34,13 +35,13 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self refreshComments];
-    
-    
+
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
-    
-    
+
     //SET THE POST TO COMMENTS ALSO
 }
+
+
 -(void)refreshComments{
     
     // construct query
@@ -63,11 +64,8 @@
             }];
         }
     }];
-    
     [self.tableView reloadData];
-    
 }
-
 
 /*
  #pragma mark - Navigation

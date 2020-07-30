@@ -40,7 +40,6 @@
 
 -(void)fetchPosts{
     // construct query
-    
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -59,7 +58,6 @@
         
         [self.tableView reloadData];
     }];
-    
 }
 
 

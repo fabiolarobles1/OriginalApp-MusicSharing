@@ -13,16 +13,17 @@
 #import "SpotifyManager.h"
 #import "MBProgressHUD.h"
 
-@interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *genrePickerView;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UIPickerView *moodPickerView;
-@property (strong, nonatomic)NSMutableArray *moods;
-@property (strong, nonatomic)Post *post;
+@property (strong, nonatomic) IBOutlet UIView *fullView;
+@property (strong, nonatomic) NSMutableArray *moods;
+@property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) UIImage *postImage;
 @property (strong, nonatomic) NSString *mood;
 @property (strong, nonatomic) NSString *genre;
-@property (strong, nonatomic)UIImagePickerController *imagePickerVC;
+@property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 @property (weak, nonatomic) IBOutlet UITextField *musicLinkField;
@@ -30,17 +31,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
 
+@property (nonatomic) CGFloat initialY;
+@property (nonatomic) CGFloat offset;
+@property (nonatomic) BOOL captionSelected;
 
 @end
 
 @implementation ComposeVC
--(void)viewWillAppear:(BOOL)animated{
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self registerForKeyboardEvents];
+    self.initialY = self.fullView.frame.origin.y;
+    self.captionField.delegate = self;
+    self.offset =-50;
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.captionField.layer.borderWidth = 1.0;
     self.captionField.layer.cornerRadius = 5;
@@ -55,6 +59,7 @@
             NSLog(@"SUPER ERROR: %@", error);
         }
     }];
+    
     
     //Do enum for moods
     self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy",@"Hype", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
@@ -75,6 +80,7 @@
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
 }
+
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:YES];
 }
@@ -215,6 +221,31 @@
     [self.moodPickerView setHidden:NO];
     [self.selectMoodButton setHidden:YES];
     [self.selectGenreButton setHidden:YES];
+}
+
+
+-(void)registerForKeyboardEvents{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+-(void)keyboardWillShow:(NSNotification *) notification{
+    NSDictionary* info = [notification userInfo];
+    self.offset = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification{
+    
+    self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY , self.fullView.frame.size.width, self.fullView.frame.size.height);
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    
+    [UIView animateWithDuration:.5 animations:^{
+          self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY - self.offset/2, self.fullView.frame.size.width, self.fullView.frame.size.height);
+       }];
+    
 }
 
 /*

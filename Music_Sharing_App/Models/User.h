@@ -17,11 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *bio;
 
 
-+(void)createUser:(NSString *)username
++(void)updateUser:(User *)user
    withProfilePic:( UIImage * _Nullable)image
           withBio:(NSString * _Nullable)bio
 withCompletion: ( PFBooleanResultBlock  _Nullable)completion;
    
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 @end
 
 NS_ASSUME_NONNULL_END

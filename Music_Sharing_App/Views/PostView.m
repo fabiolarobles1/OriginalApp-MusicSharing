@@ -94,7 +94,6 @@
                     if([post.objectId isEqual:self.post.objectId]){
                         isFavorited = YES;
                         [self.favoriteButton setSelected:YES];
-                        
                     }
                 }
                 if(!isFavorited){

@@ -94,11 +94,8 @@
 }
 
 - (IBAction)didTapPlayButton:(id)sender {
-//    [self.delegate.appRemote connect];
-//    NSString *song = self.post.musicLink;
-//    song = [song substringWithRange:NSMakeRange(31, 22)];
-//    NSString *songURI = [@"spotify:track:" stringByAppendingString:song];
-//    NSLog(@"Song URI: %@", songURI);
+   // [self.delegate.appRemote connect];
+    
     [self playSong:self.post.songURI];
     
 }
@@ -106,7 +103,7 @@
 -(void)playSong:(NSString *)songURI{
     [self.playButton setSelected:!self.playButton.isSelected];
     
-    if([self.playButton isSelected]){
+    if([self.playButton isSelected] ){
         [self.delegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
             NSLog(@"Playing song.");
         }];

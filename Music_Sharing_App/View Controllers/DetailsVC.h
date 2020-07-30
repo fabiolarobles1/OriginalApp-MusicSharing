@@ -17,9 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsVC : UIViewController <UITableViewDataSource>
 @property (strong, nonatomic) Post *post;
-@property (nonatomic) BOOL *isFavorited;
+@property (nonatomic) BOOL isFavorited;
 @property (weak, nonatomic) IBOutlet DetailsView *detailsView;
-@property (weak, nonatomic) IBOutlet CommentView *commentView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 -(void)refreshComments;

@@ -34,7 +34,6 @@
     
     //setting up properties
     newUser.username = self.usernameField.text;
-    newUser.bio = @"Music is life, music is happiness, music is pain..";
     
     if(![self.passwordField.text isEqual:self.confirmPasswordField.text]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Password Confirmation" message:@"Please, your confirmation password must be equal to your password to complete the register." preferredStyle:(UIAlertControllerStyleAlert)];
@@ -63,18 +62,19 @@
                 [self presentViewController:alert animated:YES completion:^{ }];
             }
         }else{
+            [self performSegueWithIdentifier:@"createProfile" sender:nil];
             
-            NSLog(@"User registered succesfully.");
-            SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-            myDelegate.window.alpha = 0;
-            myDelegate.window.rootViewController = loginViewController;
-            
-            [UIView animateWithDuration:3 animations:^{
-                myDelegate.window.alpha = 1;
-            }];
-            
+//            NSLog(@"User registered succesfully.");
+//            SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+//            myDelegate.window.alpha = 0;
+//            myDelegate.window.rootViewController = loginViewController;
+//
+//            [UIView animateWithDuration:3 animations:^{
+//                myDelegate.window.alpha = 1;
+//            }];
+
         }
     }];
 }

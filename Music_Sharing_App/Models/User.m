@@ -14,21 +14,19 @@
 @dynamic bio;
 
 
-+(void)createUser:(NSString *)username
-   withProfilePic:(UIImage * _Nullable)image
-          withBio:(NSString * _Nullable)bio
-   withCompletion:(PFBooleanResultBlock _Nullable)completion{
++(void)updateUser:(User *)user
+   withProfilePic:(UIImage *)image
+          withBio:(NSString *)bio
+   withCompletion:(PFBooleanResultBlock)completion{
     
-    User *newUser = [User new];
-    newUser.username = username;
+    
     if(image!=nil){
-        newUser.profilePic =  [self getPFFileFromImage:image];
+        user.profilePic =  [self getPFFileFromImage:image];
     }else{
-         newUser.profilePic =  [self getPFFileFromImage:[UIImage systemImageNamed:@"person.fill"]];
+         user.profilePic =  [self getPFFileFromImage:[UIImage systemImageNamed:@"person.fill"]];
     }
-    newUser.bio = bio;
-    
-    [newUser saveInBackgroundWithBlock:completion];
+    user.bio = bio;
+    [user saveInBackgroundWithBlock:completion];
 }
 
 

@@ -16,7 +16,7 @@
 #import "InfiniteScrollActivityView.h"
 #import "ComposeVC.h"
 #import "DetailsVC.h"
-#import "MBProgressHUD.h"
+#import "CreateProfileVC.h"
 
 @interface ProfilleVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
@@ -36,6 +36,7 @@
     // Do any additional setup after loading the view.
     [self.profileView setWithUser:[User currentUser]];
     [self.tableView reloadData];
+    
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
    
@@ -77,6 +78,13 @@
     return postQuery;
 }
 
+- (IBAction)didTapAddButton:(id)sender {
+    [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
+}
+
+- (IBAction)didTapEdit:(id)sender {
+    [self performSegueWithIdentifier:@"toEditProfile" sender:nil];
+}
 
 -(void)fetchPosts{
     [super fetchPosts];
@@ -86,7 +94,7 @@
     [super scrollViewDidScroll:scrollView];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -94,7 +102,11 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     [super prepareForSegue:segue sender:sender];
+    if([[segue identifier] isEqualToString:@"toEditProfile"]){
+        CreateProfileVC *editProfileViewController = [segue destinationViewController];
+        editProfileViewController.userImage = self.profileView.profileImageView.image;
+    }
 }
-*/
+
 
 @end

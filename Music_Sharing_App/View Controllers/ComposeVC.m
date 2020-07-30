@@ -38,13 +38,26 @@
 @end
 
 @implementation ComposeVC
+//typedef (NS_STRING_ENUM) moods
+//{
+//   @"Active",
+//    @"Bored",
+//    @"Chill",
+//    @"Happy",
+//    @"Hype",
+//    @"Lazy",
+//    @"Loving",
+//    @"Sad",
+//    @"Relax"
+//} MOODS;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerForKeyboardEvents];
     self.initialY = self.fullView.frame.origin.y;
     self.captionField.delegate = self;
-    self.offset =-50;
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.captionField.layer.borderWidth = 1.0;
     self.captionField.layer.cornerRadius = 5;
@@ -63,6 +76,7 @@
     
     //Do enum for moods
     self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy",@"Hype", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
+    
     self.titleField.delegate = self;
     self.genrePickerView.delegate = self;
     self.genrePickerView.dataSource = self;
@@ -109,6 +123,7 @@
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self toFeed];
             }
+            //IF ERROR
         }];
     }];
     
@@ -210,6 +225,7 @@
         myDelegate.window.alpha = 1;
     }];
 }
+
 - (IBAction)didTapSelectGenre:(id)sender {
     [self.genrePickerView reloadAllComponents];
     [self.genrePickerView setHidden:NO];

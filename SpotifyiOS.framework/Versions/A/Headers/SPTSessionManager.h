@@ -92,7 +92,6 @@ typedef NSString * const SPTAuthorizationCode;
             openURL:(NSURL *)URL
             options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options;
 
-
 @end
 
 /// The `SPTSessionManagerDelegate` to use for monitoring state changes of a `SPTSessionManager`

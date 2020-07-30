@@ -39,6 +39,8 @@
     
     //contrain xib so it takes entire view
     self.profileView.frame = self.bounds;
+    self.profileImageView.layer.cornerRadius = 50;
+    self.profileImageView.clipsToBounds = YES;
 }
 
 

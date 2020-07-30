@@ -15,7 +15,6 @@
 #import "InfiniteScrollActivityView.h"
 #import "ComposeVC.h"
 #import "DetailsVC.h"
-#import "MBProgressHUD.h"
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
 
@@ -56,7 +55,17 @@
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
     
-    
+//    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//    UILabel *emptyMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+//    emptyMessageLabel.text = @"No posts yet.";
+//    emptyMessageLabel.textColor = [UIColor blackColor];
+//    emptyMessageLabel.numberOfLines = 0;
+//    emptyMessageLabel.textAlignment = NSTextAlignmentCenter;
+//    [emptyMessageLabel setFont:[UIFont fontWithName:@"TrebuchetMS" size:20]];
+//    [emptyMessageLabel sizeToFit];
+//
+//    self.tableView.backgroundView = emptyMessageLabel;
+//    self.tableView.backgroundView.backgroundColor = [UIColor grayColor];
     [self fetchPosts];
 }
 
@@ -133,7 +142,6 @@
 
 -(void)fetchPosts{
     // construct query
-  //  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *postQuery = [self defineQuery];
     if(self.isMoreDataLoading){
         postQuery.skip = self.skipcount;
@@ -185,11 +193,26 @@
                 
             }];
         }
-         [self.tableView reloadData];
+        if(self.posts.count == 0){
+            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+            UILabel *emptyMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+            emptyMessageLabel.text = @"No posts yet.";
+            emptyMessageLabel.textColor = [UIColor blackColor];
+            emptyMessageLabel.numberOfLines = 0;
+            emptyMessageLabel.textAlignment = NSTextAlignmentCenter;
+            [emptyMessageLabel setFont:[UIFont fontWithName:@"TrebuchetMS" size:20]];
+            [emptyMessageLabel sizeToFit];
+            
+            self.tableView.backgroundView = emptyMessageLabel;
+            self.tableView.backgroundView.backgroundColor = [UIColor lightGrayColor];
+        }else{
+            [self.tableView reloadData];
+        }
     }];
-  //  [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     [self.tableView reloadData];
 }
+
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{
     if(!self.isMoreDataLoading){

@@ -35,12 +35,11 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self refreshComments];
-
+    
+    //maybe change just as when the user posts something
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
-
-    //SET THE POST TO COMMENTS ALSO
+    
 }
-
 
 -(void)refreshComments{
     

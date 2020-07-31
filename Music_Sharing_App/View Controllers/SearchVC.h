@@ -13,6 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchVC : UIViewController <UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate,PostCellDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic) BOOL genreFilter;
+@property (nonatomic) BOOL titleFilter;
+@property (nonatomic) BOOL moodFilter;
+@property (nonatomic) BOOL songFilter;
+@property (nonatomic) BOOL artistFilter;
+@property (nonatomic) BOOL albumFilter;
+@property (nonatomic) BOOL captionFilter;
+@property (nonatomic) BOOL usernameFilter;
+@property (nonatomic) BOOL filteringActivated;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -48,6 +48,8 @@
     self.commentTextField.layer.cornerRadius = 8;
     self.commentTextField.clipsToBounds = true;
 }
+
+
 - (IBAction)didTapSend:(id)sender {
     if([[self.commentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0){
         [self.sendButton setEnabled:NO];

@@ -43,6 +43,7 @@
 		EBCFC8A524CA4A4000C62AEE /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCFC8A424CA4A4000C62AEE /* Comment.m */; };
 		EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD636EA24C127CE00979EBE /* SpotifyManager.m */; };
 		EBE4AB4F24D1E49A00E6F8A0 /* CreateProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBE4AB4E24D1E49A00E6F8A0 /* CreateProfileVC.m */; };
+		EBFBF18224D4889200BD9E7F /* SearchFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFBF18124D4889200BD9E7F /* SearchFilterVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +77,7 @@
 		EB2C335424C91A1E008524A0 /* DetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsVC.m; sourceTree = "<group>"; };
 		EB2F8ED624BCD3C000A47685 /* LoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		EB2F8ED724BCD3C000A47685 /* LoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
-		EB5AF26424BCC36C004270FF /* Music_Sharing_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music_Sharing_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB5AF26424BCC36C004270FF /* Music Sharing App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Sharing App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5AF26724BCC36C004270FF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EB5AF26824BCC36C004270FF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EB5AF26A24BCC36C004270FF /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -130,6 +131,8 @@
 		EBD636EA24C127CE00979EBE /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
 		EBE4AB4D24D1E49A00E6F8A0 /* CreateProfileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateProfileVC.h; sourceTree = "<group>"; };
 		EBE4AB4E24D1E49A00E6F8A0 /* CreateProfileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateProfileVC.m; sourceTree = "<group>"; };
+		EBFBF18024D4889200BD9E7F /* SearchFilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchFilterVC.h; sourceTree = "<group>"; };
+		EBFBF18124D4889200BD9E7F /* SearchFilterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchFilterVC.m; sourceTree = "<group>"; };
 		F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E492C508F0FC23DC1638F7 /* Pods-Music_Sharing_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +210,8 @@
 				EBA675E024D07529003CE95C /* ProfilleVC.m */,
 				EBE4AB4D24D1E49A00E6F8A0 /* CreateProfileVC.h */,
 				EBE4AB4E24D1E49A00E6F8A0 /* CreateProfileVC.m */,
+				EBFBF18024D4889200BD9E7F /* SearchFilterVC.h */,
+				EBFBF18124D4889200BD9E7F /* SearchFilterVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -226,7 +231,7 @@
 		EB5AF26524BCC36C004270FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB5AF26424BCC36C004270FF /* Music_Sharing_App.app */,
+				EB5AF26424BCC36C004270FF /* Music Sharing App.app */,
 				EB5AF27F24BCC36E004270FF /* Music_Sharing_AppTests.xctest */,
 				EB5AF28A24BCC36E004270FF /* Music_Sharing_AppUITests.xctest */,
 			);
@@ -347,7 +352,7 @@
 			);
 			name = Music_Sharing_App;
 			productName = Music_Sharing_App;
-			productReference = EB5AF26424BCC36C004270FF /* Music_Sharing_App.app */;
+			productReference = EB5AF26424BCC36C004270FF /* Music Sharing App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EB5AF27E24BCC36E004270FF /* Music_Sharing_AppTests */ = {
@@ -578,6 +583,7 @@
 				EBD636EB24C127CE00979EBE /* SpotifyManager.m in Sources */,
 				EBB1F4DC24BCEF46007BE75C /* SignUpVC.m in Sources */,
 				EBB1F4E624BD08D4007BE75C /* User.m in Sources */,
+				EBFBF18224D4889200BD9E7F /* SearchFilterVC.m in Sources */,
 				EBCFC89D24C9F7B300C62AEE /* CommentView.m in Sources */,
 				EB2C335524C91A1E008524A0 /* DetailsVC.m in Sources */,
 				EBA19FA124CB5FAC00FFBF09 /* SearchVC.m in Sources */,
@@ -769,6 +775,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Music_Sharing_App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -810,7 +817,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabiolarobles19.Music-Sharing-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Music Sharing App";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -827,6 +834,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Music_Sharing_App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -868,7 +876,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabiolarobles19.Music-Sharing-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Music Sharing App";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

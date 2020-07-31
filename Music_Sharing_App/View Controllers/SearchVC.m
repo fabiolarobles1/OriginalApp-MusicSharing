@@ -15,10 +15,10 @@
 #import "HomePostCell.h"
 #import "DateTools.h"
 #import "DetailsVC.h"
+#import "SearchFilterVC.h"
 
 @interface SearchVC ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSArray *filteredData;
 @property (strong, nonatomic) AppDelegate *delegate;
@@ -82,31 +82,59 @@
         
         
         predicate = [NSPredicate predicateWithBlock:^BOOL(Post * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-           
-            if( [evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString ];
+            
+            if( ([evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString]) &&
+               (!self.filteringActivated || (self.filteringActivated && self.titleFilter))){
+                
+                return [evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString];
             }
-            else if([evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString ];
+            
+            else if( ([evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated || (self.filteringActivated && self.songFilter))){
+                
+                return [evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString];
             }
-            else if([evaluatedObject.mood.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.mood.lowercaseString containsString:searchText.lowercaseString ];
+            
+            else if( ([evaluatedObject.mood.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated || (self.filteringActivated && self.moodFilter))){
+                
+                return [evaluatedObject.mood.lowercaseString containsString:searchText.lowercaseString];
             }
-            else if([evaluatedObject.genre.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.genre.lowercaseString containsString:searchText.lowercaseString ];
+            
+            else if( ([evaluatedObject.genre.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated || (self.filteringActivated && self.genreFilter))){
+                
+                return [evaluatedObject.genre.lowercaseString containsString:searchText.lowercaseString];
             }
-            else if([evaluatedObject.artist.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.artist.lowercaseString containsString:searchText.lowercaseString ];
+            
+            else if( ([evaluatedObject.artist.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated || (self.filteringActivated && self.artistFilter))){
+                
+                return [evaluatedObject.artist.lowercaseString containsString:searchText.lowercaseString];
             }
-            else if([evaluatedObject.album.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.album.lowercaseString containsString:searchText.lowercaseString ];
+            
+            else if( ([evaluatedObject.album.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated || (self.filteringActivated && self.albumFilter))){
+                
+                return [evaluatedObject.album.lowercaseString containsString:searchText.lowercaseString];
             }
-            else if([evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString ]){
-                return [evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString ];
+            
+            else if( ([evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated  || (self.filteringActivated && self.usernameFilter))){
+                
+                return [evaluatedObject.author.username.lowercaseString containsString:searchText.lowercaseString];
             }
+            
+            else if( ([evaluatedObject.caption.lowercaseString containsString:searchText.lowercaseString]) &&
+                    (!self.filteringActivated || (self.filteringActivated && self.captionFilter))){
+                
+                return [evaluatedObject.caption.lowercaseString containsString:searchText.lowercaseString];
+            }
+            
             else{
-                return [evaluatedObject.caption.lowercaseString containsString:searchText.lowercaseString ];
+                return NO;
             }
+            
         }];
         
         self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
@@ -139,6 +167,9 @@
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;
+    }else if([[segue identifier] isEqualToString:@"toFilterView"]){
+        SearchFilterVC *searchFilterViewController = [segue destinationViewController];
+        searchFilterViewController.senderVC = self;
     }
 }
 

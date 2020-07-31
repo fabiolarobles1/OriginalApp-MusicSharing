@@ -707,16 +707,181 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kvy-wj-zfr"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="FHz-b3-WaH"/>
+                    <navigationItem key="navigationItem" title="Search" id="FHz-b3-WaH">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="ase-Kw-NRs">
+                            <connections>
+                                <segue destination="uo3-7l-VGg" kind="presentation" identifier="toFilterView" id="0yi-OS-l3M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="gCa-3Q-9WM" id="X8s-q5-wQC"/>
-                        <outlet property="tableView" destination="ufI-QC-lQR" id="xvQ-5C-iOx"/>
+                        <outlet property="searchBar" destination="gCa-3Q-9WM" id="UBy-qR-nlM"/>
+                        <outlet property="tableView" destination="ufI-QC-lQR" id="MyH-XZ-Q1X"/>
                         <segue destination="su8-OU-IqO" kind="show" identifier="toDetailsVCSegue" id="nEh-27-HRL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFl-no-FGR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2924.6376811594205" y="1766.5178571428571"/>
+        </scene>
+        <!--Search FilterVC-->
+        <scene sceneID="lbO-X1-xl6">
+            <objects>
+                <viewController id="uo3-7l-VGg" customClass="SearchFilterVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KyT-uH-HB6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMe-Mo-CwC">
+                                <rect key="frame" x="0.0" y="52" width="414" height="22.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDb-wh-ubh">
+                                <rect key="frame" x="30" y="94.5" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Title"/>
+                                <connections>
+                                    <action selector="didTapTitleButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="3qO-cX-xx7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1Z-Zj-ki3">
+                                <rect key="frame" x="75" y="139.5" width="42" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Genre"/>
+                                <connections>
+                                    <action selector="didTapGenreButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="qKr-0P-tuz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBD-6e-V4W">
+                                <rect key="frame" x="299" y="139.5" width="40" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Mood"/>
+                                <connections>
+                                    <action selector="didTapMoodButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="5Qy-fF-pZp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPY-hu-Cyb">
+                                <rect key="frame" x="30" y="230" width="80" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Song Name"/>
+                                <connections>
+                                    <action selector="didTapSongButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="5H7-uZ-j23"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-vx-LfY">
+                                <rect key="frame" x="188" y="230" width="38" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Artist"/>
+                                <connections>
+                                    <action selector="didTapArtistButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="ZPA-f7-pmq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwp-R9-fWh">
+                                <rect key="frame" x="330" y="94.5" width="54" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Caption"/>
+                                <connections>
+                                    <action selector="didTapCaptionButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="Bno-Kt-GG1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJR-KG-iOf">
+                                <rect key="frame" x="171.5" y="94.5" width="71" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Username"/>
+                                <connections>
+                                    <action selector="didTapUsernameButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="ldy-16-mLQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the filters for your search:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwR-kT-pkp">
+                                <rect key="frame" x="15" y="20" width="306.5" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post related filters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SvQ-7K-2o5">
+                                <rect key="frame" x="30" y="54" width="139" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQc-rJ-OSb">
+                                <rect key="frame" x="0.0" y="189.5" width="414" height="20.5"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spotify related filters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKp-3E-CZf">
+                                <rect key="frame" x="30" y="189.5" width="159" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6O-8r-qRH">
+                                <rect key="frame" x="340" y="230" width="44" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Album"/>
+                                <connections>
+                                    <action selector="didTapAlbumButton:" destination="uo3-7l-VGg" eventType="touchUpInside" id="u8G-Qs-3rZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QKp-3E-CZf" firstAttribute="bottom" secondItem="fQc-rJ-OSb" secondAttribute="bottom" id="0GJ-nd-h8i"/>
+                            <constraint firstItem="fQc-rJ-OSb" firstAttribute="trailing" secondItem="cd5-VR-pnj" secondAttribute="trailing" id="3QD-D2-pRh"/>
+                            <constraint firstItem="jBD-6e-V4W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k1Z-Zj-ki3" secondAttribute="trailing" constant="10" id="3fh-Fz-lze"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="jBD-6e-V4W" secondAttribute="trailing" constant="75" id="3mj-Vt-TwW"/>
+                            <constraint firstItem="OMe-Mo-CwC" firstAttribute="top" secondItem="SwR-kT-pkp" secondAttribute="bottom" constant="8" id="4o4-zY-Cgf"/>
+                            <constraint firstItem="HJR-KG-iOf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GDb-wh-ubh" secondAttribute="trailing" constant="10" id="6gi-oF-TVr"/>
+                            <constraint firstItem="SP9-vx-LfY" firstAttribute="centerX" secondItem="KyT-uH-HB6" secondAttribute="centerX" id="7Cm-Dg-VyY"/>
+                            <constraint firstItem="GDb-wh-ubh" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="30" id="8SF-YP-YTk"/>
+                            <constraint firstItem="k1Z-Zj-ki3" firstAttribute="top" secondItem="GDb-wh-ubh" secondAttribute="bottom" constant="15" id="9js-Ey-Sk5"/>
+                            <constraint firstItem="fQc-rJ-OSb" firstAttribute="top" secondItem="k1Z-Zj-ki3" secondAttribute="bottom" constant="20" id="Bwp-94-4iT"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="qwp-R9-fWh" secondAttribute="trailing" constant="30" id="ElR-Or-gbo"/>
+                            <constraint firstItem="HJR-KG-iOf" firstAttribute="centerY" secondItem="GDb-wh-ubh" secondAttribute="centerY" id="GLR-Nc-FE7"/>
+                            <constraint firstItem="j6O-8r-qRH" firstAttribute="centerY" secondItem="SPY-hu-Cyb" secondAttribute="centerY" id="IMI-Hz-C4B"/>
+                            <constraint firstItem="k1Z-Zj-ki3" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="75" id="IOu-Mr-kUQ"/>
+                            <constraint firstItem="SP9-vx-LfY" firstAttribute="centerY" secondItem="SPY-hu-Cyb" secondAttribute="centerY" id="Kxe-8l-7z6"/>
+                            <constraint firstItem="OMe-Mo-CwC" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" id="LTl-MT-9Sc"/>
+                            <constraint firstItem="SPY-hu-Cyb" firstAttribute="top" secondItem="fQc-rJ-OSb" secondAttribute="bottom" constant="20" id="MFc-8j-MRe"/>
+                            <constraint firstItem="SwR-kT-pkp" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="15" id="Mi6-dU-dsT"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SvQ-7K-2o5" secondAttribute="trailing" constant="10" id="O2j-bW-Pog"/>
+                            <constraint firstItem="HJR-KG-iOf" firstAttribute="centerX" secondItem="KyT-uH-HB6" secondAttribute="centerX" id="OpL-EV-352"/>
+                            <constraint firstItem="SvQ-7K-2o5" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="30" id="Oud-ng-BnV"/>
+                            <constraint firstItem="GDb-wh-ubh" firstAttribute="top" secondItem="OMe-Mo-CwC" secondAttribute="bottom" constant="20" id="PHs-jK-RAR"/>
+                            <constraint firstItem="fQc-rJ-OSb" firstAttribute="bottom" secondItem="QKp-3E-CZf" secondAttribute="bottom" id="Pnr-Zo-FIx"/>
+                            <constraint firstItem="qwp-R9-fWh" firstAttribute="centerY" secondItem="GDb-wh-ubh" secondAttribute="centerY" id="RIB-dl-mbh"/>
+                            <constraint firstItem="SvQ-7K-2o5" firstAttribute="bottom" secondItem="OMe-Mo-CwC" secondAttribute="bottom" id="Szn-8X-qrJ"/>
+                            <constraint firstItem="qwp-R9-fWh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HJR-KG-iOf" secondAttribute="trailing" constant="10" id="T3n-kU-HMJ"/>
+                            <constraint firstItem="fQc-rJ-OSb" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" id="UMQ-UI-6Bb"/>
+                            <constraint firstItem="jBD-6e-V4W" firstAttribute="centerY" secondItem="k1Z-Zj-ki3" secondAttribute="centerY" id="VqW-LV-Iva"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QKp-3E-CZf" secondAttribute="trailing" constant="10" id="W8K-Tg-7hJ"/>
+                            <constraint firstItem="SP9-vx-LfY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SPY-hu-Cyb" secondAttribute="trailing" constant="10" id="YmJ-Ag-bRI"/>
+                            <constraint firstItem="SwR-kT-pkp" firstAttribute="top" secondItem="cd5-VR-pnj" secondAttribute="top" constant="20" id="dMG-qj-qxM"/>
+                            <constraint firstItem="SPY-hu-Cyb" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="30" id="gbe-fZ-RTr"/>
+                            <constraint firstItem="j6O-8r-qRH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SP9-vx-LfY" secondAttribute="trailing" constant="10" id="gxg-rM-JXg"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SwR-kT-pkp" secondAttribute="trailing" constant="10" id="jV7-Uf-vAY"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="OMe-Mo-CwC" secondAttribute="trailing" id="kY7-KW-hyB"/>
+                            <constraint firstItem="QKp-3E-CZf" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="30" id="oyq-dH-1xu"/>
+                            <constraint firstItem="SvQ-7K-2o5" firstAttribute="top" secondItem="SwR-kT-pkp" secondAttribute="bottom" constant="10" id="pgi-CW-1tD"/>
+                            <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="j6O-8r-qRH" secondAttribute="trailing" constant="30" id="qA8-rw-EYp"/>
+                            <constraint firstItem="QKp-3E-CZf" firstAttribute="top" secondItem="fQc-rJ-OSb" secondAttribute="top" id="xvf-nX-4QU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cd5-VR-pnj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="w9X-j5-aKT"/>
+                    <connections>
+                        <outlet property="albumButton" destination="j6O-8r-qRH" id="LZM-gV-fp6"/>
+                        <outlet property="artistButton" destination="SP9-vx-LfY" id="4Au-BD-Gjs"/>
+                        <outlet property="captionButton" destination="qwp-R9-fWh" id="l25-7N-NcM"/>
+                        <outlet property="genreButton" destination="k1Z-Zj-ki3" id="cL6-bJ-fe2"/>
+                        <outlet property="moodButton" destination="jBD-6e-V4W" id="GGM-xf-A4N"/>
+                        <outlet property="songnameButton" destination="SPY-hu-Cyb" id="1lu-pv-5Gu"/>
+                        <outlet property="titleButton" destination="GDb-wh-ubh" id="pup-Yl-5ZJ"/>
+                        <outlet property="usernameButton" destination="HJR-KG-iOf" id="m5E-2a-e0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4up-Fy-7Qv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3771.0144927536235" y="1767.8571428571429"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ez9-d0-S7P">
@@ -947,9 +1112,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="47p-aw-afl"/>
+        <segue reference="nEh-27-HRL"/>
         <segue reference="1cg-tU-Zyb"/>
-        <segue reference="PaD-We-OHZ"/>
+        <segue reference="Tr7-ds-l8m"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="110"/>

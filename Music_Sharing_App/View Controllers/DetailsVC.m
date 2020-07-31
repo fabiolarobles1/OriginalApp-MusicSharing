@@ -40,7 +40,7 @@
     
     //DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS
     
-  //  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
     
 }
 

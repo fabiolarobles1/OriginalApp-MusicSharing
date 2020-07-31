@@ -229,9 +229,8 @@
                                     <action selector="didTapImageButton:" destination="ZLZ-Lz-EXi" eventType="touchUpInside" id="Nft-O7-3so"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Bio..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q5C-7t-pP2">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q5C-7t-pP2">
                                 <rect key="frame" x="150" y="137" width="239" height="100"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="kFt-IJ-RoL"/>
                                 </constraints>
@@ -239,12 +238,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bio..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRL-xY-JJC">
+                                <rect key="frame" x="155" y="144" width="62" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="1Rf-aI-0oc" firstAttribute="top" secondItem="6SC-I2-FnN" secondAttribute="top" constant="20" id="2qb-8P-O4H"/>
                             <constraint firstItem="q5C-7t-pP2" firstAttribute="leading" secondItem="1Rf-aI-0oc" secondAttribute="trailing" constant="30" id="6aD-p5-BYf"/>
+                            <constraint firstItem="rRL-xY-JJC" firstAttribute="top" secondItem="XSO-04-5CJ" secondAttribute="bottom" constant="15" id="DSH-z9-6kh"/>
+                            <constraint firstItem="rRL-xY-JJC" firstAttribute="leading" secondItem="1Rf-aI-0oc" secondAttribute="trailing" constant="35" id="JOJ-Hw-Wyv"/>
                             <constraint firstItem="1Rf-aI-0oc" firstAttribute="leading" secondItem="6SC-I2-FnN" secondAttribute="leading" constant="20" id="Per-Oo-V3F"/>
                             <constraint firstItem="XSO-04-5CJ" firstAttribute="leading" secondItem="1Rf-aI-0oc" secondAttribute="trailing" constant="30" id="RIJ-7L-hbK"/>
                             <constraint firstItem="6SC-I2-FnN" firstAttribute="trailing" secondItem="q5C-7t-pP2" secondAttribute="trailing" constant="25" id="cpL-Yk-UcT"/>
@@ -270,7 +277,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bioLabel" destination="q5C-7t-pP2" id="Z2K-fi-x4N"/>
+                        <outlet property="addBioWatermarkLabel" destination="rRL-xY-JJC" id="MBb-bi-5NE"/>
+                        <outlet property="bioTextView" destination="q5C-7t-pP2" id="Z2K-fi-x4N"/>
                         <outlet property="profilePicImageButton" destination="1Rf-aI-0oc" id="SGt-5J-DFw"/>
                         <outlet property="usernameLabel" destination="XSO-04-5CJ" id="nZT-XU-Zpx"/>
                     </connections>
@@ -558,7 +566,7 @@
             </objects>
             <point key="canvasLocation" x="-797" y="2591"/>
         </scene>
-        <!--ProfilleVC-->
+        <!--Profile-->
         <scene sceneID="BHl-uy-yVz">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="ch4-sZ-PFT" customClass="ProfilleVC" sceneMemberID="viewController">
@@ -567,11 +575,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dY-TC-UST" customClass="ProfileView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="145"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="181.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iuO-hG-SU8">
-                                <rect key="frame" x="0.0" y="233" width="414" height="580"/>
+                                <rect key="frame" x="0.0" y="269.5" width="414" height="543.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfilePostCell" id="Jb3-7w-yhW" customClass="HomePostCell">
@@ -600,8 +608,9 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vft-Xu-bP8">
-                                <rect key="frame" x="354" y="98" width="30" height="30"/>
-                                <state key="normal" title="Edit"/>
+                                <rect key="frame" x="332" y="98" width="62" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Edit Profile"/>
                                 <connections>
                                     <action selector="didTapEdit:" destination="ch4-sZ-PFT" eventType="touchUpInside" id="HgA-Xk-ZMk"/>
                                 </connections>
@@ -615,14 +624,14 @@
                             <constraint firstItem="Vft-Xu-bP8" firstAttribute="top" secondItem="4dY-TC-UST" secondAttribute="top" constant="10" id="XK4-Vq-Wt8"/>
                             <constraint firstItem="iuO-hG-SU8" firstAttribute="leading" secondItem="RJN-K7-Udv" secondAttribute="leading" id="Z0q-Nt-cIV"/>
                             <constraint firstItem="4dY-TC-UST" firstAttribute="top" secondItem="RJN-K7-Udv" secondAttribute="top" id="Z3c-B3-FNZ"/>
-                            <constraint firstItem="Vft-Xu-bP8" firstAttribute="trailing" secondItem="RJN-K7-Udv" secondAttribute="trailing" constant="-30" id="ZIo-f4-I7e"/>
+                            <constraint firstItem="Vft-Xu-bP8" firstAttribute="trailing" secondItem="RJN-K7-Udv" secondAttribute="trailing" constant="-20" id="ZIo-f4-I7e"/>
                             <constraint firstItem="4dY-TC-UST" firstAttribute="leading" secondItem="RJN-K7-Udv" secondAttribute="leading" id="cgm-aR-taZ"/>
                             <constraint firstItem="RJN-K7-Udv" firstAttribute="trailing" secondItem="iuO-hG-SU8" secondAttribute="trailing" id="tH3-HY-jJ5"/>
-                            <constraint firstItem="iuO-hG-SU8" firstAttribute="height" secondItem="4dY-TC-UST" secondAttribute="height" multiplier="4" id="z0i-pL-rrR"/>
+                            <constraint firstItem="iuO-hG-SU8" firstAttribute="height" secondItem="4dY-TC-UST" secondAttribute="height" multiplier="3" id="z0i-pL-rrR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RJN-K7-Udv"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3z2-vF-aWC">
+                    <navigationItem key="navigationItem" title="Profile" id="3z2-vF-aWC">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="yJ5-0T-EMg">
                             <connections>
                                 <action selector="didTapLogout:" destination="ch4-sZ-PFT" id="dxw-oZ-e9l"/>
@@ -938,8 +947,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IGp-CU-wRO"/>
-        <segue reference="wjq-X5-4SR"/>
+        <segue reference="47p-aw-afl"/>
+        <segue reference="1cg-tU-Zyb"/>
         <segue reference="PaD-We-OHZ"/>
     </inferredMetricsTieBreakers>
     <resources>

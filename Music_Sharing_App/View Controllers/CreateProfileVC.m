@@ -14,16 +14,28 @@
 
 @interface CreateProfileVC ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+@property (weak, nonatomic) IBOutlet UILabel *addBioWatermarkLabel;
+
 
 @end
 
 @implementation CreateProfileVC
+BOOL imageDidChange = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   
     self.usernameLabel.text =[@"@" stringByAppendingString:[User currentUser].username];
-    self.bioLabel.text = [User currentUser].bio;
+    self.bioTextView.layer.borderWidth = 1.0;
+    self.bioTextView.layer.cornerRadius = 5;
+    self.bioTextView.clipsToBounds = true;
+    self.bioTextView.layer.borderColor =[[UIColor grayColor] CGColor];
+    self.bioTextView.text = [User currentUser].bio;
+    self.bioTextView.delegate = self;
+    if(self.bioTextView.text.length != 0){
+        [self.addBioWatermarkLabel setHidden:YES];
+    }
     
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
@@ -38,6 +50,18 @@
         NSLog(@"Camera 🚫 available so we will use photo library instead");
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+    
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if(self.bioTextView.text.length == 0){
+        [self.addBioWatermarkLabel setHidden:NO];
+    }
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    
+        [self.addBioWatermarkLabel setHidden:YES];
     
 }
 - (IBAction)didTapScreen:(id)sender {
@@ -56,6 +80,7 @@
     
     [self.profilePicImageButton setImage:editedImage forState:self.profilePicImageButton.state];
     self.userImage = editedImage;
+    imageDidChange = YES;
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -65,8 +90,8 @@
 
 - (IBAction)didTapSave:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    if(self.userImage!=nil){
-        [User updateUser:[User currentUser] withProfilePic:self.userImage withBio:self.bioLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    if(self.userImage!=nil && imageDidChange){
+        [User updateUser:[User currentUser] withProfilePic:self.userImage withBio:self.bioTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){
                 NSLog(@"Succesfully posted image.");
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -76,7 +101,7 @@
             }
         }];
     }else{
-        [User currentUser].bio = self.bioLabel.text;
+        [User currentUser].bio = self.bioTextView.text;
         [[User currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){
                 [MBProgressHUD hideHUDForView:self.view animated:YES];

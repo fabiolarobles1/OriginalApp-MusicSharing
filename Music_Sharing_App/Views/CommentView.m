@@ -49,41 +49,40 @@
     self.commentTextField.clipsToBounds = true;
 }
 - (IBAction)didTapSend:(id)sender {
-    [self.sendButton setEnabled:NO];
-    Post *post = self.post;
-    Comment *comment = [[Comment alloc]init];
-    comment.text =self.commentTextField.text;
-    comment.author = [User currentUser];
-    
-    PFRelation *relation = [post relationForKey:@"comments"];
-
-    [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (succeeded) {
-            post.commentsCount +=1;
-            [relation addObject:comment];
-            NSLog(@"The comment was saved!");
-            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-                if (succeeded) {
-                    NSLog(@"Relation created");
-                    
-                } else {
-                    NSLog(@"Error on relation: %@", error.localizedDescription);
-                    //MAYBE ADDING AN ALERT
-                }
-            }];
-        } else {
-            NSLog(@"Problem saving comment: %@", error.localizedDescription);
-            //MAYBE ADDING AN ALERT
-        }
+    if([[self.commentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0){
+        [self.sendButton setEnabled:NO];
+        Post *post = self.post;
+        Comment *comment = [[Comment alloc]init];
+        comment.text =self.commentTextField.text;
+        comment.author = [User currentUser];
+        
+        PFRelation *relation = [post relationForKey:@"comments"];
+        
+        [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (succeeded) {
+                post.commentsCount +=1;
+                [relation addObject:comment];
+                NSLog(@"The comment was saved!");
+                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+                    if (succeeded) {
+                        NSLog(@"Relation created");
+                        
+                    } else {
+                        NSLog(@"Error on relation: %@", error.localizedDescription);
+                        //MAYBE ADDING AN ALERT
+                    }
+                }];
+            } else {
+                NSLog(@"Problem saving comment: %@", error.localizedDescription);
+                //MAYBE ADDING AN ALERT
+            }
+        }];
+        
+    }
         [self.sendButton setEnabled:YES];
         [self.commentView endEditing:YES];
         self.commentTextField.text = @"";
-    }];
-    
-    
-    
-    
-    
+  
 }
 
 

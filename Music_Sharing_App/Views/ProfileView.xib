@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="395"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BVG-iq-zRu" customClass="PFImageView">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BVG-iq-zRu" customClass="PFImageView">
                     <rect key="frame" x="20" y="20.5" width="100" height="99"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,18 +41,28 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="at2-p0-pBz">
+                    <rect key="frame" x="1" y="394" width="412" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="hqw-pe-cDb"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="at2-p0-pBz" secondAttribute="bottom" id="6lX-2k-itw"/>
                 <constraint firstItem="uTf-SP-jup" firstAttribute="leading" secondItem="3Sl-gz-f1z" secondAttribute="leading" id="9N1-sE-gXI"/>
                 <constraint firstItem="BVG-iq-zRu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="CCU-z6-ONu"/>
                 <constraint firstItem="BVG-iq-zRu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="GtB-Bj-ny1"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uTf-SP-jup" secondAttribute="bottom" constant="10" id="Pds-fh-ccv"/>
+                <constraint firstItem="at2-p0-pBz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uTf-SP-jup" secondAttribute="bottom" constant="10" id="Pds-fh-ccv"/>
                 <constraint firstItem="3Sl-gz-f1z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="QP5-jI-ksr"/>
                 <constraint firstItem="3Sl-gz-f1z" firstAttribute="leading" secondItem="BVG-iq-zRu" secondAttribute="trailing" constant="10" id="b4u-9X-DNv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="at2-p0-pBz" secondAttribute="trailing" constant="1" id="g6g-mT-SvQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uTf-SP-jup" secondAttribute="trailing" constant="10" id="hfY-u8-dVU"/>
                 <constraint firstItem="uTf-SP-jup" firstAttribute="top" secondItem="3Sl-gz-f1z" secondAttribute="bottom" constant="5" id="kzI-Sz-KGF"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BVG-iq-zRu" secondAttribute="bottom" constant="10" id="qYa-ke-E4g"/>
+                <constraint firstItem="at2-p0-pBz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="1" id="nKX-ri-dOF"/>
+                <constraint firstItem="at2-p0-pBz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BVG-iq-zRu" secondAttribute="bottom" constant="10" id="qYa-ke-E4g"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Sl-gz-f1z" secondAttribute="trailing" constant="10" id="tF7-pF-oSi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

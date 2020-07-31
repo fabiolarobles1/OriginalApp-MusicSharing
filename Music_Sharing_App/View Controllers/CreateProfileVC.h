@@ -13,11 +13,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CreateProfileVC : UIViewController
+@interface CreateProfileVC : UIViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *profilePicImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextView *bioLabel;
+@property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 @property (strong, nonatomic) UIImage *userImage;
 @end
 

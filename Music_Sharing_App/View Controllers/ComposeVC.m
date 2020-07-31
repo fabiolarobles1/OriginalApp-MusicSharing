@@ -102,30 +102,59 @@
 
 - (IBAction)didTapPost:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
+    self.postButton.enabled = !self.postButton.enabled;
     NSString *song = self.musicLinkField.text;
-    song = [song substringWithRange:NSMakeRange(31, 22)];
-    [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
-        NSArray *artist = song[@"artists"];
-        NSDictionary *insideArtists = artist[0];
-        NSDictionary *songName = song[@"name"];
-        NSDictionary *album = song[@"album"];
-        NSDictionary *albumName = album[@"name"];
-        NSArray *albumImage =album[@"images"];
-        NSDictionary *image = albumImage[0];
-        NSString *imageURL = [NSString stringWithFormat:@"%@", image[@"url"]];
-        NSString *songID = [self.musicLinkField.text substringWithRange:NSMakeRange(31, 22)];
-        NSString *songURI = [@"spotify:track:" stringByAppendingString:songID];
-        
-        [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withAlbum: [NSString stringWithFormat:@"%@",albumName] withAlbumCoverURLString:imageURL withSong:[NSString stringWithFormat:@"%@",songName] withArtist:[NSString stringWithFormat:@"%@",insideArtists[@"name"]] withSongURI:songURI withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if(succeeded){
-                NSLog(@"Succesfully posted image.");
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self toFeed];
+    if([song length]==71){
+        song = [song substringWithRange:NSMakeRange(31, 22)];
+        [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
+            if(error!=nil){
+                
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
+                
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    self.musicLinkField.text = @"";
+                    
+                }];
+                
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:^{ }];
+            }else{
+                NSArray *artist = song[@"artists"];
+                NSDictionary *insideArtists = artist[0];
+                NSDictionary *songName = song[@"name"];
+                NSDictionary *album = song[@"album"];
+                NSDictionary *albumName = album[@"name"];
+                NSArray *albumImage =album[@"images"];
+                NSDictionary *image = albumImage[0];
+                NSString *imageURL = [NSString stringWithFormat:@"%@", image[@"url"]];
+                NSString *songID = [self.musicLinkField.text substringWithRange:NSMakeRange(31, 22)];
+                NSString *songURI = [@"spotify:track:" stringByAppendingString:songID];
+                
+                [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withAlbum: [NSString stringWithFormat:@"%@",albumName] withAlbumCoverURLString:imageURL withSong:[NSString stringWithFormat:@"%@",songName] withArtist:[NSString stringWithFormat:@"%@",insideArtists[@"name"]] withSongURI:songURI withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                    if(succeeded){
+                        NSLog(@"Succesfully posted image.");
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self toFeed];
+                    }
+                    //IF ERROR
+                }];
             }
-            //IF ERROR
         }];
-    }];
+    }else{
+
+         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
+         
+         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             self.musicLinkField.text = @"";
+             
+         }];
+         
+         [alert addAction:okAction];
+         [self presentViewController:alert animated:YES completion:^{
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+         }];
+    }
     
     NSLog(@"Tapping post.");
     //    if(self.postImage==nil){
@@ -259,8 +288,8 @@
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     
     [UIView animateWithDuration:.5 animations:^{
-          self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY - self.offset/2, self.fullView.frame.size.width, self.fullView.frame.size.height);
-       }];
+        self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY - self.offset/2, self.fullView.frame.size.width, self.fullView.frame.size.height);
+    }];
     
 }
 

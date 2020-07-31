@@ -9,7 +9,7 @@
 #import "DetailsVC.h"
 #import "Comment.h"
 #import "CommentCell.h"
-#import "MBProgressHUD.h"
+
 @import Parse;
 
 @interface DetailsVC ()
@@ -33,11 +33,14 @@
     
     [self.detailsView setView:self.post isFavorited:self.isFavorited];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+   
     [self refreshComments];
     
     //maybe change just as when the user posts something
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
+    
+    //DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS
+    
+  //  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
     
 }
 
@@ -58,7 +61,6 @@
                 if(error==nil){
                     NSLog(@"Comments: %lu", (unsigned long)objects.count);
                     self.comments = [objects mutableCopy];
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 }
             }];
         }

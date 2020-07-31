@@ -402,7 +402,7 @@
                                     <constraint firstAttribute="height" constant="150" id="jVk-Co-KyF"/>
                                 </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mood:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmN-oC-hmF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="800" text="Mood:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmN-oC-hmF">
                                 <rect key="frame" x="20" y="275.5" width="48.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -456,7 +456,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0V-1Q-yTn">
-                                <rect key="frame" x="78.5" y="271" width="305.5" height="30"/>
+                                <rect key="frame" x="81" y="271" width="303" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="qBm-zw-kxN"/>
@@ -481,6 +481,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="N0V-1Q-yTn" firstAttribute="leading" secondItem="fri-Z7-72m" secondAttribute="leading" id="5Pb-ed-cmt"/>
                             <constraint firstItem="AHJ-ZX-Uvq" firstAttribute="centerY" secondItem="HFn-5o-rET" secondAttribute="centerY" id="5SC-CT-tcK"/>
                             <constraint firstItem="NWI-VI-OZf" firstAttribute="centerY" secondItem="cOZ-zV-oPt" secondAttribute="centerY" id="6AC-CZ-Yge"/>
                             <constraint firstItem="fri-Z7-72m" firstAttribute="centerY" secondItem="cOZ-zV-oPt" secondAttribute="centerY" id="74x-L7-QYx"/>
@@ -495,9 +496,8 @@
                             <constraint firstItem="AHJ-ZX-Uvq" firstAttribute="top" secondItem="TMg-Nk-X9a" secondAttribute="bottom" constant="10" id="Nah-uJ-7Mz"/>
                             <constraint firstItem="vru-ti-B7a" firstAttribute="top" secondItem="AHJ-ZX-Uvq" secondAttribute="bottom" constant="10" id="NcL-BV-Dhz"/>
                             <constraint firstItem="D51-pr-gli" firstAttribute="trailing" secondItem="fri-Z7-72m" secondAttribute="trailing" constant="30" id="O6P-BC-k9w"/>
-                            <constraint firstItem="N0V-1Q-yTn" firstAttribute="leading" secondItem="YmN-oC-hmF" secondAttribute="trailing" constant="10" id="OKt-IC-tRV"/>
                             <constraint firstItem="D51-pr-gli" firstAttribute="trailing" secondItem="Fnj-IV-D7I" secondAttribute="trailing" constant="20" id="QYG-a2-9JM"/>
-                            <constraint firstItem="D51-pr-gli" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fnj-IV-D7I" secondAttribute="bottom" constant="150" id="Udg-sT-Rbq"/>
+                            <constraint firstItem="D51-pr-gli" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fnj-IV-D7I" secondAttribute="bottom" constant="10" id="Udg-sT-Rbq"/>
                             <constraint firstItem="N0V-1Q-yTn" firstAttribute="centerY" secondItem="YmN-oC-hmF" secondAttribute="centerY" id="Uha-dJ-B7y"/>
                             <constraint firstItem="D51-pr-gli" firstAttribute="trailing" secondItem="eSN-ms-wdS" secondAttribute="trailing" constant="10" id="Vit-u9-whX"/>
                             <constraint firstItem="Fnj-IV-D7I" firstAttribute="leading" secondItem="w61-K0-wws" secondAttribute="trailing" constant="10" id="Xcg-G1-1Mf"/>

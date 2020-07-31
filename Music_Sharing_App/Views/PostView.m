@@ -99,7 +99,6 @@
                 if(!isFavorited){
                     [self.favoriteButton setSelected:NO];
                 }
-               
             }];
         }
     }];

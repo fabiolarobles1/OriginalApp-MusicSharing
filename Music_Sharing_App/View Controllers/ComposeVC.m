@@ -86,13 +86,7 @@
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+    
 }
 
 - (IBAction)didTapScreen:(id)sender {
@@ -142,18 +136,18 @@
             }
         }];
     }else{
-
-         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
-         
-         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-             self.musicLinkField.text = @"";
-             
-         }];
-         
-         [alert addAction:okAction];
-         [self presentViewController:alert animated:YES completion:^{
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
-         }];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.musicLinkField.text = @"";
+            
+        }];
+        
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
     }
     
     NSLog(@"Tapping post.");
@@ -167,8 +161,37 @@
 
 - (IBAction)didTapPicture:(id)sender {
     
-    //ADD SELECTION FROM CAMERA OR LIBRARY
-    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *gallery = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+        }];
+        [alert addAction:gallery];
+        
+        UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+        }];
+        [alert addAction:camera];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }
+    else {
+        NSLog(@"Camera NOT available.");
+        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+    }
+   
+   
 }
 
 

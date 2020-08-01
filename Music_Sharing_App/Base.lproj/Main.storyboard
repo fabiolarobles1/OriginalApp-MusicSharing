@@ -213,9 +213,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSO-04-5CJ">
-                                <rect key="frame" x="150" y="108" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="150" y="108" width="68" height="18"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rf-aI-0oc">
@@ -224,13 +224,15 @@
                                     <constraint firstAttribute="height" constant="100" id="SdE-4b-4Pv"/>
                                     <constraint firstAttribute="width" constant="100" id="xHW-Ym-0j3"/>
                                 </constraints>
-                                <state key="normal" image="plus.circle.fill" catalog="system"/>
+                                <state key="normal" image="person.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50" scale="large"/>
+                                </state>
                                 <connections>
                                     <action selector="didTapImageButton:" destination="ZLZ-Lz-EXi" eventType="touchUpInside" id="Nft-O7-3so"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q5C-7t-pP2">
-                                <rect key="frame" x="150" y="137" width="239" height="100"/>
+                                <rect key="frame" x="150" y="134" width="239" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="kFt-IJ-RoL"/>
                                 </constraints>
@@ -239,11 +241,24 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bio..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRL-xY-JJC">
-                                <rect key="frame" x="155" y="144" width="62" height="17"/>
+                                <rect key="frame" x="155" y="141" width="249" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QI8-IS-4VL">
+                                <rect key="frame" x="18.5" y="213" width="103" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="5EC-fT-Bfz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Delete Profile Picture">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapDeletePrifilePic:" destination="ZLZ-Lz-EXi" eventType="touchUpInside" id="Xpr-Is-m0v"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
@@ -251,10 +266,14 @@
                             <constraint firstItem="1Rf-aI-0oc" firstAttribute="top" secondItem="6SC-I2-FnN" secondAttribute="top" constant="20" id="2qb-8P-O4H"/>
                             <constraint firstItem="q5C-7t-pP2" firstAttribute="leading" secondItem="1Rf-aI-0oc" secondAttribute="trailing" constant="30" id="6aD-p5-BYf"/>
                             <constraint firstItem="rRL-xY-JJC" firstAttribute="top" secondItem="XSO-04-5CJ" secondAttribute="bottom" constant="15" id="DSH-z9-6kh"/>
+                            <constraint firstItem="6SC-I2-FnN" firstAttribute="trailing" secondItem="rRL-xY-JJC" secondAttribute="trailing" constant="10" id="FA5-Vc-DPq"/>
                             <constraint firstItem="rRL-xY-JJC" firstAttribute="leading" secondItem="1Rf-aI-0oc" secondAttribute="trailing" constant="35" id="JOJ-Hw-Wyv"/>
+                            <constraint firstItem="QI8-IS-4VL" firstAttribute="centerX" secondItem="1Rf-aI-0oc" secondAttribute="centerX" id="OOJ-ov-khR"/>
                             <constraint firstItem="1Rf-aI-0oc" firstAttribute="leading" secondItem="6SC-I2-FnN" secondAttribute="leading" constant="20" id="Per-Oo-V3F"/>
                             <constraint firstItem="XSO-04-5CJ" firstAttribute="leading" secondItem="1Rf-aI-0oc" secondAttribute="trailing" constant="30" id="RIJ-7L-hbK"/>
+                            <constraint firstItem="QI8-IS-4VL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6SC-I2-FnN" secondAttribute="leading" constant="5" id="cVJ-j1-Ebd"/>
                             <constraint firstItem="6SC-I2-FnN" firstAttribute="trailing" secondItem="q5C-7t-pP2" secondAttribute="trailing" constant="25" id="cpL-Yk-UcT"/>
+                            <constraint firstItem="QI8-IS-4VL" firstAttribute="top" secondItem="1Rf-aI-0oc" secondAttribute="bottom" constant="5" id="doJ-qT-tEW"/>
                             <constraint firstItem="q5C-7t-pP2" firstAttribute="top" secondItem="XSO-04-5CJ" secondAttribute="bottom" constant="8" id="k6Y-XE-vdh"/>
                             <constraint firstItem="XSO-04-5CJ" firstAttribute="top" secondItem="1Rf-aI-0oc" secondAttribute="top" id="kxB-cq-BhY"/>
                             <constraint firstItem="6SC-I2-FnN" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XSO-04-5CJ" secondAttribute="trailing" constant="20" id="o1q-Hp-dBo"/>
@@ -733,11 +752,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMe-Mo-CwC">
-                                <rect key="frame" x="0.0" y="52" width="414" height="22.5"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="20.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDb-wh-ubh">
-                                <rect key="frame" x="30" y="94.5" width="30" height="30"/>
+                                <rect key="frame" x="30" y="114.5" width="30" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Title"/>
                                 <connections>
@@ -745,7 +764,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1Z-Zj-ki3">
-                                <rect key="frame" x="75" y="139.5" width="42" height="30"/>
+                                <rect key="frame" x="75" y="159.5" width="42" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Genre"/>
                                 <connections>
@@ -753,7 +772,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBD-6e-V4W">
-                                <rect key="frame" x="299" y="139.5" width="40" height="30"/>
+                                <rect key="frame" x="299" y="159.5" width="40" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Mood"/>
                                 <connections>
@@ -761,7 +780,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPY-hu-Cyb">
-                                <rect key="frame" x="30" y="230" width="80" height="30"/>
+                                <rect key="frame" x="30" y="250" width="80" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Song Name"/>
                                 <connections>
@@ -769,7 +788,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-vx-LfY">
-                                <rect key="frame" x="188" y="230" width="38" height="30"/>
+                                <rect key="frame" x="188" y="250" width="38" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Artist"/>
                                 <connections>
@@ -777,7 +796,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwp-R9-fWh">
-                                <rect key="frame" x="330" y="94.5" width="54" height="30"/>
+                                <rect key="frame" x="330" y="114.5" width="54" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Caption"/>
                                 <connections>
@@ -785,7 +804,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJR-KG-iOf">
-                                <rect key="frame" x="171.5" y="94.5" width="71" height="30"/>
+                                <rect key="frame" x="171.5" y="114.5" width="71" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Username"/>
                                 <connections>
@@ -799,23 +818,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post related filters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SvQ-7K-2o5">
-                                <rect key="frame" x="30" y="54" width="139" height="20.5"/>
+                                <rect key="frame" x="30" y="74" width="139" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQc-rJ-OSb">
-                                <rect key="frame" x="0.0" y="189.5" width="414" height="20.5"/>
+                                <rect key="frame" x="0.0" y="209.5" width="414" height="20.5"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spotify related filters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKp-3E-CZf">
-                                <rect key="frame" x="30" y="189.5" width="159" height="20.5"/>
+                                <rect key="frame" x="30" y="209.5" width="159" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6O-8r-qRH">
-                                <rect key="frame" x="340" y="230" width="44" height="30"/>
+                                <rect key="frame" x="340" y="250" width="44" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Album"/>
                                 <connections>
@@ -829,7 +848,7 @@
                             <constraint firstItem="fQc-rJ-OSb" firstAttribute="trailing" secondItem="cd5-VR-pnj" secondAttribute="trailing" id="3QD-D2-pRh"/>
                             <constraint firstItem="jBD-6e-V4W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k1Z-Zj-ki3" secondAttribute="trailing" constant="10" id="3fh-Fz-lze"/>
                             <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="jBD-6e-V4W" secondAttribute="trailing" constant="75" id="3mj-Vt-TwW"/>
-                            <constraint firstItem="OMe-Mo-CwC" firstAttribute="top" secondItem="SwR-kT-pkp" secondAttribute="bottom" constant="8" id="4o4-zY-Cgf"/>
+                            <constraint firstItem="OMe-Mo-CwC" firstAttribute="top" secondItem="SvQ-7K-2o5" secondAttribute="top" id="4o4-zY-Cgf"/>
                             <constraint firstItem="HJR-KG-iOf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GDb-wh-ubh" secondAttribute="trailing" constant="10" id="6gi-oF-TVr"/>
                             <constraint firstItem="SP9-vx-LfY" firstAttribute="centerX" secondItem="KyT-uH-HB6" secondAttribute="centerX" id="7Cm-Dg-VyY"/>
                             <constraint firstItem="GDb-wh-ubh" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="30" id="8SF-YP-YTk"/>
@@ -861,7 +880,7 @@
                             <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SwR-kT-pkp" secondAttribute="trailing" constant="10" id="jV7-Uf-vAY"/>
                             <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="OMe-Mo-CwC" secondAttribute="trailing" id="kY7-KW-hyB"/>
                             <constraint firstItem="QKp-3E-CZf" firstAttribute="leading" secondItem="cd5-VR-pnj" secondAttribute="leading" constant="30" id="oyq-dH-1xu"/>
-                            <constraint firstItem="SvQ-7K-2o5" firstAttribute="top" secondItem="SwR-kT-pkp" secondAttribute="bottom" constant="10" id="pgi-CW-1tD"/>
+                            <constraint firstItem="SvQ-7K-2o5" firstAttribute="top" secondItem="SwR-kT-pkp" secondAttribute="bottom" constant="30" id="pgi-CW-1tD"/>
                             <constraint firstItem="cd5-VR-pnj" firstAttribute="trailing" secondItem="j6O-8r-qRH" secondAttribute="trailing" constant="30" id="qA8-rw-EYp"/>
                             <constraint firstItem="QKp-3E-CZf" firstAttribute="top" secondItem="fQc-rJ-OSb" secondAttribute="top" id="xvf-nX-4QU"/>
                         </constraints>
@@ -1071,7 +1090,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwS-cU-xG9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1987" y="2687"/>
+            <point key="canvasLocation" x="1987" y="2591"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Pwu-Hx-MV3">
@@ -1123,8 +1142,8 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="musicNotes" width="840" height="709"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

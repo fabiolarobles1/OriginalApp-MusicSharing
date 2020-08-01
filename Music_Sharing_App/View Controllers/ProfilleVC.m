@@ -105,6 +105,7 @@
     if([[segue identifier] isEqualToString:@"toEditProfile"]){
         CreateProfileVC *editProfileViewController = [segue destinationViewController];
         editProfileViewController.userImage = self.profileView.profileImageView.image;
+       
     }
 }
 

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *profilePicImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
-@property (strong, nonatomic) UIImage *userImage;
+@property (strong, nonatomic) UIImage *_Nullable userImage;
 @end
 
 NS_ASSUME_NONNULL_END

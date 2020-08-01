@@ -25,7 +25,7 @@ BOOL imageDidChange = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    
     self.usernameLabel.text =[@"@" stringByAppendingString:[User currentUser].username];
     self.bioTextView.layer.borderWidth = 1.0;
     self.bioTextView.layer.cornerRadius = 5;
@@ -43,6 +43,8 @@ BOOL imageDidChange = NO;
     if(self.userImage!=nil){
         [self.profilePicImageButton setImage:self.userImage forState:self.profilePicImageButton.state];
     }
+ 
+   
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
@@ -51,6 +53,13 @@ BOOL imageDidChange = NO;
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
+}
+
+
+- (IBAction)didTapDeletePrifilePic:(id)sender {
+    self.userImage = nil;
+    imageDidChange = YES;
+    [self.profilePicImageButton setImage:[UIImage systemImageNamed:@"person.circle.fill"] forState:self.profilePicImageButton.state];
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
@@ -85,15 +94,46 @@ BOOL imageDidChange = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)didTapImageButton:(id)sender {
-    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+     
+       if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+           
+           UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+           UIAlertAction *gallery = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+               self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+               [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+           }];
+           [alert addAction:gallery];
+           
+           UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+               self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+               [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+           }];
+           [alert addAction:camera];
+           
+           UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+           }];
+           
+           [alert addAction:cancel];
+           
+           [self presentViewController:alert animated:YES completion:^{
+               
+           }];
+       }
+       else {
+           NSLog(@"Camera NOT available.");
+           self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+           [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+       }
+      
+      
 }
 
 - (IBAction)didTapSave:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    if(self.userImage!=nil && imageDidChange){
+    if(imageDidChange){
         [User updateUser:[User currentUser] withProfilePic:self.userImage withBio:self.bioTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){
-                NSLog(@"Succesfully posted image.");
+                NSLog(@"Succesfully posted image. %@", [User currentUser].profilePic);
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self toFeed];
             }else{

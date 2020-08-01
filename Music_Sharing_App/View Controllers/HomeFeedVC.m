@@ -164,6 +164,7 @@
             // stop indicators
             [self.refreshControl endRefreshing];
             [self.loadingMoreView stopAnimating];
+            [self.tableView reloadData];
             
         } else {
             NSLog(@"Error getting posts: %@", error.description);

@@ -23,7 +23,7 @@
     if(image!=nil){
         user.profilePic =  [self getPFFileFromImage:image];
     }else{
-         user.profilePic =  [self getPFFileFromImage:[UIImage systemImageNamed:@"person.fill"]];
+         user.profilePic = nil;
     }
     user.bio = bio;
     [user saveInBackgroundWithBlock:completion];

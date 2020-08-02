@@ -49,7 +49,7 @@ BOOL imageDidChange = NO;
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        NSLog(@"Camera Not available.");
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     

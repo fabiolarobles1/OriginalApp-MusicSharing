@@ -38,20 +38,6 @@
 @end
 
 @implementation ComposeVC
-//typedef (NS_STRING_ENUM) moods
-//{
-//   @"Active",
-//    @"Bored",
-//    @"Chill",
-//    @"Happy",
-//    @"Hype",
-//    @"Lazy",
-//    @"Loving",
-//    @"Sad",
-//    @"Relax"
-//} MOODS;
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -87,6 +73,31 @@
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
     
+}
+
+-(NSString *)moodToString:(MusicSharingAppMood)mood{
+    switch(mood){
+        case  MusicSharingAppMoodActive:
+            return @"Active";
+        case  MusicSharingAppMoodBored:
+            return @"Bored";
+        case  MusicSharingAppMoodChill:
+            return @"Chill";
+        case  MusicSharingAppMoodHappy:
+            return @"Happy";
+        case  MusicSharingAppMoodHype:
+            return @"Hype";
+        case  MusicSharingAppMoodLazy:
+            return @"Lazy";
+        case  MusicSharingAppMoodLoving:
+            return @"Loving";
+        case  MusicSharingAppMoodSad:
+            return @"Sad";
+        case  MusicSharingAppMoodRelax:
+            return @"Relax";
+        case enum_count:
+            return nil;
+    }
 }
 
 - (IBAction)didTapScreen:(id)sender {
@@ -151,9 +162,6 @@
     }
     
     NSLog(@"Tapping post.");
-    //    if(self.postImage==nil){
-    //        self.postImage = [UIImage imageNamed:@"camera.circle.fill"];
-    //    }
     self.postButton.enabled = !self.postButton.enabled;
     
 }
@@ -190,8 +198,8 @@
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:self.imagePickerVC animated:YES completion:nil];
     }
-   
-   
+    
+    
 }
 
 
@@ -226,7 +234,8 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
-        return self.moods.count;
+        return enum_count;
+        // return self.moods.count;
     }else{
         return self.genres.count;
     }
@@ -234,7 +243,8 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
-        return [NSString stringWithFormat:@"%@",self.moods[(long)row]];
+        //  return [NSString stringWithFormat:@"%@",self.moods[(long)row]];
+        return  [self moodToString:row];
     }else{
         
         //When user is not authorize it doesn't work!!!!

@@ -16,6 +16,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) AppDelegate *delegate;
 @property (strong, nonatomic) NSMutableArray *genres;
 
+typedef NS_ENUM(NSUInteger, MusicSharingAppMood){
+    MusicSharingAppMoodActive = 0,
+    MusicSharingAppMoodBored,
+    MusicSharingAppMoodChill,
+    MusicSharingAppMoodHappy,
+    MusicSharingAppMoodHype,
+    MusicSharingAppMoodLazy,
+    MusicSharingAppMoodLoving,
+    MusicSharingAppMoodSad,
+    MusicSharingAppMoodRelax,
+    enum_count
+
+};
+
 @end
 
 NS_ASSUME_NONNULL_END

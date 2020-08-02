@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailsVC : UIViewController <UITableViewDataSource>
+@interface DetailsVC : UIViewController <UITableViewDataSource, DetailsViewDelegate>
 @property (strong, nonatomic) Post *post;
 @property (nonatomic) BOOL isFavorited;
 @property (weak, nonatomic) IBOutlet DetailsView *detailsView;

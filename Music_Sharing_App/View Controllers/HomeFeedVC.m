@@ -54,18 +54,7 @@
     UIEdgeInsets insets = self.tableView.contentInset;
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
-    
-//    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//    UILabel *emptyMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
-//    emptyMessageLabel.text = @"No posts yet.";
-//    emptyMessageLabel.textColor = [UIColor blackColor];
-//    emptyMessageLabel.numberOfLines = 0;
-//    emptyMessageLabel.textAlignment = NSTextAlignmentCenter;
-//    [emptyMessageLabel setFont:[UIFont fontWithName:@"TrebuchetMS" size:20]];
-//    [emptyMessageLabel sizeToFit];
-//
-//    self.tableView.backgroundView = emptyMessageLabel;
-//    self.tableView.backgroundView.backgroundColor = [UIColor grayColor];
+
     [self fetchPosts];
 }
 

@@ -23,6 +23,7 @@
 		EB5AF28424BCC36E004270FF /* Music_Sharing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28324BCC36E004270FF /* Music_Sharing_AppTests.m */; };
 		EB5AF28F24BCC36E004270FF /* Music_Sharing_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */; };
 		EB627B1124BF8B6100F75655 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */; };
+		EB8925FE24D66C6800C708DF /* SongInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8925FD24D66C6800C708DF /* SongInfoVC.m */; };
 		EBA19FA124CB5FAC00FFBF09 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */; };
 		EBA19FA424CB648A00FFBF09 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA19FA324CB648A00FFBF09 /* SearchCell.m */; };
 		EBA675E124D07529003CE95C /* ProfilleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA675E024D07529003CE95C /* ProfilleVC.m */; };
@@ -94,6 +95,8 @@
 		EB5AF28E24BCC36E004270FF /* Music_Sharing_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music_Sharing_AppUITests.m; sourceTree = "<group>"; };
 		EB5AF29024BCC36E004270FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB627B1024BF8B6100F75655 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		EB8925FC24D66C6800C708DF /* SongInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongInfoVC.h; sourceTree = "<group>"; };
+		EB8925FD24D66C6800C708DF /* SongInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongInfoVC.m; sourceTree = "<group>"; };
 		EBA19F9F24CB5FAC00FFBF09 /* SearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
 		EBA19FA024CB5FAC00FFBF09 /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		EBA19FA224CB648A00FFBF09 /* SearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				EBE4AB4E24D1E49A00E6F8A0 /* CreateProfileVC.m */,
 				EBFBF18024D4889200BD9E7F /* SearchFilterVC.h */,
 				EBFBF18124D4889200BD9E7F /* SearchFilterVC.m */,
+				EB8925FC24D66C6800C708DF /* SongInfoVC.h */,
+				EB8925FD24D66C6800C708DF /* SongInfoVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 			files = (
 				EBA675E724D0870B003CE95C /* ProfileView.m in Sources */,
 				EBB1F4F024BD1110007BE75C /* HomePostCell.m in Sources */,
+				EB8925FE24D66C6800C708DF /* SongInfoVC.m in Sources */,
 				EBCFC8A224CA1E9C00C62AEE /* CommentCell.m in Sources */,
 				EBBAF18D24BE6AC2001C3497 /* InfiniteScrollActivityView.m in Sources */,
 				EBA19FA424CB648A00FFBF09 /* SearchCell.m in Sources */,

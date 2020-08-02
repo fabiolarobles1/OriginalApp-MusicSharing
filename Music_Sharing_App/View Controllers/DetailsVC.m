@@ -9,6 +9,7 @@
 #import "DetailsVC.h"
 #import "Comment.h"
 #import "CommentCell.h"
+#import "SongInfoVC.h"
 
 @import Parse;
 
@@ -31,6 +32,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
     
+    self.detailsView.delegate = self;
     [self.detailsView setView:self.post isFavorited:self.isFavorited];
     
    
@@ -68,15 +70,20 @@
     [self.tableView reloadData];
 }
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     
+     if([[segue identifier] isEqualToString:@"toSongInfo"]){
+         SongInfoVC *songInfoViewController = [segue destinationViewController];
+         songInfoViewController.post = self.post;
+     }
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
- */
+ 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
@@ -93,6 +100,11 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.comments.count;
+}
+
+
+- (void)detailsView:(nonnull DetailsView *)detailsView didTap:(nonnull UIButton *)infoButton {
+    [self performSegueWithIdentifier:@"toSongInfo" sender:nil];
 }
 
 

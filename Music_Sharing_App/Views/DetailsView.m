@@ -54,9 +54,9 @@
 }
 
 -(void)setDelegates{
-    self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [self.delegate.appRemote connect];
-    [self.delegate.appRemote isConnected];
+    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.appDelegate.appRemote connect];
+    [self.appDelegate.appRemote isConnected];
 }
 
 -(void)setView:(Post *)post isFavorited:(BOOL)isFavorited{
@@ -64,21 +64,7 @@
     self.commentView.post = post;
     NSString *song = self.post.musicLink;
     song = [song substringWithRange:NSMakeRange(31, 22)];
-//    [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
-//        NSArray *artist = song[@"artists"];
-//        NSDictionary *insideArtists = artist[0];
-//        NSDictionary *songName = song[@"name"];
-//        NSDictionary *album = song[@"album"];
-//        NSDictionary *albumName = album[@"name"];
-//        NSArray *albumImage =album[@"images"];
-//        NSDictionary *image = albumImage[0];
-//        NSString *imageURL = [NSString stringWithFormat:@"%@", image[@"url"]];
-//        [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:imageURL]];
-//
-//        self.artist = [@"ARTIST: " stringByAppendingFormat:@"%@",insideArtists[@"name"]];
-//        self.album = [@"ALBUM: " stringByAppendingFormat:@"%@",albumName];
-//        self.songName = [@"SONG: " stringByAppendingFormat:@"%@",songName];
-//    }];
+
     [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:post.albumCoverURLString]];
     self.artist = post.artist;
     self.album = post.album;
@@ -91,10 +77,11 @@
     self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
     self.usernameLabel.text = [@"shared by " stringByAppendingString:post.author.username];
     [self.favoriteButton setSelected:isFavorited];
+   
 }
 
 - (IBAction)didTapPlayButton:(id)sender {
-   // [self.delegate.appRemote connect];
+   // [self.appDelegate.appRemote connect];
     
     [self playSong:self.post.songURI];
     
@@ -104,12 +91,17 @@
     [self.playButton setSelected:!self.playButton.isSelected];
     
     if([self.playButton isSelected] ){
-        [self.delegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
-            NSLog(@"Playing song.");
+        [self.appDelegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+            if(!error){
+                 NSLog(@"Playing song.");
+            }
+           
         }];
     }else{
-        [self.delegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-            NSLog(@"Paused Song");
+        [self.appDelegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+           if(!error){
+                 NSLog(@"Paused song.");
+            }
         }];
     }
 }
@@ -135,10 +127,14 @@
             NSLog(@"Error on relation: %@", error.description );
         }
     }];
-    
-    
+}
+
+
+- (IBAction)didTapInfoButton:(id)sender {
+    [self.delegate detailsView:self didTap:self.songInfoButton];
     
 }
+
 
 
 

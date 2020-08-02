@@ -13,7 +13,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol DetailsViewDelegate;
+
 @interface DetailsView : UIView
+
 @property (strong, nonatomic) IBOutlet UIView *detailsView;
 @property (weak, nonatomic) IBOutlet PFImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -27,10 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet CommentView *commentView;
 @property (strong, nonatomic) Post *post;
-@property (strong, nonatomic) AppDelegate *delegate;
+@property (strong, nonatomic) AppDelegate *appDelegate;
+@property (weak, nonatomic) id<DetailsViewDelegate> delegate;
 
 -(void)setView:(Post *)post isFavorited:(BOOL)isFavorited;
+@end
 
+@protocol DetailsViewDelegate
+-(void)detailsView:(DetailsView *)detailsView didTap:(UIButton *)infoButton;
 @end
 
 NS_ASSUME_NONNULL_END

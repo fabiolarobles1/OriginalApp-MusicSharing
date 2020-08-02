@@ -1,0 +1,25 @@
+//
+//  SongInfoVC.h
+//  Music_Sharing_App
+//
+//  Created by Fabiola E. Robles Vega on 8/1/20.
+//  Copyright © 2020 Fabiola E. Robles Vega. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Post.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface SongInfoVC : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *albumCoverImageView;
+@property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak, nonatomic) IBOutlet UILabel *albumLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addToSpotifyButton;
+@property (strong, nonatomic) Post *post;
+
+-(void)setWithPost:(Post *)post;
+@end
+
+NS_ASSUME_NONNULL_END

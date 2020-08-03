@@ -74,5 +74,24 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
     
 }
 
+-(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *songs , NSError *error ))completion{
+    NSDictionary *parameters = @{@"limit":@(20),@"seed_tracks":songs,@"min_popularity":@(50)};
+    self.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
+    
+    [self GET:@"https://api.spotify.com/v1/recommendations" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
+        
+        completion(responseObject, nil);
+        NSLog(@"Recoomendations: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"Error getting genres: %@", error);
+        completion(nil, error);
+        
+    }];
+    
+}
+
 
 @end

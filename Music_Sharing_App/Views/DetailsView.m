@@ -56,7 +56,6 @@
 -(void)setDelegates{
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [self.appDelegate.appRemote connect];
-    [self.appDelegate.appRemote isConnected];
 }
 
 -(void)setView:(Post *)post isFavorited:(BOOL)isFavorited{
@@ -83,7 +82,9 @@
 }
 
 - (IBAction)didTapPlayButton:(id)sender {
-    // [self.appDelegate.appRemote connect];
+    if(![self.appDelegate.appRemote isConnected]){
+        [self.appDelegate.appRemote connect];
+    }
     
     [self playSong:self.post.songURI];
     

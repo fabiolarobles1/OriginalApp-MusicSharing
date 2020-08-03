@@ -18,8 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setWithPost:self.post];
-
+    if(self.post){
+        [self setWithPost:self.post];
+    }else{
+        [self setWithInfo:self.senderCell.songname artist:self.senderCell.artist album:self.senderCell.album albumURLString:self.senderCell.albumURLString];
+    }
+    
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [self.appDelegate.appRemote connect];
 }
@@ -40,6 +44,17 @@
         }
         
     }];
+}
+
+-(void)setWithInfo:(NSString *)songname
+        artist:(NSString *)artist
+         album:(NSString *)album
+    albumURLString:(NSString *)albumURLString{
+    
+    [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:albumURLString]];
+       self.songNameLabel.text = [@"Song: " stringByAppendingString:songname];
+       self.artistLabel.text = [@"Artist: " stringByAppendingString:artist];
+       self.albumLabel.text = [@"Album: " stringByAppendingString:album];
 }
 
 /*

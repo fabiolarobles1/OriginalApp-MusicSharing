@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "RecommendedCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,8 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *albumLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addToSpotifyButton;
 @property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) RecommendedCell *senderCell;
 
 -(void)setWithPost:(Post *)post;
+
+-(void)setWithInfo:(NSString *)songname
+            artist:(NSString *)artist
+             album:(NSString *)album
+    albumURLString:(NSString *)albumURLString;
+
 @end
 
 NS_ASSUME_NONNULL_END

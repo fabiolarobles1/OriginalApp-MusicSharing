@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)getGenres:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion;
 
+-(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *posts , NSError *error ))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

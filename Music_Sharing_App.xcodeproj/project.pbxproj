@@ -10,6 +10,8 @@
 		2AF337E9D3930B06442E2F6A /* Pods_Music_Sharing_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80B1B1CCD91F47B20743FBA /* Pods_Music_Sharing_AppTests.framework */; };
 		8EA13468000B4437BD98475A /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A910A7FC1E85F908FD3B13 /* Pods_Music_Sharing_App_Music_Sharing_AppUITests.framework */; };
 		D940D8B665E56C9BFC0F6AEE /* Pods_Music_Sharing_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6394E9FF3A7C30C25D75200 /* Pods_Music_Sharing_App.framework */; };
+		EB0743EE24D878E200F32D6A /* RecommendedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0743ED24D878E200F32D6A /* RecommendedVC.m */; };
+		EB0743F124D8A38500F32D6A /* RecommendedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0743F024D8A38500F32D6A /* RecommendedCell.m */; };
 		EB2C335024C73FAB008524A0 /* DetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2C334F24C73FAB008524A0 /* DetailsView.m */; };
 		EB2C335224C73FCA008524A0 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB2C335124C73FCA008524A0 /* DetailsView.xib */; };
 		EB2C335524C91A1E008524A0 /* DetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2C335424C91A1E008524A0 /* DetailsVC.m */; };
@@ -71,6 +73,10 @@
 		A7098075798776BB0F9F64DA /* Pods-Music_Sharing_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_App.debug.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App.debug.xcconfig"; sourceTree = "<group>"; };
 		C38149145132459E6D17627B /* Pods-Music_Sharing_AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music_Sharing_AppTests.release.xcconfig"; path = "Target Support Files/Pods-Music_Sharing_AppTests/Pods-Music_Sharing_AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		D80B1B1CCD91F47B20743FBA /* Pods_Music_Sharing_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Sharing_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0743EC24D878E200F32D6A /* RecommendedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendedVC.h; sourceTree = "<group>"; };
+		EB0743ED24D878E200F32D6A /* RecommendedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendedVC.m; sourceTree = "<group>"; };
+		EB0743EF24D8A38500F32D6A /* RecommendedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendedCell.h; sourceTree = "<group>"; };
+		EB0743F024D8A38500F32D6A /* RecommendedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendedCell.m; sourceTree = "<group>"; };
 		EB2C334E24C73FAB008524A0 /* DetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsView.h; sourceTree = "<group>"; };
 		EB2C334F24C73FAB008524A0 /* DetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsView.m; sourceTree = "<group>"; };
 		EB2C335124C73FCA008524A0 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
@@ -217,6 +223,8 @@
 				EBFBF18124D4889200BD9E7F /* SearchFilterVC.m */,
 				EB8925FC24D66C6800C708DF /* SongInfoVC.h */,
 				EB8925FD24D66C6800C708DF /* SongInfoVC.m */,
+				EB0743EC24D878E200F32D6A /* RecommendedVC.h */,
+				EB0743ED24D878E200F32D6A /* RecommendedVC.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -325,6 +333,8 @@
 				EBCFC8A124CA1E9C00C62AEE /* CommentCell.m */,
 				EBA19FA224CB648A00FFBF09 /* SearchCell.h */,
 				EBA19FA324CB648A00FFBF09 /* SearchCell.m */,
+				EB0743EF24D8A38500F32D6A /* RecommendedCell.h */,
+				EB0743F024D8A38500F32D6A /* RecommendedCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -594,11 +604,13 @@
 				EB2C335524C91A1E008524A0 /* DetailsVC.m in Sources */,
 				EBA19FA124CB5FAC00FFBF09 /* SearchVC.m in Sources */,
 				EB2C335024C73FAB008524A0 /* DetailsView.m in Sources */,
+				EB0743EE24D878E200F32D6A /* RecommendedVC.m in Sources */,
 				EB5AF26924BCC36C004270FF /* AppDelegate.m in Sources */,
 				EBB1F4EB24BD0E3F007BE75C /* PostView.m in Sources */,
 				EB2F8ED824BCD3C000A47685 /* LoginVC.m in Sources */,
 				EB5AF27A24BCC36D004270FF /* main.m in Sources */,
 				EB5AF26C24BCC36C004270FF /* SceneDelegate.m in Sources */,
+				EB0743F124D8A38500F32D6A /* RecommendedCell.m in Sources */,
 				EBBAF18824BDF0B1001C3497 /* ComposeVC.m in Sources */,
 				EBB1F4DF24BD02A2007BE75C /* HomeFeedVC.m in Sources */,
 				EBB1F4E324BD0841007BE75C /* Post.m in Sources */,

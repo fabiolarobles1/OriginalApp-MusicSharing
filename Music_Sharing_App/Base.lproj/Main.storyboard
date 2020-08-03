@@ -1192,6 +1192,18 @@
                                     <action selector="didTapAddToSpotify:" destination="nXN-Z5-n80" eventType="touchUpInside" id="MQh-78-C8l"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0R-nR-PWl">
+                                <rect key="frame" x="182" y="595" width="50" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="zmJ-3w-OTx"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="play.fill" catalog="system"/>
+                                <state key="selected" image="pause.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapPlayButton:" destination="nXN-Z5-n80" eventType="touchUpInside" id="HP9-uT-l7D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="PAo-6Y-lmw" firstAttribute="top" secondItem="t35-tR-fOf" secondAttribute="bottom" constant="100" id="36t-A0-ghB"/>
@@ -1199,6 +1211,7 @@
                             <constraint firstItem="Uvh-ae-SJr" firstAttribute="centerX" secondItem="6ef-1z-342" secondAttribute="centerX" id="8js-HM-Fw8"/>
                             <constraint firstItem="fiD-xB-CQw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jbH-gQ-u9n" secondAttribute="leading" constant="10" id="8le-1R-eq9"/>
                             <constraint firstItem="EYf-6e-uo2" firstAttribute="centerX" secondItem="6ef-1z-342" secondAttribute="centerX" id="Aff-HT-JqR"/>
+                            <constraint firstItem="PAo-6Y-lmw" firstAttribute="top" secondItem="A0R-nR-PWl" secondAttribute="bottom" constant="30" id="B6d-X3-bZO"/>
                             <constraint firstItem="Uvh-ae-SJr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jbH-gQ-u9n" secondAttribute="leading" constant="10" id="BiS-ux-JGX"/>
                             <constraint firstItem="EYf-6e-uo2" firstAttribute="top" secondItem="jbH-gQ-u9n" secondAttribute="top" priority="500" constant="50" id="Bp3-AL-DhK"/>
                             <constraint firstItem="jbH-gQ-u9n" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PAo-6Y-lmw" secondAttribute="bottom" priority="750" constant="10" id="HW0-6k-Ift"/>
@@ -1208,6 +1221,7 @@
                             <constraint firstItem="t35-tR-fOf" firstAttribute="top" secondItem="Uvh-ae-SJr" secondAttribute="bottom" constant="15" id="WU5-31-klG"/>
                             <constraint firstItem="jbH-gQ-u9n" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PAo-6Y-lmw" secondAttribute="trailing" constant="20" id="YfK-hH-uGR"/>
                             <constraint firstItem="kkF-LB-Ewm" firstAttribute="leading" secondItem="6ef-1z-342" secondAttribute="leading" id="c8b-eP-9DC"/>
+                            <constraint firstItem="A0R-nR-PWl" firstAttribute="centerX" secondItem="6ef-1z-342" secondAttribute="centerX" id="cBo-M4-cDy"/>
                             <constraint firstItem="PAo-6Y-lmw" firstAttribute="centerX" secondItem="6ef-1z-342" secondAttribute="centerX" id="cx3-Jb-OP5"/>
                             <constraint firstItem="fiD-xB-CQw" firstAttribute="top" secondItem="EYf-6e-uo2" secondAttribute="bottom" constant="50" id="ef2-es-AVx"/>
                             <constraint firstItem="t35-tR-fOf" firstAttribute="centerX" secondItem="6ef-1z-342" secondAttribute="centerX" id="fTB-tk-qk1"/>
@@ -1218,6 +1232,7 @@
                             <constraint firstAttribute="trailing" secondItem="kkF-LB-Ewm" secondAttribute="trailing" id="wbR-2w-QLx"/>
                             <constraint firstItem="Uvh-ae-SJr" firstAttribute="top" secondItem="fiD-xB-CQw" secondAttribute="bottom" constant="15" id="wzo-PA-5T2"/>
                             <constraint firstItem="kkF-LB-Ewm" firstAttribute="top" secondItem="6ef-1z-342" secondAttribute="top" id="xHu-TK-DCG"/>
+                            <constraint firstItem="A0R-nR-PWl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t35-tR-fOf" secondAttribute="bottom" constant="30" id="yen-RJ-RN6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jbH-gQ-u9n"/>
                     </view>
@@ -1226,6 +1241,7 @@
                         <outlet property="albumCoverImageView" destination="EYf-6e-uo2" id="3fg-rP-Pgc"/>
                         <outlet property="albumLabel" destination="t35-tR-fOf" id="8Hj-ND-1jV"/>
                         <outlet property="artistLabel" destination="Uvh-ae-SJr" id="PLI-no-AS2"/>
+                        <outlet property="playButton" destination="A0R-nR-PWl" id="J8B-Tj-f9F"/>
                         <outlet property="songNameLabel" destination="fiD-xB-CQw" id="FNe-tM-QfQ"/>
                     </connections>
                 </viewController>
@@ -1252,7 +1268,7 @@
             </objects>
             <point key="canvasLocation" x="4703" y="1767"/>
         </scene>
-        <!--RecommendedVC-->
+        <!--Recommended-->
         <scene sceneID="OfS-7d-75J">
             <objects>
                 <viewController id="8lh-0s-04k" customClass="RecommendedVC" sceneMemberID="viewController">
@@ -1261,7 +1277,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w1G-Wd-lUM">
-                                <rect key="frame" x="0.0" y="188" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recommendedCell" id="aeL-x3-Vhc" customClass="RecommendedCell">
@@ -1279,14 +1295,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvv-Vu-zfJ">
-                                                    <rect key="frame" x="100" y="50.5" width="304" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="100" y="53.5" width="304" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky9-HD-yuH">
                                                     <rect key="frame" x="100" y="21" width="284" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1314,19 +1330,21 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCA-Hd-ldT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECOMMENDED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMf-9L-lzz">
-                                        <rect key="frame" x="142" y="39.5" width="130" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We found some recommended songs based on your last posts." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMf-9L-lzz">
+                                        <rect key="frame" x="10" y="4.5" width="394" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="QSh-Qa-ChO"/>
+                                    <constraint firstAttribute="trailing" secondItem="xMf-9L-lzz" secondAttribute="trailing" constant="10" id="Oww-jK-aoV"/>
+                                    <constraint firstAttribute="height" constant="50" id="QSh-Qa-ChO"/>
                                     <constraint firstItem="xMf-9L-lzz" firstAttribute="centerX" secondItem="nCA-Hd-ldT" secondAttribute="centerX" id="a6J-f6-u4B"/>
+                                    <constraint firstItem="xMf-9L-lzz" firstAttribute="leading" secondItem="nCA-Hd-ldT" secondAttribute="leading" constant="10" id="ixl-ky-jmy"/>
                                     <constraint firstItem="xMf-9L-lzz" firstAttribute="centerY" secondItem="nCA-Hd-ldT" secondAttribute="centerY" id="w1i-Ti-brP"/>
                                 </constraints>
                             </view>
@@ -1343,7 +1361,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q8H-EQ-gbn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Tx-MP-X1s"/>
+                    <navigationItem key="navigationItem" title="Recommended" id="4Tx-MP-X1s">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="vuy-AY-4aJ">
+                            <connections>
+                                <action selector="didTapLogout:" destination="8lh-0s-04k" id="mXF-1y-9nA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="w1G-Wd-lUM" id="PPZ-Pg-gpj"/>
                     </connections>
@@ -1402,9 +1426,11 @@
         <image name="icon" width="1024" height="1024"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="musicNotes" width="840" height="709"/>
+        <image name="pause.fill" catalog="system" width="116" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
     </resources>

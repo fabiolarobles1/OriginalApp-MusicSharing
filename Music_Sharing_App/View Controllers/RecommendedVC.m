@@ -14,14 +14,22 @@
 #import "RecommendedCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "SongInfoVC.h"
+#import <Parse/Parse.h>
+#import "SceneDelegate.h"
+#import "LoginVC.h"
 
 @interface RecommendedVC ()
 @property (strong, nonatomic) NSString *songs;
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) NSMutableArray *recommendedSongs;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation RecommendedVC
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +39,15 @@
     self.user = [User currentUser];
     self.songs = [[NSString alloc]init];
     self.recommendedSongs = [[NSMutableArray alloc]init];
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(fetchSongs) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    [self fetchSongs];
+    
+}
+
+-(void)fetchSongs{
     PFQuery *postQuery = [Post query];
     [postQuery whereKey:@"author" equalTo:self.user];
     [postQuery includeKey:@"author"];
@@ -47,25 +63,50 @@
                 
             }
         }
-        
         self.songs = [self.songs substringToIndex:[self.songs length]-1];
         
         [[SpotifyManager shared] getRecommendedSongs:self.appDelegate.sessionManager.session.accessToken songsCommaSeparated:self.songs completion:^(NSDictionary * _Nonnull songs, NSError * _Nonnull error) {
             if(!error){
                 for(NSDictionary *dic in songs[@"tracks"]){
                     [self.recommendedSongs addObject:dic];
+                    NSLog(@"FAB: %@", dic);
                 }
-//                self.recommendedSongs = songs[@"tracks"];
+                
                 NSLog(@"Songs: %ld", [self.recommendedSongs count]);
             }else{
                 NSLog(@"Weird: %@", error.description);
             }
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
+            
         }];
-        [self.tableView reloadData];
     }];
     
-    
+}
+- (IBAction)didTapLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+           if(error ==nil){
+               NSLog(@"Successfully logged out user.");
+           }
+           else{
+               NSLog(@"Error loggin out user.");
+           }
+       }];
+       
+       SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+       
+       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+       LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+       myDelegate.window.alpha = 0.50;
+       myDelegate.window.rootViewController = loginViewController;
+       
+       [UIView animateWithDuration:2 animations:^{
+           myDelegate.window.alpha = 1;
+       }];
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -74,6 +115,7 @@
     NSArray *artist = song[@"artists"];
     NSDictionary *insideArtists = artist[0];
     NSDictionary *songName = song[@"name"];
+    
     NSDictionary *album = song[@"album"];
     NSDictionary *albumName = album[@"name"];
     NSArray *albumImage =album[@"images"];
@@ -84,6 +126,7 @@
     cell.albumURLString = albumimageURL;
     cell.songname = [NSString stringWithFormat:@"%@",songName];
     
+    cell.songURI = [NSString stringWithFormat:@"%@",song[@"uri"]];
     cell.artistLabel.text = cell.artist;
     cell.songNameLabel.text = cell.songname;
     

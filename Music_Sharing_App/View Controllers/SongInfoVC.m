@@ -20,8 +20,10 @@
     [super viewDidLoad];
     if(self.post){
         [self setWithPost:self.post];
+        [self.playButton setHidden:YES];
     }else{
-        [self setWithInfo:self.senderCell.songname artist:self.senderCell.artist album:self.senderCell.album albumURLString:self.senderCell.albumURLString];
+        [self.playButton setHidden:NO];
+        [self setWithInfo:self.senderCell.songname artist:self.senderCell.artist album:self.senderCell.album songURI:self.senderCell.songURI albumURLString:self.senderCell.albumURLString];
     }
     
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -45,16 +47,30 @@
         
     }];
 }
+- (IBAction)didTapPlayButton:(id)sender {
+    [self.playButton setSelected:!self.playButton.isSelected];
+    if(self.playButton.isSelected){
+    [self.appDelegate.appRemote.playerAPI play:self.songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+    }];
+    }else{
+        [self.appDelegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+            
+        }];
+    }
+}
+
 
 -(void)setWithInfo:(NSString *)songname
         artist:(NSString *)artist
          album:(NSString *)album
+        songURI:(nonnull NSString *)URI
     albumURLString:(NSString *)albumURLString{
     
     [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:albumURLString]];
        self.songNameLabel.text = [@"Song: " stringByAppendingString:songname];
        self.artistLabel.text = [@"Artist: " stringByAppendingString:artist];
        self.albumLabel.text = [@"Album: " stringByAppendingString:album];
+        self.songURI = URI;
 }
 
 /*

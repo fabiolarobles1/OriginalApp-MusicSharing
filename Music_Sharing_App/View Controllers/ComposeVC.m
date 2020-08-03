@@ -109,7 +109,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.postButton.enabled = !self.postButton.enabled;
     NSString *song = self.musicLinkField.text;
-    if([song length]==71){
+    if([song length]>=53){
         song = [song substringWithRange:NSMakeRange(31, 22)];
         [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
             if(error!=nil){

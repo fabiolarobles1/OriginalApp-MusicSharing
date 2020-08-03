@@ -37,15 +37,24 @@
     self.albumLabel.text = [@"Album: " stringByAppendingString:post.album];
 }
 - (IBAction)didTapAddToSpotify:(id)sender {
-    [self.appDelegate.appRemote.userAPI addItemToLibraryWithURI:self.post.songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+    if(self.post){
+        [self addToSpotify:self.post.songURI];
+    }else{
+        [self addToSpotify:self.senderCell.songURI];
+    }
+    
+    
+}
+-(void)addToSpotify:(NSString *)songURI{
+    [self.appDelegate.appRemote.userAPI addItemToLibraryWithURI:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
         if(error!=nil){
             NSLog(@"Error adding song: %@", error.description);
         }else{
             //show notification on screen
             NSLog(@"Added song to library");
         }
-        
     }];
+    
 }
 - (IBAction)didTapPlayButton:(id)sender {
     [self.playButton setSelected:!self.playButton.isSelected];

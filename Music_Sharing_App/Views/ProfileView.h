@@ -11,6 +11,7 @@
 @import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol ProfileViewDelegate;
 
 @interface ProfileView : UIView
 @property (strong, nonatomic) IBOutlet UIView *profileView;
@@ -18,10 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
 @property (strong, nonatomic) User *user;
-
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) id<ProfileViewDelegate> delegate;
 -(void) setWithUser:(User *)user;
 
 
+@end
+
+@protocol ProfileViewDelegate
+-(void)profileView:(ProfileView *)profileView didTap:(UISegmentedControl *)segmentedControl;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -64,7 +64,7 @@
     self.commentView.post = post;
     NSString *song = self.post.musicLink;
     song = [song substringWithRange:NSMakeRange(31, 22)];
-
+    
     [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:post.albumCoverURLString]];
     self.artist = post.artist;
     self.album = post.album;
@@ -75,13 +75,15 @@
     //    [self.backgroundImage loadInBackground];
     self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
     self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
+    [post.author fetchIfNeeded];
     self.usernameLabel.text = [@"shared by " stringByAppendingString:post.author.username];
+    
     [self.favoriteButton setSelected:isFavorited];
-   
+    
 }
 
 - (IBAction)didTapPlayButton:(id)sender {
-   // [self.appDelegate.appRemote connect];
+    // [self.appDelegate.appRemote connect];
     
     [self playSong:self.post.songURI];
     
@@ -93,14 +95,14 @@
     if([self.playButton isSelected] ){
         [self.appDelegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
             if(!error){
-                 NSLog(@"Playing song.");
+                NSLog(@"Playing song.");
             }
-           
+            
         }];
     }else{
         [self.appDelegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-           if(!error){
-                 NSLog(@"Paused song.");
+            if(!error){
+                NSLog(@"Paused song.");
             }
         }];
     }

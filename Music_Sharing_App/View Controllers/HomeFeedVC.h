@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)fetchPosts;
 -(PFQuery *)defineQuery;
 -(void)logout;
+-(void)checkEmptyData:(NSString *)message;
 
 @end
 

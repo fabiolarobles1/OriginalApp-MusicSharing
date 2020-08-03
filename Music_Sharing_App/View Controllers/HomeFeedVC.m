@@ -131,6 +131,7 @@
 
 -(void)fetchPosts{
     // construct query
+    [self.refreshControl beginRefreshing];
     PFQuery *postQuery = [self defineQuery];
     if(self.isMoreDataLoading){
         postQuery.skip = self.skipcount;
@@ -184,23 +185,30 @@
             }];
         }
         if(self.posts.count == 0){
-            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-            UILabel *emptyMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
-            emptyMessageLabel.text = @"No posts yet.";
-            emptyMessageLabel.textColor = [UIColor blackColor];
-            emptyMessageLabel.numberOfLines = 0;
-            emptyMessageLabel.textAlignment = NSTextAlignmentCenter;
-            [emptyMessageLabel setFont:[UIFont fontWithName:@"TrebuchetMS" size:20]];
-            [emptyMessageLabel sizeToFit];
-            
-            self.tableView.backgroundView = emptyMessageLabel;
-            self.tableView.backgroundView.backgroundColor = [UIColor lightGrayColor];
+            [self checkEmptyData:@"No posts yet."];
         }else{
-            [self.tableView reloadData];
+           
+            [self.tableView.backgroundView setHidden:YES];
+             [self.tableView reloadData];
         }
     }];
     
     [self.tableView reloadData];
+}
+
+-(void)checkEmptyData:(NSString *)message{
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    UILabel *emptyMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+    emptyMessageLabel.text = message;
+    emptyMessageLabel.textColor = [UIColor blackColor];
+    emptyMessageLabel.numberOfLines = 0;
+    emptyMessageLabel.textAlignment = NSTextAlignmentCenter;
+    [emptyMessageLabel setFont:[UIFont fontWithName:@"TrebuchetMS" size:20]];
+    [emptyMessageLabel sizeToFit];
+    [self.tableView.backgroundView setHidden:NO];
+    self.tableView.backgroundView = emptyMessageLabel;
+    self.tableView.backgroundView.backgroundColor = [UIColor lightGrayColor];
+    
 }
 
 

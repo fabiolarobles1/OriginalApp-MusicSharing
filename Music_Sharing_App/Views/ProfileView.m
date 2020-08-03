@@ -8,6 +8,7 @@
 
 #import "ProfileView.h"
 
+
 @implementation ProfileView
 
 
@@ -51,4 +52,9 @@
     self.bioLabel.text = user.bio;
     self.usernameLabel.text = [@"@" stringByAppendingString:user.username];
 }
+
+- (IBAction)didTapSegmentedControl:(id)sender {
+    [self.delegate profileView:self didTap:self.segmentedControl];
+}
+
 @end

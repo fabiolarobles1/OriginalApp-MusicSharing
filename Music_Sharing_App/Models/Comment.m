@@ -11,6 +11,7 @@
 @implementation Comment
 @dynamic text;
 @dynamic author;
+@dynamic post;
 
 + (nonnull NSString *)parseClassName { 
     return @"Comment";

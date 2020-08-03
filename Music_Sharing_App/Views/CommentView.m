@@ -57,7 +57,7 @@
         Comment *comment = [[Comment alloc]init];
         comment.text =self.commentTextField.text;
         comment.author = [User currentUser];
-        
+        comment.post = post;
         PFRelation *relation = [post relationForKey:@"comments"];
         
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {

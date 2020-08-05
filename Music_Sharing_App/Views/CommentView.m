@@ -8,6 +8,7 @@
 
 #import "CommentView.h"
 #import "Comment.h"
+#import <ChameleonFramework/Chameleon.h>
 @import Parse;
 
 @interface CommentView()
@@ -47,6 +48,10 @@
     self.commentView.frame = self.bounds;
     self.commentTextField.layer.cornerRadius = 8;
     self.commentTextField.clipsToBounds = true;
+    self.sendButton.tintColor = [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
+   // self.sendButton.layer.cornerRadius = self.sendButton.layer.frame.size.height/4;
+    //self.sendButton.backgroundColor =  [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
+   
 }
 
 

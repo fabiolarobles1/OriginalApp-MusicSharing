@@ -23,6 +23,7 @@
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) NSMutableArray *recommendedSongs;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 @end
 
 @implementation RecommendedVC
@@ -49,9 +50,10 @@
 
 -(void)fetchSongs{
     PFQuery *postQuery = [Post query];
-    [postQuery whereKey:@"author" equalTo:self.user];
-    [postQuery includeKey:@"author"];
+    
+   // [postQuery includeKey:@"author"];
     [postQuery includeKey:@"songURI"];
+    [postQuery whereKey:@"author" equalTo:self.user];
     
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
         int count=0;
@@ -60,7 +62,7 @@
             NSString *URI = [[post.songURI substringFromIndex:14] stringByAppendingString:@","];
             self.songs = [self.songs stringByAppendingString:URI];
             if(count>=5){
-                
+                break;
             }
         }
         self.songs = [self.songs substringToIndex:[self.songs length]-1];
@@ -69,7 +71,6 @@
             if(!error){
                 for(NSDictionary *dic in songs[@"tracks"]){
                     [self.recommendedSongs addObject:dic];
-                    NSLog(@"FAB: %@", dic);
                 }
                 
                 NSLog(@"Songs: %ld", [self.recommendedSongs count]);
@@ -78,9 +79,16 @@
             }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
+            self.songs = @"";
             
+            if(self.recommendedSongs.count==0){
+                self.label.text = @"Sorry, we don't have any recommendations at the moment";
+            }else{
+                self.label.text = @"We found some recommended songs based on your last posts.";
+            }
         }];
     }];
+    
     
 }
 - (IBAction)didTapLogout:(id)sender {

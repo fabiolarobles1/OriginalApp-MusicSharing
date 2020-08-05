@@ -10,12 +10,14 @@
 #import "Comment.h"
 #import "CommentCell.h"
 #import "SongInfoVC.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @import Parse;
 
 @interface DetailsVC ()
 @property (strong, nonatomic) NSMutableArray *comments;
 @property (weak, nonatomic) IBOutlet PFImageView *backgroundImageView;
+@property (weak, nonatomic) NSTimer *commentLoad;
 
 @end
 
@@ -34,7 +36,7 @@
     
     self.detailsView.delegate = self;
     [self.detailsView setView:self.post isFavorited:self.isFavorited];
-    
+    [self.tableView setAllowsSelection:NO];
    
     [self refreshComments];
     
@@ -42,8 +44,12 @@
     
     //DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
+    self.commentLoad= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.commentLoad invalidate];
 }
 
 -(void)refreshComments{
@@ -68,6 +74,9 @@
         }
     }];
     [self.tableView reloadData];
+}
+- (IBAction)didTapScreen:(id)sender {
+    [self.view endEditing:YES];
 }
 
 

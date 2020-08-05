@@ -75,7 +75,7 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
 }
 
 -(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *songs , NSError *error ))completion{
-    NSDictionary *parameters = @{@"limit":@(20),@"seed_tracks":songs,@"min_popularity":@(50)};
+    NSDictionary *parameters = @{@"limit":@(20),@"seed_tracks":songs};
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];

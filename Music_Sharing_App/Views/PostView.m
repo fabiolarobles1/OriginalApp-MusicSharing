@@ -7,9 +7,7 @@
 //
 
 #import "PostView.h"
-#import "Post.h"
-#import "User.h"
-
+#import <ChameleonFramework/Chameleon.h>
 
 @interface PostView()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
@@ -47,10 +45,33 @@
     
     //contrain xib so it takes entire view
     self.postView.frame = self.bounds;
+    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
+    self.userImageView.clipsToBounds = YES;
 }
 
 
 -(void) setWithPost:(Post *)post{
+    self.post = post;
+    self.usernameLabel.textColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    self.userImageView.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    self.favoriteButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    PFQuery *picQuery = [User query];
+    [picQuery whereKey:@"objectId" equalTo:post.author.objectId];
+    [picQuery includeKey:@"profilePic"];
+    
+    [picQuery findObjectsInBackgroundWithBlock:^(NSArray<User *> * _Nullable objects, NSError * _Nullable error) {
+        if(!error){
+            self.user = objects[0];
+            if(self.user.profilePic){
+                self.userImageView.file = self.user.profilePic;
+                [self.userImageView loadInBackground];
+            }else{
+                self.userImageView.image = [UIImage systemImageNamed:@"person.circle.fill"];
+            }
+        }
+    }];
+    
+
     self.titleLabel.text = post.title;
     if(post.genre!=nil){
         self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
@@ -66,7 +87,7 @@
         self.captionLabel.text = @"";
         [self.captionLabel setHidden:YES];
     }
-    self.post = post;
+    
     self.date = post.createdAt;
     
     //see if works

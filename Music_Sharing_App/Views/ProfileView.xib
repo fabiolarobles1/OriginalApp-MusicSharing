@@ -49,13 +49,13 @@
                     </constraints>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fKD-ub-HmU">
-                    <rect key="frame" x="0.0" y="363" width="414" height="32"/>
+                    <rect key="frame" x="0.0" y="358" width="414" height="32"/>
                     <segments>
                         <segment title="Posts"/>
                         <segment title="Likes"/>
                         <segment title="Comments"/>
                     </segments>
-                    <color key="selectedSegmentTintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="selectedSegmentTintColor" red="0.035294117647058823" green="0.94117647058823528" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="didTapSegmentedControl:" destination="-1" eventType="valueChanged" id="FVZ-sf-wF5"/>
                     </connections>
@@ -69,7 +69,7 @@
                 <constraint firstItem="BVG-iq-zRu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="GtB-Bj-ny1"/>
                 <constraint firstItem="fKD-ub-HmU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uTf-SP-jup" secondAttribute="bottom" constant="10" id="Pds-fh-ccv"/>
                 <constraint firstItem="3Sl-gz-f1z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="QP5-jI-ksr"/>
-                <constraint firstItem="at2-p0-pBz" firstAttribute="top" secondItem="fKD-ub-HmU" secondAttribute="bottom" id="SU3-zm-cih"/>
+                <constraint firstItem="at2-p0-pBz" firstAttribute="top" secondItem="fKD-ub-HmU" secondAttribute="bottom" constant="5" id="SU3-zm-cih"/>
                 <constraint firstItem="3Sl-gz-f1z" firstAttribute="leading" secondItem="BVG-iq-zRu" secondAttribute="trailing" constant="10" id="b4u-9X-DNv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="at2-p0-pBz" secondAttribute="trailing" constant="1" id="g6g-mT-SvQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fKD-ub-HmU" secondAttribute="trailing" id="gtz-6t-2g1"/>

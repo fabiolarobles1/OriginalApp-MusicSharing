@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "User.h"
 @import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,7 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *userImageView;
 @property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) User *user;
+
 @property (strong, nonatomic) NSDate *date;
 
 -(void)customInit;

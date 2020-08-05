@@ -12,6 +12,8 @@ target 'Music_Sharing_App' do
   pod 'AFNetworking'
   pod 'AFOAuth2Manager'
   pod 'MBProgressHUD'
+  pod 'ChameleonFramework', '~> 2.1'
+  pod 'MaterialComponents'
 
   target 'Music_Sharing_AppTests' do
     inherit! :search_paths

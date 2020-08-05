@@ -20,6 +20,7 @@
 #import "User.h"
 #import "Comment.h"
 #import "CommentCell.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface ProfilleVC ()<UITableViewDelegate,UITableViewDataSource, ProfileViewDelegate>
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
@@ -30,6 +31,7 @@
 @property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic) Post *post;
 @property (nonatomic) NSInteger segmentIndex;
+@property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 
 @end
 
@@ -41,6 +43,8 @@
     self.profileView.delegate = self;
     [self.profileView setWithUser:[User currentUser]];
     [self.tableView reloadData];
+    self.editProfileButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    
     
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

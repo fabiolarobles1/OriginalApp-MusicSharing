@@ -2,6 +2,12 @@ ${PODS_ROOT}/Target Support Files/Pods-Music_Sharing_App/Pods-Music_Sharing_App-
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/AFOAuth2Manager/AFOAuth2Manager.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework
+${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework
+${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework
+${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework
+${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework

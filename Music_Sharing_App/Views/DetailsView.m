@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
 #import "SpotifyManager.h"
+#import <ChameleonFramework/Chameleon.h>
 @import Parse;
 
 @interface DetailsView()
@@ -49,6 +50,10 @@
     
     //contrain xib so it takes entire view
     self.detailsView.frame = self.bounds;
+    
+    self.songInfoButton.tintColor = [UIColor colorWithHexString:@"09F0FA"];
+    self.playButton.tintColor = [UIColor colorWithHexString:@"09F0FA"];
+    self.favoriteButton.tintColor = [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
     
     [self setDelegates];
 }

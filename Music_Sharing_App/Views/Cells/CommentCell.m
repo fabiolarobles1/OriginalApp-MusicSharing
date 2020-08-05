@@ -7,6 +7,7 @@
 //
 
 #import "CommentCell.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @implementation CommentCell
 
@@ -14,6 +15,7 @@
     [super awakeFromNib];
     // Initialization code
     self.backgroundColor = [UIColor clearColor];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

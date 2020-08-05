@@ -7,6 +7,7 @@
 //
 
 #import "ProfileView.h"
+#import <ChameleonFramework/Chameleon.h>
 
 
 @implementation ProfileView
@@ -42,6 +43,9 @@
     self.profileView.frame = self.bounds;
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2;
     self.profileImageView.clipsToBounds = YES;
+    self.profileImageView.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    self.usernameLabel.textColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    
 }
 
 

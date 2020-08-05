@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "SpotifyManager.h"
+#import <ChameleonFramework/Chameleon.h>
 
 
 static NSString * const spotifyClientID = @"4aee2af8f9ee40899fca0aa8cb45a531";
@@ -25,8 +26,14 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+   
+    UIColor *teal = [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00];
+    UIColor *navy = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
+    [UINavigationBar appearance].barTintColor = navy;
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+   [[UINavigationBar appearance] setTranslucent:NO];
     //Initializing Parse and setting server
+    
     ParseClientConfiguration *config = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
         configuration.applicationId = @"musicSharingApp-Fab";

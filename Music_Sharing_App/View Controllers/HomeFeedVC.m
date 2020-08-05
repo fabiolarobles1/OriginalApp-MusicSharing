@@ -16,7 +16,7 @@
 #import "ComposeVC.h"
 #import "DetailsVC.h"
 
-@interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource>
+@interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -25,7 +25,6 @@
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic) Post *post;
-
 @end
 
 @implementation HomeFeedVC
@@ -33,6 +32,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -131,6 +131,9 @@
 
 -(void)fetchPosts{
     // construct query
+    if([self.refreshControl isRefreshing]){
+        self.skipcount = 0;
+    }
     [self.refreshControl beginRefreshing];
     PFQuery *postQuery = [self defineQuery];
     if(self.isMoreDataLoading){
@@ -189,7 +192,8 @@
         }else{
            
             [self.tableView.backgroundView setHidden:YES];
-             [self.tableView reloadData];
+            [self.tableView reloadData];
+            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         }
     }];
     
@@ -220,7 +224,7 @@
         
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
-            self.skipcount +=20;
+            self.skipcount +=20;    
             self.isMoreDataLoading = YES;
             
             // Update position of loadingMoreView, and start loading indicator

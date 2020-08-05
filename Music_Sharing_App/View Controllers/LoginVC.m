@@ -10,20 +10,28 @@
 #import <Parse/Parse.h>
 #import "SpotifyManager.h"
 #import "User.h"
+#import "Chameleon.h"
 
 @interface LoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
 @end
 
 @implementation LoginVC
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self.passwordField setSecureTextEntry:YES];
-    
+    self.loginButton.layer.cornerRadius = self.loginButton.frame.size.height/2;
+    self.signUpButton.layer.cornerRadius = self.signUpButton.frame.size.height/2;
+
 }
 
 

@@ -9,15 +9,24 @@
 #import "SongInfoVC.h"
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface SongInfoVC ()
 @property (strong, nonatomic) AppDelegate *appDelegate;
+@property (weak, nonatomic) IBOutlet UIView *backgroudView;
 @end
 
 @implementation SongInfoVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    UIColor *tealBlue = [UIColor colorWithHexString:@"09F0FA"];
+    self.backgroudView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.backgroudView.frame
+                                                               andColors:@[[UIColor colorWithComplementaryFlatColorOf:tealBlue], tealBlue]];
+
+    self.addToSpotifyButton.layer.cornerRadius = self.addToSpotifyButton.frame.size.height/2;
+    
     if(self.post){
         [self setWithPost:self.post];
         [self.playButton setHidden:YES];
@@ -58,6 +67,7 @@
 }
 - (IBAction)didTapPlayButton:(id)sender {
     [self.playButton setSelected:!self.playButton.isSelected];
+    [self.appDelegate.appRemote connect];
     if(self.playButton.isSelected){
     [self.appDelegate.appRemote.playerAPI play:self.songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
     }];

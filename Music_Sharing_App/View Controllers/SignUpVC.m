@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
 @end
 
@@ -25,6 +26,7 @@
     [super viewDidLoad];
     [self.passwordField setSecureTextEntry:YES];
     [self.confirmPasswordField setSecureTextEntry:YES];
+    self.signUpButton.layer.cornerRadius = self.signUpButton.frame.size.height/2;
 }
 
 -(void) registerUser{

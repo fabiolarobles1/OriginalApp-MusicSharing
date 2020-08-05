@@ -55,6 +55,7 @@
     self.usernameLabel.textColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
     self.userImageView.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
     self.favoriteButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    self.postImageView.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
     PFQuery *picQuery = [User query];
     [picQuery whereKey:@"objectId" equalTo:post.author.objectId];
     [picQuery includeKey:@"profilePic"];
@@ -73,6 +74,7 @@
     
 
     self.titleLabel.text = post.title;
+   // self.titleLabel.text  = post.songName;
     if(post.genre!=nil){
         self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
     }

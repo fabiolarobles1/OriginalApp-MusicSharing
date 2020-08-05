@@ -11,10 +11,11 @@
 #import <ChameleonFramework/Chameleon.h>
 @import Parse;
 
-@interface CommentView()
+@interface CommentView() <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet UILabel *addCommentLabel;
 
 @end
 
@@ -36,6 +37,7 @@
     return self;
 }
 
+
 -(void) customInit{
     
     //grabbing xib
@@ -49,11 +51,21 @@
     self.commentTextField.layer.cornerRadius = 8;
     self.commentTextField.clipsToBounds = true;
     self.sendButton.tintColor = [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
+    self.commentTextField.delegate = self;
    // self.sendButton.layer.cornerRadius = self.sendButton.layer.frame.size.height/4;
     //self.sendButton.backgroundColor =  [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
    
 }
 
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    [self.addCommentLabel setHidden:YES];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if([[self.commentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0){
+        [self.addCommentLabel setHidden:NO];
+    }
+}
 
 - (IBAction)didTapSend:(id)sender {
     if([[self.commentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0){
@@ -89,6 +101,7 @@
         [self.sendButton setEnabled:YES];
         [self.commentView endEditing:YES];
         self.commentTextField.text = @"";
+        [self.addCommentLabel setHidden:NO];
   
 }
 

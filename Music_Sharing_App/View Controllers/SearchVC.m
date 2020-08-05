@@ -16,6 +16,8 @@
 #import "DateTools.h"
 #import "DetailsVC.h"
 #import "SearchFilterVC.h"
+#import "SceneDelegate.h"
+#import "LoginVC.h"
 
 @interface SearchVC ()
 
@@ -155,6 +157,27 @@
     [self.searchBar resignFirstResponder];
 }
 
+- (IBAction)didTapLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+           if(error ==nil){
+               NSLog(@"Successfully logged out user.");
+           }
+           else{
+               NSLog(@"Error loggin out user.");
+           }
+       }];
+       
+       SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+       
+       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+       LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+       myDelegate.window.alpha = 0.50;
+       myDelegate.window.rootViewController = loginViewController;
+       
+       [UIView animateWithDuration:2 animations:^{
+           myDelegate.window.alpha = 1;
+       }];
+}
 
 
 

@@ -31,7 +31,13 @@ static NSString * const tokenRefreshURLString = @"https://musicsharingapp-spotif
     UIColor *navy = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     [UINavigationBar appearance].barTintColor = navy;
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-   [[UINavigationBar appearance] setTranslucent:NO];
+    UIFont *font = [UIFont systemFontOfSize:20.0];
+    UIColor *color =[UIColor whiteColor];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObjects:@[font,color] forKeys:@[NSFontAttributeName, NSForegroundColorAttributeName]];
+  
+   // NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@"HI" attributes:attrsDictionary];
+    [UINavigationBar appearance].titleTextAttributes = attrsDictionary;
+    [[UINavigationBar appearance] setTranslucent:NO];
     //Initializing Parse and setting server
     
     ParseClientConfiguration *config = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {

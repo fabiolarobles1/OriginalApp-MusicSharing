@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
 @property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
-
+@property (weak, nonatomic) IBOutlet UILabel *addCaptionLabel;
 @property (nonatomic) CGFloat initialY;
 @property (nonatomic) CGFloat offset;
 @property (nonatomic) BOOL captionSelected;
@@ -75,6 +75,7 @@
     
 }
 
+
 -(NSString *)moodToString:(MusicSharingAppMood)mood{
     switch(mood){
         case  MusicSharingAppMoodActive:
@@ -99,6 +100,7 @@
             return nil;
     }
 }
+
 
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:YES];
@@ -217,6 +219,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     NSUInteger maxTittleLenght = [textField.text length] +[string length] - range.length;
     if(maxTittleLenght>30){
@@ -231,6 +234,7 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
+
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
@@ -252,6 +256,7 @@
     }
 }
 
+
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
         self.mood= [self.moods objectAtIndex:row];
@@ -269,6 +274,7 @@
     }
     
 }
+
 
 - (IBAction)didTapCancel:(id)sender {
     [self toFeed];
@@ -288,12 +294,15 @@
     }];
 }
 
+
 - (IBAction)didTapSelectGenre:(id)sender {
     [self.genrePickerView reloadAllComponents];
     [self.genrePickerView setHidden:NO];
     [self.selectGenreButton setHidden:YES];
     [self.selectMoodButton setHidden:YES];
 }
+
+
 - (IBAction)didTapSelectMood:(id)sender {
     [self.moodPickerView reloadAllComponents];
     [self.moodPickerView setHidden:NO];
@@ -308,23 +317,33 @@
     
 }
 
+
 -(void)keyboardWillShow:(NSNotification *) notification{
     NSDictionary* info = [notification userInfo];
     self.offset = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
 }
 
+
 -(void)keyboardWillHide:(NSNotification *)notification{
+    self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY + self.offset/4, self.fullView.frame.size.width, self.fullView.frame.size.height);
     
-    self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY , self.fullView.frame.size.width, self.fullView.frame.size.height);
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
-    
+    [self.addCaptionLabel setHidden:YES];
     [UIView animateWithDuration:.5 animations:^{
         self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY - self.offset/2, self.fullView.frame.size.width, self.fullView.frame.size.height);
     }];
     
 }
+
+-(void)textViewDidEndEditing:(UITextField *)textField{
+    if([[self.captionField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0){
+        [self.addCaptionLabel setHidden:NO];
+    }
+}
+
+
 
 /*
  #pragma mark - Navigation

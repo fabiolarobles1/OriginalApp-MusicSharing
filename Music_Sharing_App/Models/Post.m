@@ -76,7 +76,5 @@ withAlbumCoverURLString: ( NSString *)albumCoverURLString
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-+(void)updatePost:(Post *)post{
-    [post saveInBackground];
-}
+
 @end

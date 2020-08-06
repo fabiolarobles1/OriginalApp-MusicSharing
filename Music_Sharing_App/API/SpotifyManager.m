@@ -106,4 +106,24 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
 }
 
 
+-(void)playSong:(NSString *)songURI play:(BOOL)play appDelegate:(AppDelegate *)appDelegate{
+    if(![appDelegate.appRemote isConnected]){
+        [appDelegate.appRemote connect];
+    }
+    if(play){
+        [appDelegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+            if(!error){
+                NSLog(@"Playing song.");
+            }
+        }];
+    }else{
+        [appDelegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+            if(!error){
+                NSLog(@"Paused song.");
+            }
+        }];
+    }
+}
+
+
 @end

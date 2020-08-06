@@ -9,6 +9,8 @@
 #import "PostView.h"
 #import <ChameleonFramework/Chameleon.h>
 
+
+
 @interface PostView()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
@@ -49,92 +51,81 @@
     self.postView.frame = self.bounds;
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
     self.userImageView.clipsToBounds = YES;
+    
+    //setting colors
+    UIColor  *customRed = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    self.usernameLabel.textColor = customRed;
+    self.userImageView.tintColor = customRed;
+    self.favoriteButton.tintColor = customRed;
+    self.postImageView.tintColor = customRed;
 }
 
 
 -(void) setWithPost:(Post *)post{
     self.post = post;
-    self.usernameLabel.textColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
-    self.userImageView.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
-    self.favoriteButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
-    self.postImageView.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
-    PFQuery *picQuery = [User query];
-    [picQuery whereKey:@"objectId" equalTo:post.author.objectId];
-    [picQuery includeKey:@"profilePic"];
+    self.user = post.author;
+    self.date = post.createdAt;
     
-    [picQuery findObjectsInBackgroundWithBlock:^(NSArray<User *> * _Nullable objects, NSError * _Nullable error) {
-        if(!error){
-            self.user = objects[0];
-            if(self.user.profilePic){
-                self.userImageView.file = self.user.profilePic;
-                [self.userImageView loadInBackground];
-            }else{
-                self.userImageView.image = [UIImage systemImageNamed:@"person.circle.fill"];
-            }
-        }
-    }];
+    [self.user fetchIfNeeded];
     
-
-    
-    self.titleLabel.text  = post.songName;
-    if(post.genre!=nil){
-        self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
+    if(self.user.profilePic){
+        //setting profile image
+        self.userImageView.file = self.user.profilePic;
+        [self.userImageView loadInBackground];
+        
+    }else{
+        //if not available setting default image to avoid reusing another user's profile image
+        self.userImageView.image = [UIImage systemImageNamed:@"person.circle.fill"];
     }
-    if(post.mood!=nil){
-        self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
-    }
+    
     if(post.caption.length!=0){
         [self.captionLabel setHidden:NO];
         self.captionLabel.text = post.caption;
-       // self.captionLabel.text = [@"Caption: " stringByAppendingString:post.caption];
     }else{
-        self.captionLabel.text = @"";
         [self.captionLabel setHidden:YES];
     }
     
-    self.date = post.createdAt;
-    
-    //see if works
     if(post.image == nil){
         [self.postImageView setHidden:YES];
         self.imageHeightConstraint.constant = 0.0;
         self.imageWidthConstraint.constant = 0.0;
-       
     }else{
         [self.postImageView setHidden:NO];
         self.imageHeightConstraint.constant = 100.0;
         self.imageWidthConstraint.constant = 100.0;
     }
+    
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
-    __block BOOL isFavorited = NO;
-    PFQuery *query = [User query];
-    [query whereKey:@"objectId" equalTo:[User currentUser].objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray<User *> *_Nullable objects, NSError * _Nullable error) {
-        for(User *user in objects){
-            PFRelation *relation = [user relationForKey:@"likes"];
-            PFQuery *relationQuery = [relation query];
-            [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
-                for(Post *post in objects){
-                    if([post.objectId isEqual:self.post.objectId]){
-                        isFavorited = YES;
-                        [self.favoriteButton setSelected:YES];
-                    }
-                }
-                if(!isFavorited){
-                    [self.favoriteButton setSelected:NO];
-                }
-            }];
+    
+    //making query to see if post was already liked
+    PFRelation *relation = [[User currentUser] relationForKey:@"likes"];
+    PFQuery *relationQuery = [relation query];
+    [relationQuery whereKey:@"objectId" equalTo:post.objectId];
+    [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+        if(objects.count==1){
+            [self.favoriteButton setSelected:YES];
+        }else{
+            [self.favoriteButton setSelected:NO];
         }
     }];
     
+    //setting up labels
+    self.titleLabel.text  = post.songName;
+    self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
+    self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
     self.likeCountLabel.text =[@(self.post.likesCount)stringValue];
     self.usernameLabel.text = [@"@" stringByAppendingString:post.author.username];
+    
 }
 
 
 - (IBAction)didTapLike:(id)sender {
+    
+    //setting like selected/unselected
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
+    
+    //making relation of current post to user's liked post
     User *user = [User currentUser];
     PFRelation *relation = [user relationForKey:@"likes"];
     
@@ -145,8 +136,9 @@
         self.post.likesCount -=1;
         [relation removeObject:self.post];
     }
+    [self.post saveInBackground];
     
-    [Post updatePost:self.post];
+    //saving relation
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Relation succeded.");
@@ -155,7 +147,8 @@
         }
     }];
     
-    self.likeCountLabel.text = [@(self.post.likesCount)stringValue];
+    //updating like count on label
+    self.likeCountLabel.text = [@(self.post.likesCount) stringValue];
     
 }
 

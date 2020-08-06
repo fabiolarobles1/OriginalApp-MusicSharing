@@ -15,7 +15,6 @@
 
 @interface DetailsView()
 
-
 @property (strong, nonatomic) NSString *artist;
 @property (strong, nonatomic) NSString *album;
 @property (strong, nonatomic) NSString *songName;
@@ -51,9 +50,11 @@
     //contrain xib so it takes entire view
     self.detailsView.frame = self.bounds;
     
-    self.songInfoButton.tintColor = [UIColor colorWithHexString:@"09F0FA"];
-    self.playButton.tintColor = [UIColor colorWithHexString:@"09F0FA"];
-    self.favoriteButton.tintColor = [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
+    //setting colors
+    UIColor *appDarkBlue = [UIColor colorWithHexString:@"09F0FA"];
+    self.songInfoButton.tintColor = appDarkBlue;
+    self.playButton.tintColor = appDarkBlue;
+    self.favoriteButton.tintColor = [UIColor colorWithComplementaryFlatColorOf:appDarkBlue];
     
     [self setDelegates];
 }
@@ -63,56 +64,31 @@
     [self.appDelegate.appRemote connect];
 }
 
+
 -(void)setView:(Post *)post isFavorited:(BOOL)isFavorited{
     self.post = post;
     self.commentView.post = post;
-    NSString *song = self.post.musicLink;
-    song = [song substringWithRange:NSMakeRange(31, 22)];
-    
-    [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:post.albumCoverURLString]];
     self.artist = post.artist;
     self.album = post.album;
     self.songName = post.songName;
-    
     self.captionLabel.text = post.caption;
-    //    self.backgroundImage.file = self.post.image;
-    //    [self.backgroundImage loadInBackground];
     self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
     self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
-    [post.author fetchIfNeeded];
+    [self.post.author fetchIfNeeded];
     self.usernameLabel.text = [@"shared by " stringByAppendingString:post.author.username];
-    
     [self.favoriteButton setSelected:isFavorited];
-    
+    [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:post.albumCoverURLString]];
 }
 
 - (IBAction)didTapPlayButton:(id)sender {
     if(![self.appDelegate.appRemote isConnected]){
         [self.appDelegate.appRemote connect];
     }
-    
-    [self playSong:self.post.songURI];
-    
-}
-
--(void)playSong:(NSString *)songURI{
     [self.playButton setSelected:!self.playButton.isSelected];
     
-    if([self.playButton isSelected] ){
-        [self.appDelegate.appRemote.playerAPI play:songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
-            if(!error){
-                NSLog(@"Playing song.");
-            }
-            
-        }];
-    }else{
-        [self.appDelegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-            if(!error){
-                NSLog(@"Paused song.");
-            }
-        }];
-    }
+    [[SpotifyManager shared] playSong:self.post.songURI play:self.playButton.isSelected appDelegate:self.appDelegate];
 }
+
 
 - (IBAction)didTapLike:(id)sender {
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
@@ -127,7 +103,7 @@
         [relation removeObject:self.post];
     }
     
-    [Post updatePost:self.post];
+    [self.post saveInBackground];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Relation succeded.");
@@ -138,9 +114,11 @@
 }
 
 
+/**
+ * Calling delegate of info button
+ */
 - (IBAction)didTapInfoButton:(id)sender {
     [self.delegate detailsView:self didTap:self.songInfoButton];
-    
 }
 
 

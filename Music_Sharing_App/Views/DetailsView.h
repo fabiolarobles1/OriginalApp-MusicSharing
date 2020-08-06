@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol DetailsViewDelegate;
 
+/**
+ *Custom Details View of Post with .xib file
+ */
 @interface DetailsView : UIView
 
 @property (strong, nonatomic) IBOutlet UIView *detailsView;
@@ -29,14 +32,30 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet CommentView *commentView;
+
+///The post the view is about
 @property (strong, nonatomic) Post *post;
+
+///App Delegate to get spotify session instance
 @property (strong, nonatomic) AppDelegate *appDelegate;
+
+///Details view delegate for protocol
 @property (weak, nonatomic) id<DetailsViewDelegate> delegate;
 
+/**
+ *This methods sets the details view with the post information, including the liked by user.
+ *@param post Post object to display view
+ *@param isFavorited YES if post is liked by user and NO otherwise
+ */
 -(void)setView:(Post *)post isFavorited:(BOOL)isFavorited;
 @end
 
+
 @protocol DetailsViewDelegate
+
+/**
+ *Sets delegate of the view when tapping the info button
+ */
 -(void)detailsView:(DetailsView *)detailsView didTap:(UIButton *)infoButton;
 @end
 

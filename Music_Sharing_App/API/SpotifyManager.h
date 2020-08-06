@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "AFOAuth2Manager.h"
 #import "AFHTTPRequestSerializer+OAuth2.h"
+#import "AppDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface SpotifyManager : AFOAuth2Manager
 
+/**
+ *Shared instance of SpotifyManager
+ */
 +(instancetype)shared;
 
 /**
@@ -45,6 +49,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *posts , NSError *error ))completion;
 
+
+/**
+ *Plays a selected song in the background from Spotify
+ *@param songURI Spotify unique identifier for desire song to play
+ *@param play YES to play song, NO to pause song
+ *@param appDelegate appDelegate instance to access the current session and the appRemote
+ */
+-(void)playSong:(NSString *)songURI play:(BOOL)play appDelegate:(AppDelegate *)appDelegate;
 @end
 
 NS_ASSUME_NONNULL_END

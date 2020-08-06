@@ -39,73 +39,70 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
 -(instancetype)init{
     //creating manager with client and secret ID
     self = [super initWithBaseURL:[NSURL URLWithString:baseURL] clientID:spotifyClientID secret:spotifySecretClientID];
-    
     return self;
 }
 
 
-/**
- Creates a request of a song using the Spotify's unique identifier
- 
- @param songURI song's unique identifier
- @param token session authorization token
- @param completion handles the response of the request
- */
--(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{
-    
+-(void)setUpHeaderField:(NSString *)token{
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
-    [self GET:[trackRequestBase stringByAppendingString:songURI]
-    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
+}
+
+
+-(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{
+    //setting header field with access token
+    [self setUpHeaderField:token];
+    
+    //making song request
+    [self GET:[trackRequestBase stringByAppendingString:songURI] parameters:nil progress:nil
+      success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
         
-        NSLog(@"Response from GET: %@", response );
+        //request completed
         completion(response, nil);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //Error
-        NSLog(@"Error from GET: %@", error.description);
+        
+        //request failed
         completion(nil,error);
     }];
 }
 
 
-/// <#Description#>
-/// @param token <#token description#>
-/// @param completion <#completion description#>
--(void)getGenres:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{
-    self.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
+-(void)getGenres:(NSString *)token completion:(void (^)(NSDictionary *genres , NSError *error ))completion{
+    //setting header field with access token
+    [self setUpHeaderField:token];
+    
+    //making genres request
     [self GET:@"https://api.spotify.com/v1/recommendations/available-genre-seeds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
         
+        //request completed
         completion(responseObject, nil);
-        NSLog(@"GENRES: %@", responseObject[@"genres"]);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"Error getting genres: %@", error);
+        //request failed
         completion(nil, error);
-        
     }];
 }
 
 
--(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *songs , NSError *error ))completion{
+-(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs
+                completion:(void (^)(NSDictionary *songs , NSError *error ))completion{
+    //setting header field with access token
+    [self setUpHeaderField:token];
     
+    //making recommended song request with parameters
     NSDictionary *parameters = @{@"limit":@(20),@"seed_tracks":songs};
-    self.requestSerializer = [AFHTTPRequestSerializer serializer];
-    
-    [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
-    
     [self GET:@"https://api.spotify.com/v1/recommendations" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
         
+        //request completed
         completion(responseObject, nil);
-        NSLog(@"Recomendations: %@", responseObject);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"Error getting genres: %@", error);
+        //request failed
         completion(nil, error);
-        
-    }];
-    
+    }];    
 }
 
 

@@ -52,7 +52,7 @@
         CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
         cell.layer.backgroundColor = [[UIColor clearColor] CGColor];
         Comment *comment = self.posts[indexPath.row];
-        [comment fetchIfNeeded];
+        [comment.author fetchIfNeeded];
         cell.commentBackground.layer.cornerRadius = 16;
         cell.commentBackground.clipsToBounds = true;
         cell.commentLabel.text = comment.text;
@@ -141,6 +141,7 @@
         PFQuery *commentQuery = [Comment query];
         [commentQuery includeKey:@"author"];
         [commentQuery includeKey:@"post"];
+        [commentQuery orderByDescending:@"createdAt"];
         [commentQuery findObjectsInBackgroundWithBlock:^(NSArray<Comment *> * _Nullable objects, NSError * _Nullable error) {
             for(Comment *comment in objects){
                 if([comment.author.objectId isEqualToString:[User currentUser].objectId]){
@@ -193,19 +194,20 @@
         Post *post = comment.post;
         [post fetchIfNeeded];
         [detailViewController setPost:post];
-//        PFRelation *relation = [[User currentUser] relationForKey:@"likes"];
-//        PFQuery *relationQuery = [relation query];
-//        [relationQuery whereKey:@"objectId" equalTo:post.objectId];
-//        [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
-//            if(objects.count==1){
-//                detailViewController.isFavorited = YES;
-//            }else{
-//                detailViewController.isFavorited = NO;
-//            }
-//        }];
-//        [detailViewController.detailsView setView:post isFavorited:detailViewController.isFavorited];
+        PFRelation *relation = [[User currentUser] relationForKey:@"likes"];
+        PFQuery *relationQuery = [relation query];
+        [relationQuery whereKey:@"objectId" equalTo:post.objectId];
+        [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+            if(objects.count==1){
+                detailViewController.isFavorited = YES;
+            }else{
+                detailViewController.isFavorited = NO;
+            }
+            [detailViewController.detailsView.favoriteButton setSelected:detailViewController.isFavorited];
+        }];
+        [detailViewController refreshComments];
    }
-    
+
 }
 
 

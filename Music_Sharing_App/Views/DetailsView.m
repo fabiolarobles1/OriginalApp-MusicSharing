@@ -67,17 +67,18 @@
 
 -(void)setView:(Post *)post isFavorited:(BOOL)isFavorited{
     self.post = post;
-    self.commentView.post = post;
-    self.artist = post.artist;
-    self.album = post.album;
-    self.songName = post.songName;
-    self.captionLabel.text = post.caption;
-    self.moodLabel.text = [@"Mood: " stringByAppendingString:post.mood];
-    self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
+    [self.post fetchIfNeeded];
+    self.commentView.post = self.post;
+    self.artist = self.post.artist;
+    self.album = self.post.album;
+    self.songName = self.post.songName;
+    self.captionLabel.text = self.post.caption;
+    self.moodLabel.text = [@"Mood: " stringByAppendingString:self.post.mood];
+    self.genreLabel.text = [@"Genre: " stringByAppendingString:self.post.genre];
     [self.post.author fetchIfNeeded];
-    self.usernameLabel.text = [@"shared by " stringByAppendingString:post.author.username];
+    self.usernameLabel.text = [@"shared by " stringByAppendingString:self.post.author.username];
     [self.favoriteButton setSelected:isFavorited];
-    [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:post.albumCoverURLString]];
+    [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:self.post.albumCoverURLString]];
 }
 
 - (IBAction)didTapPlayButton:(id)sender {

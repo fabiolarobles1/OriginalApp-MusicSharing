@@ -23,18 +23,7 @@
 
 @implementation DetailsVC
 
--(void)viewWillAppear:(BOOL)animated{
-    PFRelation *relation = [[User currentUser] relationForKey:@"likes"];
-    PFQuery *relationQuery = [relation query];
-    [relationQuery whereKey:@"objectId" equalTo:self.post.objectId];
-    [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
-        if(objects.count==1){
-            self.isFavorited = YES;
-        }else{
-            self.isFavorited = NO;
-        }
-        [self.detailsView setView:self.post isFavorited:self.isFavorited];
-    }];
+-(void)viewWillAppear:(BOOL)animated{    
     [self refreshComments];
 }
 
@@ -50,13 +39,9 @@
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
     self.detailsView.delegate = self;
     [self.tableView setAllowsSelection:NO];
-  //  [self.detailsView setView:self.post isFavorited:self.isFavorited];
-    [self refreshComments];
+    [self.detailsView setView:self.post isFavorited:self.isFavorited];
     
-    //maybe change just as when the user posts something
-    
-    //DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS
-    
+    //Instead DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS?
     self.commentLoad= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
     
 }
@@ -68,46 +53,37 @@
 
 -(void)refreshComments{
     
-    // construct query
-    PFQuery *query = [Post query];
-    [query whereKey:@"objectId" equalTo:self.post.objectId];
-    
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray<Post *> *posts, NSError *error) {
-        
-        for(Post *post in posts){
-            PFRelation *relation = [post relationForKey:@"comments"];
-            PFQuery *relationQuery = [relation query];
-            [relationQuery includeKey:@"author"];
-            [relationQuery orderByDescending:@"createdAt"];
-            [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Comment *> * _Nullable objects, NSError * _Nullable error) {
-                if(error==nil){
-                    NSLog(@"Comments: %lu", (unsigned long)objects.count);
-                    self.comments = [objects mutableCopy];
-                }
-            }];
+    PFQuery *commentQuery = [Comment query];
+    [commentQuery whereKey:@"post" equalTo:self.post];
+    [commentQuery includeKey:@"author"];
+    [commentQuery orderByDescending:@"createdAt"];
+    [commentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(error==nil){
+            NSLog(@"Comments: %lu", (unsigned long)objects.count);
+            self.comments = [objects mutableCopy];
         }
+        [self.tableView reloadData];
     }];
-    [self.tableView reloadData];
+    
 }
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:YES];
 }
 
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     
-     if([[segue identifier] isEqualToString:@"toSongInfo"]){
-         SongInfoVC *songInfoViewController = [segue destinationViewController];
-         songInfoViewController.post = self.post;
-     }
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([[segue identifier] isEqualToString:@"toSongInfo"]){
+        SongInfoVC *songInfoViewController = [segue destinationViewController];
+        songInfoViewController.post = self.post;
+    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];

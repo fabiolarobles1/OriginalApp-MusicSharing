@@ -57,6 +57,9 @@ withAlbumCoverURLString: ( NSString *)albumCoverURLString
     newPost.songURI = songURI;
     newPost.likesCount = 0;
     newPost.commentsCount = 0;
+    
+    PFRelation *relation = [[User currentUser] relationForKey:@"posts"];
+    [relation addObject:newPost];
     [newPost saveInBackgroundWithBlock: completion];
     
 }

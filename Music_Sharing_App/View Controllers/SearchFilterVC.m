@@ -10,17 +10,18 @@
 #import <ChameleonFramework/Chameleon.h>
 
 @interface SearchFilterVC ()
-
+@property (nonatomic)UIColor *tealBlue;
 @end
 
 @implementation SearchFilterVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tealBlue = [UIColor colorWithHexString:@"09F0FA"];
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame
+                                                      andColors:@[[UIColor colorWithComplementaryFlatColorOf:self.tealBlue], self.tealBlue]];
     [self customizeButton:self.albumButton];
     [self customizeButton:self.genreButton];
-    [self customizeButton:self.titleButton];
     [self customizeButton:self.moodButton];
     [self customizeButton:self.songnameButton];
     [self customizeButton:self.artistButton];
@@ -28,7 +29,6 @@
     [self customizeButton:self.usernameButton];
     
     self.genreButton.selected =self.senderVC.genreFilter;
-    self.titleButton.selected =self.senderVC.titleFilter;
     self.moodButton.selected =self.senderVC.moodFilter;
     self.songnameButton.selected =self.senderVC.songFilter;
     self.artistButton.selected =self.senderVC.artistFilter;
@@ -42,9 +42,9 @@
     button.layer.borderWidth = 1.0;
     button.layer.cornerRadius = 10;
     button.clipsToBounds = true;
-    button.layer.borderColor =[[UIColor grayColor] CGColor];
+    button.layer.borderColor =[[UIColor colorWithHexString:@"152F4C" withAlpha:1.00] CGColor];
     button.contentEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
-    button.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    button.tintColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
 
     
 }
@@ -53,7 +53,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     self.senderVC.genreFilter = self.genreButton.selected;
     self.senderVC.genreFilter =  self.genreButton.selected;
-    self.senderVC.titleFilter = self.titleButton.selected;
     self.senderVC.moodFilter = self.moodButton.selected;
     self.senderVC.songFilter = self.songnameButton.selected;
     self.senderVC.artistFilter = self.artistButton.selected;
@@ -61,7 +60,6 @@
     self.senderVC.usernameFilter = self.usernameButton.selected;
     self.senderVC.albumFilter = self.albumButton.selected;
     self.senderVC.filteringActivated = (self.genreButton.selected ||
-                                        self.titleButton.selected ||
                                         self.moodButton.selected ||
                                         self.songnameButton.selected ||
                                         self.artistButton.selected ||
@@ -74,21 +72,11 @@
 }
 
 
-- (IBAction)didTapTitleButton:(id)sender {
-    
-    [self.titleButton setSelected:!self.titleButton.isSelected];
-    if(self.titleButton.isSelected){
-        self.titleButton.backgroundColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
-    }else{
-        self.titleButton.backgroundColor = [UIColor clearColor];
-    }
-}
-
 
 - (IBAction)didTapGenreButton:(id)sender {
     [self.genreButton setSelected:!self.genreButton.isSelected];
     if(self.genreButton.isSelected){
-        self.genreButton.backgroundColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.genreButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.genreButton.backgroundColor = [UIColor clearColor];
     }
@@ -98,7 +86,7 @@
 - (IBAction)didTapMoodButton:(id)sender {
     [self.moodButton setSelected:!self.moodButton.isSelected];
     if(self.moodButton.isSelected){
-        self.moodButton.backgroundColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.moodButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.moodButton.backgroundColor = [UIColor clearColor];
     }
@@ -108,7 +96,7 @@
 - (IBAction)didTapSongButton:(id)sender {
     [self.songnameButton setSelected:!self.songnameButton.isSelected];
     if(self.songnameButton.isSelected){
-        self.songnameButton.backgroundColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.songnameButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.songnameButton.backgroundColor = [UIColor clearColor];
     }
@@ -118,7 +106,7 @@
 - (IBAction)didTapArtistButton:(id)sender {
     [self.artistButton setSelected:!self.artistButton.isSelected];
     if(self.artistButton.isSelected){
-        self.artistButton.backgroundColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.artistButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.artistButton.backgroundColor = [UIColor clearColor];
     }
@@ -128,7 +116,7 @@
 - (IBAction)didTapAlbumButton:(id)sender {
     [self.albumButton setSelected:!self.albumButton.isSelected];
     if(self.albumButton.isSelected){
-        self.albumButton.backgroundColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.albumButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.albumButton.backgroundColor = [UIColor clearColor];
     }
@@ -138,7 +126,7 @@
 - (IBAction)didTapCaptionButton:(id)sender {
     [self.captionButton setSelected:!self.captionButton.isSelected];
     if(self.captionButton.isSelected){
-        self.captionButton.backgroundColor =[UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.captionButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.captionButton.backgroundColor = [UIColor clearColor];
     }
@@ -148,7 +136,7 @@
 - (IBAction)didTapUsernameButton:(id)sender {
     [self.usernameButton setSelected:!self.usernameButton.isSelected];
     if(self.usernameButton.isSelected){
-        self.usernameButton.backgroundColor =[UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+        self.usernameButton.backgroundColor = [UIColor colorWithHexString:@"152F4C" withAlpha:1.00];
     }else{
         self.usernameButton.backgroundColor = [UIColor clearColor];
     }

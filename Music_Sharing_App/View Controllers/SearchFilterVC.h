@@ -13,11 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchFilterVC : UIViewController
 @property (strong, nonatomic) SearchVC *senderVC;
-@property (weak, nonatomic) IBOutlet UIButton *titleButton;
 @property (weak, nonatomic) IBOutlet UIButton *moodButton;
 @property (weak, nonatomic) IBOutlet UIButton *usernameButton;
 @property (weak, nonatomic) IBOutlet UIButton *captionButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *songnameButton;
 @property (weak, nonatomic) IBOutlet UIButton *genreButton;
 @property (weak, nonatomic) IBOutlet UIButton *artistButton;

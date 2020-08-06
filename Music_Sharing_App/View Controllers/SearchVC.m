@@ -184,6 +184,7 @@
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;
+        [detailViewController refreshComments];
     }else if([[segue identifier] isEqualToString:@"toFilterView"]){
         SearchFilterVC *searchFilterViewController = [segue destinationViewController];
         searchFilterViewController.senderVC = self;

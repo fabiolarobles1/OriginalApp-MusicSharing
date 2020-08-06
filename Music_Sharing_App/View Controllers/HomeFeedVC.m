@@ -263,6 +263,7 @@
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;
         detailViewController.isFavorited = senderCell.postView.favoriteButton.isSelected;
+        [detailViewController refreshComments];
     }
     
 }

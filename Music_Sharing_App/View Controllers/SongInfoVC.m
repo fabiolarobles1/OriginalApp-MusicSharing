@@ -35,9 +35,11 @@
         [self setWithInfo:self.senderCell.songname artist:self.senderCell.artist album:self.senderCell.album songURI:self.senderCell.songURI albumURLString:self.senderCell.albumURLString];
     }
     
+    
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [self.appDelegate.appRemote connect];
 }
+
 
 -(void)setWithPost:(Post *)post{
     [self.albumCoverImageView setImageWithURL:[NSURL URLWithString:post.albumCoverURLString]];
@@ -45,6 +47,8 @@
     self.artistLabel.text = [@"Artist: " stringByAppendingString:post.artist];
     self.albumLabel.text = [@"Album: " stringByAppendingString:post.album];
 }
+
+
 - (IBAction)didTapAddToSpotify:(id)sender {
     if(self.post){
         [self addToSpotify:self.post.songURI];
@@ -65,6 +69,8 @@
     }];
     
 }
+
+
 - (IBAction)didTapPlayButton:(id)sender {
     [self.playButton setSelected:!self.playButton.isSelected];
     [self.appDelegate.appRemote connect];
@@ -91,6 +97,7 @@
        self.albumLabel.text = [@"Album: " stringByAppendingString:album];
         self.songURI = URI;
 }
+
 
 /*
 #pragma mark - Navigation

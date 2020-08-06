@@ -49,73 +49,81 @@
 }
 
 -(void)fetchSongs{
-    PFQuery *postQuery = [Post query];
+    User *user = [User currentUser];
+    PFRelation *relation = [user relationForKey:@"posts"];
+    PFQuery *postsQuery = [relation query];
+    [postsQuery includeKey:@"songURI"];
     
-   // [postQuery includeKey:@"author"];
-    [postQuery includeKey:@"songURI"];
-    [postQuery whereKey:@"author" equalTo:self.user];
-    
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+    [postsQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
         int count=0;
-        for(Post *post in objects){
-            count++;
-            NSString *URI = [[post.songURI substringFromIndex:14] stringByAppendingString:@","];
-            self.songs = [self.songs stringByAppendingString:URI];
-            if(count>=5){
-                break;
-            }
-        }
-        self.songs = [self.songs substringToIndex:[self.songs length]-1];
-        
-        [[SpotifyManager shared] getRecommendedSongs:self.appDelegate.sessionManager.session.accessToken songsCommaSeparated:self.songs completion:^(NSDictionary * _Nonnull songs, NSError * _Nonnull error) {
-            if(!error){
-                for(NSDictionary *dic in songs[@"tracks"]){
-                    [self.recommendedSongs addObject:dic];
-                }
-                
-                NSLog(@"Songs: %ld", [self.recommendedSongs count]);
-            }else{
-                NSLog(@"Weird: %@", error.description);
-            }
-            [self.refreshControl endRefreshing];
-            [self.tableView reloadData];
-            self.songs = @"";
+        if(objects.count==0){
+            self.label.text = @"Sorry, we don't have any recommendations at the moment";
             
-            if(self.recommendedSongs.count==0){
-                self.label.text = @"Sorry, we don't have any recommendations at the moment";
-            }else{
-                self.label.text = @"We found some recommended songs based on your last posts.";
+        }else{
+            for(Post *post in objects){
+                count++;
+                NSString *URI = [[post.songURI substringFromIndex:14] stringByAppendingString:@","];
+                self.songs = [self.songs stringByAppendingString:URI];
+                if(count>=5){
+                    break;
+                }
             }
-        }];
+            self.songs = [self.songs substringToIndex:[self.songs length]-1];
+            
+            [[SpotifyManager shared] getRecommendedSongs:self.appDelegate.sessionManager.session.accessToken songsCommaSeparated:self.songs completion:^(NSDictionary * _Nonnull songs, NSError * _Nonnull error) {
+                if(!error){
+                    for(NSDictionary *dic in songs[@"tracks"]){
+                        [self.recommendedSongs addObject:dic];
+                    }
+                    
+                    NSLog(@"Songs: %ld", [self.recommendedSongs count]);
+                }else{
+                    NSLog(@"Weird: %@", error.description);
+                }
+                [self.refreshControl endRefreshing];
+                [self.tableView reloadData];
+                self.songs = @"";
+                
+                if(self.recommendedSongs.count==0){
+                    self.label.text = @"Sorry, we don't have any recommendations at the moment";
+                }else{
+                    self.label.text = @"We found some recommended songs based on your last posts.";
+                }
+            }];
+        }
     }];
     
-    
 }
+
+
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-           if(error ==nil){
-               NSLog(@"Successfully logged out user.");
-           }
-           else{
-               NSLog(@"Error loggin out user.");
-           }
-       }];
-       
-       SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-       
-       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-       LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-       myDelegate.window.alpha = 0.50;
-       myDelegate.window.rootViewController = loginViewController;
-       
-       [UIView animateWithDuration:2 animations:^{
-           myDelegate.window.alpha = 1;
-       }];
+        if(error ==nil){
+            NSLog(@"Successfully logged out user.");
+        }
+        else{
+            NSLog(@"Error loggin out user.");
+        }
+    }];
+    
+    SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+    myDelegate.window.alpha = 0.50;
+    myDelegate.window.rootViewController = loginViewController;
+    
+    [UIView animateWithDuration:2 animations:^{
+        myDelegate.window.alpha = 1;
+    }];
 }
+
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RecommendedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"recommendedCell"];

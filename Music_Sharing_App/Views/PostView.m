@@ -10,8 +10,10 @@
 #import <ChameleonFramework/Chameleon.h>
 
 @interface PostView()
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthConstraint;
+
 @end
 
 @implementation PostView
@@ -73,8 +75,8 @@
     }];
     
 
-    self.titleLabel.text = post.title;
-   // self.titleLabel.text  = post.songName;
+    
+    self.titleLabel.text  = post.songName;
     if(post.genre!=nil){
         self.genreLabel.text = [@"Genre: " stringByAppendingString:post.genre];
     }

@@ -30,13 +30,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXh-tH-oMN">
-                    <rect key="frame" x="20" y="45" width="42" height="24"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <rect key="frame" x="20" y="45" width="38.5" height="21.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L80-IF-DpT">
-                    <rect key="frame" x="20" y="79" width="47" height="21"/>
+                    <rect key="frame" x="20" y="76.5" width="47" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHu-N7-6gv">
-                    <rect key="frame" x="20" y="141" width="59.5" height="20.5"/>
+                    <rect key="frame" x="20" y="138.5" width="59.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -61,13 +61,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMJ-Pi-Uui">
-                    <rect key="frame" x="20" y="110" width="44" height="21"/>
+                    <rect key="frame" x="20" y="107.5" width="44" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQT-IL-tt3">
-                    <rect key="frame" x="240" y="169.5" width="20.5" height="25"/>
+                    <rect key="frame" x="240" y="167" width="20.5" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="rdB-nC-7YB"/>
                     </constraints>
@@ -78,7 +78,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdA-43-iEH">
-                    <rect key="frame" x="262.5" y="171.5" width="42" height="21"/>
+                    <rect key="frame" x="262.5" y="169" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -89,7 +89,7 @@
                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="y8y-bK-hkZ" customClass="PFImageView">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="y8y-bK-hkZ" customClass="PFImageView">
                     <rect key="frame" x="10" y="5.5" width="30" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="oWx-Ae-wPO"/>
@@ -112,6 +112,7 @@
                 <constraint firstItem="sXh-tH-oMN" firstAttribute="top" secondItem="y8y-bK-hkZ" secondAttribute="bottom" constant="10" id="L1v-mi-rxU"/>
                 <constraint firstItem="qzJ-N7-nm7" firstAttribute="top" secondItem="3xM-5Y-moE" secondAttribute="top" id="NxS-UF-jE9"/>
                 <constraint firstItem="UdA-43-iEH" firstAttribute="leading" secondItem="rQT-IL-tt3" secondAttribute="trailing" constant="2" id="QPr-j0-jgi"/>
+                <constraint firstItem="zO7-hj-V6d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sXh-tH-oMN" secondAttribute="trailing" constant="5" id="SNO-re-HYX"/>
                 <constraint firstItem="EHu-N7-6gv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="THF-7d-X3C"/>
                 <constraint firstItem="pMJ-Pi-Uui" firstAttribute="top" secondItem="L80-IF-DpT" secondAttribute="bottom" constant="10" id="Taz-HU-fl0"/>
                 <constraint firstItem="L80-IF-DpT" firstAttribute="top" secondItem="sXh-tH-oMN" secondAttribute="bottom" constant="10" id="X3b-6G-TnG"/>

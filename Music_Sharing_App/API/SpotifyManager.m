@@ -35,29 +35,43 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
     return sharedObject;
 }
 
+
 -(instancetype)init{
+    //creating manager with client and secret ID
     self = [super initWithBaseURL:[NSURL URLWithString:baseURL] clientID:spotifyClientID secret:spotifySecretClientID];
     
     return self;
 }
 
+
+/**
+ Creates a request of a song using the Spotify's unique identifier
+ 
+ @param songURI song's unique identifier
+ @param token session authorization token
+ @param completion handles the response of the request
+ */
 -(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{
     
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
     [self GET:[trackRequestBase stringByAppendingString:songURI]
-   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
+    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable response) {
         
         NSLog(@"Response from GET: %@", response );
         completion(response, nil);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
         //Error
         NSLog(@"Error from GET: %@", error.description);
         completion(nil,error);
     }];
 }
+
+
+/// <#Description#>
+/// @param token <#token description#>
+/// @param completion <#completion description#>
 -(void)getGenres:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion{
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer  %@",token] forHTTPHeaderField:@"Authorization"];
@@ -71,10 +85,11 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
         completion(nil, error);
         
     }];
-    
 }
 
+
 -(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *songs , NSError *error ))completion{
+    
     NSDictionary *parameters = @{@"limit":@(20),@"seed_tracks":songs};
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     
@@ -83,7 +98,7 @@ static NSString * const trackRequestBase = @"/v1/tracks/";
     [self GET:@"https://api.spotify.com/v1/recommendations" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
         
         completion(responseObject, nil);
-        NSLog(@"Recoomendations: %@", responseObject);
+        NSLog(@"Recomendations: %@", responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"Error getting genres: %@", error);

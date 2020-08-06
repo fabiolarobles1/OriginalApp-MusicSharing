@@ -15,7 +15,6 @@
 
 @interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *genrePickerView;
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UIPickerView *moodPickerView;
 @property (strong, nonatomic) IBOutlet UIView *fullView;
 @property (strong, nonatomic) NSMutableArray *moods;
@@ -63,7 +62,6 @@
     //Do enum for moods
     self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy",@"Hype", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
     
-    self.titleField.delegate = self;
     self.genrePickerView.delegate = self;
     self.genrePickerView.dataSource = self;
     self.moodPickerView.delegate = self;
@@ -138,7 +136,7 @@
                 NSString *songID = [self.musicLinkField.text substringWithRange:NSMakeRange(31, 22)];
                 NSString *songURI = [@"spotify:track:" stringByAppendingString:songID];
                 
-                [Post createUserPost:self.titleField.text withGenre:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withAlbum: [NSString stringWithFormat:@"%@",albumName] withAlbumCoverURLString:imageURL withSong:[NSString stringWithFormat:@"%@",songName] withArtist:[NSString stringWithFormat:@"%@",insideArtists[@"name"]] withSongURI:songURI withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                [Post createUserPost:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withAlbum: [NSString stringWithFormat:@"%@",albumName] withAlbumCoverURLString:imageURL withSong:[NSString stringWithFormat:@"%@",songName] withArtist:[NSString stringWithFormat:@"%@",insideArtists[@"name"]] withSongURI:songURI withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                     if(succeeded){
                         NSLog(@"Succesfully posted image.");
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -208,7 +206,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    //  UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    // UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
@@ -220,15 +218,15 @@
 }
 
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSUInteger maxTittleLenght = [textField.text length] +[string length] - range.length;
-    if(maxTittleLenght>30){
-        self.titleField.textColor = [UIColor redColor];
-    }else{
-        self.titleField.textColor = [UIColor blackColor];
-    }
-    return maxTittleLenght<=30;
-}
+//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    NSUInteger maxTittleLenght = [textField.text length] +[string length] - range.length;
+//    if(maxTittleLenght>30){
+//        self.titleField.textColor = [UIColor redColor];
+//    }else{
+//        self.titleField.textColor = [UIColor blackColor];
+//    }
+//    return maxTittleLenght<=30;
+//}
 
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

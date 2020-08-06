@@ -43,7 +43,7 @@
     self.profileView.delegate = self;
     [self.profileView setWithUser:[User currentUser]];
     [self.tableView reloadData];
-    self.editProfileButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    // self.editProfileButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
     
     
 }
@@ -190,9 +190,21 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Comment *comment = self.posts[indexPath.row];
         DetailsVC *detailViewController = [segue destinationViewController];
-        [detailViewController setPost:comment.post];
-        detailViewController.detailsView.usernameLabel.text = [User currentUser].username;
-    }
+        Post *post = comment.post;
+        [post fetchIfNeeded];
+        [detailViewController setPost:post];
+//        PFRelation *relation = [[User currentUser] relationForKey:@"likes"];
+//        PFQuery *relationQuery = [relation query];
+//        [relationQuery whereKey:@"objectId" equalTo:post.objectId];
+//        [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+//            if(objects.count==1){
+//                detailViewController.isFavorited = YES;
+//            }else{
+//                detailViewController.isFavorited = NO;
+//            }
+//        }];
+//        [detailViewController.detailsView setView:post isFavorited:detailViewController.isFavorited];
+   }
     
 }
 

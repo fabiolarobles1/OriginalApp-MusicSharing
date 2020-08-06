@@ -13,15 +13,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * The Spotify Manager handles all the requests related to the Spotify API.
+ */
 @interface SpotifyManager : AFOAuth2Manager
 
 +(instancetype)shared;
 
-
--(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void(^)(NSDictionary *song, NSError *error))completion; //could delete Token
-
+/**
+ *
+ */
+-(void)getSong:(NSString *)songURI accessToken:(NSString *)token completion:(void(^)(NSDictionary *song, NSError *error))completion;
 -(void)getGenres:(NSString *)token completion:(void (^)(NSDictionary * , NSError * ))completion;
-
 -(void)getRecommendedSongs:(NSString *)token songsCommaSeparated:(NSString *)songs completion:(void (^)(NSDictionary *posts , NSError *error ))completion;
 
 @end

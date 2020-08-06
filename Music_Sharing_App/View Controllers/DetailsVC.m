@@ -23,6 +23,21 @@
 
 @implementation DetailsVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    PFRelation *relation = [[User currentUser] relationForKey:@"likes"];
+    PFQuery *relationQuery = [relation query];
+    [relationQuery whereKey:@"objectId" equalTo:self.post.objectId];
+    [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+        if(objects.count==1){
+            self.isFavorited = YES;
+        }else{
+            self.isFavorited = NO;
+        }
+        [self.detailsView setView:self.post isFavorited:self.isFavorited];
+    }];
+    [self refreshComments];
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -33,11 +48,9 @@
     [self.backgroundImageView loadInBackground];
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
-    
     self.detailsView.delegate = self;
-    [self.detailsView setView:self.post isFavorited:self.isFavorited];
     [self.tableView setAllowsSelection:NO];
-   
+  //  [self.detailsView setView:self.post isFavorited:self.isFavorited];
     [self refreshComments];
     
     //maybe change just as when the user posts something
@@ -52,11 +65,13 @@
     [self.commentLoad invalidate];
 }
 
+
 -(void)refreshComments{
     
     // construct query
     PFQuery *query = [Post query];
     [query whereKey:@"objectId" equalTo:self.post.objectId];
+    
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray<Post *> *posts, NSError *error) {
         

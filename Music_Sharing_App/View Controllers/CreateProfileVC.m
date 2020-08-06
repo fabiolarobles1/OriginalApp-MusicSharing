@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "SceneDelegate.h"
 #import "HomeFeedVC.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface CreateProfileVC ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
@@ -36,7 +37,8 @@ BOOL imageDidChange = NO;
     if(self.bioTextView.text.length != 0){
         [self.addBioWatermarkLabel setHidden:YES];
     }
-    
+    self.profilePicImageButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
+    self.usernameLabel.textColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;

@@ -25,6 +25,7 @@
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic) Post *post;
+
 @end
 
 @implementation HomeFeedVC
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.isMoreDataLoading = NO;
@@ -45,6 +47,7 @@
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
     // Set up Infinite Scroll loading indicator
     CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
     self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
@@ -57,6 +60,7 @@
 
     [self fetchPosts];
 }
+
 
 - (IBAction)didTapCompose:(id)sender {
     [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
@@ -72,10 +76,10 @@
     cell.delegate= self;
     [cell layoutIfNeeded];
     
-    
     return cell;
     
 }
+
 
 -(void)postCell:(HomePostCell *)postCell didTap:(Post *)post{
     self.post = post;
@@ -87,14 +91,17 @@
     return self.posts.count;
 }
 
+
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     //Unselect cell after entering details
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
 - (IBAction)didTapLogout:(id)sender {
     [self logout];
 }
+
 
 -(void)logout{
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -107,7 +114,6 @@
     }];
     
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
     myDelegate.window.alpha = 0.50;
@@ -118,6 +124,7 @@
     }];
     
 }
+
 
 -(PFQuery *)defineQuery{
     PFQuery *postQuery = [Post query];
@@ -134,7 +141,7 @@
     if([self.refreshControl isRefreshing]){
         self.skipcount = 0;
     }
-    [self.refreshControl beginRefreshing];
+   
     PFQuery *postQuery = [self defineQuery];
     if(self.isMoreDataLoading){
         postQuery.skip = self.skipcount;
@@ -196,9 +203,8 @@
             [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         }
     }];
-    
-    [self.tableView reloadData];
 }
+
 
 -(void)checkEmptyData:(NSString *)message{
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

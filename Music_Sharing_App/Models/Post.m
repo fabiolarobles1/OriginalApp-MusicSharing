@@ -14,7 +14,6 @@
 @dynamic createdAt;
 @dynamic userID;
 @dynamic author;
-@dynamic title;//
 @dynamic musicLink;//
 @dynamic caption;//
 @dynamic image;//
@@ -32,8 +31,7 @@
     return @"Post";
 }
 
-+ (void) createUserPost: ( NSString *)title
-              withGenre: ( NSString *)genre 
++ (void) createUserPost: ( NSString *)genre 
                withMood: ( NSString *)mood   
                withLink: ( NSString *)musicLink
             withCaption: ( NSString * _Nullable)caption
@@ -46,11 +44,10 @@ withAlbumCoverURLString: ( NSString *)albumCoverURLString
          withCompletion: ( PFBooleanResultBlock  _Nullable)completion {
     
     Post *newPost = [Post new];
-    newPost.title = title;
     newPost.genre = genre;
     newPost.mood = mood;
     newPost.musicLink = musicLink;
-    newPost.author = [PFUser currentUser];
+    newPost.author = [User currentUser];
     newPost.caption = caption;
     newPost.image = [self getPFFileFromImage:image];
     newPost.album = albumName;

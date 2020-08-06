@@ -85,13 +85,7 @@
         
         predicate = [NSPredicate predicateWithBlock:^BOOL(Post * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
             
-            if( ([evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString]) &&
-               (!self.filteringActivated || (self.filteringActivated && self.titleFilter))){
-                
-                return [evaluatedObject.title.lowercaseString containsString:searchText.lowercaseString];
-            }
-            
-            else if( ([evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString]) &&
+            if( ([evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString]) &&
                     (!self.filteringActivated || (self.filteringActivated && self.songFilter))){
                 
                 return [evaluatedObject.songName.lowercaseString containsString:searchText.lowercaseString];

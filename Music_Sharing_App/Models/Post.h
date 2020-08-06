@@ -17,8 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *postID;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSString *userID;
-@property (nonatomic, strong) PFUser *author; //change to user class
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) User *author;
 @property (nonatomic, strong) NSString *musicLink;
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) PFFileObject *image;
@@ -32,8 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *albumCoverURLString;
 @property (nonatomic, strong) NSString *songURI;
 
-+ (void) createUserPost: ( NSString *)title
-              withGenre: ( NSString *)genre
++ (void) createUserPost: ( NSString *)genre
                withMood: ( NSString *)mood
                withLink: ( NSString *)musicLink
             withCaption: ( NSString * _Nullable)caption

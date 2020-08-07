@@ -25,7 +25,6 @@
 
 
 - (void) didTapPost:(UITapGestureRecognizer *)sender{
-    
     [self.delegate postCell:self didTap:self.postView.post];
     [self.postView.layer setBackgroundColor:[UIColor grayColor].CGColor];
     [self.postView.layer setOpacity:0.5];

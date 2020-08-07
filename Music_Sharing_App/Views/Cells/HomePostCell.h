@@ -15,14 +15,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomePostCell : UITableViewCell
 
-
 @property (weak, nonatomic) IBOutlet PostView *postView;
+
+///Cell delegate for protocol
 @property (weak, nonatomic) id<PostCellDelegate> delegate;
 
+/**
+ *Recognizes when the post is tapped and calls the delegate
+ */
 - (void) didTapPost:(UITapGestureRecognizer *)sender;
 @end
 
+
 @protocol PostCellDelegate
+/**
+ *Sets the delegate of the cell when tapped
+ */
 -(void)postCell:(HomePostCell *) postCell didTap:(Post *)post;
 @end
 

@@ -10,10 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ *Sets activity indicators when perfoming infinite scroll on a table view
+ */
 @interface InfiniteScrollActivityView : UIView
 @property (class, nonatomic, readonly) CGFloat defaultHeight;
 
+/**
+ *Starts the activity indicator while fetching new data
+ */
 - (void)startAnimating;
+
+/**
+ *Stops activity indicator when the new data is received
+ */
 - (void)stopAnimating;
 
 @end

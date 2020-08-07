@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchCell : HomePostCell
-//@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
 @property (weak, nonatomic) IBOutlet PostView *postView;
 
 @end

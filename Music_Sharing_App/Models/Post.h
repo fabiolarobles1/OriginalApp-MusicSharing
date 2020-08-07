@@ -12,25 +12,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ *Post object including post's song info
+ */
 @interface Post : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) NSString *postID;
-@property (nonatomic, strong) NSDate *createdAt;
-@property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) User *author;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) NSString *postID;
 @property (nonatomic, strong) NSString *musicLink;
 @property (nonatomic, strong) NSString *caption;
-@property (nonatomic, strong) PFFileObject *image;
-@property (nonatomic) int likesCount;
-@property (nonatomic) int commentsCount;
 @property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *mood;
 @property (nonatomic, strong) NSString *artist;
 @property (nonatomic, strong) NSString *album;
 @property (nonatomic, strong) NSString *songName;
-@property (nonatomic, strong) NSString *albumCoverURLString;
 @property (nonatomic, strong) NSString *songURI;
+@property (nonatomic, strong) NSString *albumCoverURLString;
+@property (nonatomic, strong) PFFileObject *image;
+@property (nonatomic) int likesCount;
+@property (nonatomic) int commentsCount;
 
+
+/**
+ *Creates the post onject and saves it to the database with background
+ */
 + (void) createUserPost: ( NSString *)genre
                withMood: ( NSString *)mood
                withLink: ( NSString *)musicLink
@@ -43,6 +49,9 @@ withAlbumCoverURLString: (NSString *)albumCoverURLString
             withSongURI: ( NSString *)songURI
          withCompletion: ( PFBooleanResultBlock  _Nullable)completion;
 
+/**
+ *
+ */
 - (void) likePost:(BOOL)like;
 
 @end

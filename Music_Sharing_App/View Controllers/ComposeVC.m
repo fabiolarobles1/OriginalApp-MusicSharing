@@ -14,15 +14,10 @@
 #import "MBProgressHUD.h"
 
 @interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIPickerView *genrePickerView;
 @property (weak, nonatomic) IBOutlet UIPickerView *moodPickerView;
 @property (strong, nonatomic) IBOutlet UIView *fullView;
-@property (strong, nonatomic) NSMutableArray *moods;
-@property (strong, nonatomic) Post *post;
-@property (strong, nonatomic) UIImage *postImage;
-@property (strong, nonatomic) NSString *mood;
-@property (strong, nonatomic) NSString *genre;
-@property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UITextField *musicLinkField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
@@ -30,9 +25,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
 @property (weak, nonatomic) IBOutlet UILabel *addCaptionLabel;
+
+@property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+@property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) UIImage *postImage;
+@property (strong, nonatomic) NSString *mood;
+@property (strong, nonatomic) NSString *genre;
+
+@property (nonatomic) BOOL captionSelected;
 @property (nonatomic) CGFloat initialY;
 @property (nonatomic) CGFloat offset;
-@property (nonatomic) BOOL captionSelected;
 
 
 @end
@@ -43,44 +45,46 @@
     if(self.songURL){
         self.musicLinkField.text = self.songURL;
     }
+    //requesting available genres in Spotify
+    [[SpotifyManager shared] getGenres:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary *genres, NSError *error) {
+        if(!error){
+            self.genres =[[NSMutableArray alloc]initWithArray:genres[@"genres"]];
+            NSLog(@"Genres: %@", self.genres);
+        }else{
+            NSLog(@"Error loading genres: %@", error);
+        }
+    }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerForKeyboardEvents];
+    
+    //making some UI changes
     self.initialY = self.fullView.frame.origin.y;
-    self.captionField.delegate = self;
-    self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.captionField.layer.borderWidth = 1.0;
     self.captionField.layer.cornerRadius = 5;
     self.captionField.clipsToBounds = true;
-    self.captionField.layer.borderColor =[[UIColor grayColor] CGColor];
-    [[SpotifyManager shared] getGenres:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary *genres, NSError *error) {
-        if(!error){
-            self.genres =[[NSMutableArray alloc]initWithArray:genres[@"genres"]];
-            NSLog(@"finally: %@", self.genres);
-            
-        }else{
-            NSLog(@"SUPER ERROR: %@", error);
-        }
-    }];
+    self.captionField.layer.borderColor =[[UIColor lightGrayColor] CGColor];
     
-    
-    //Do enum for moods
-    self.moods = [NSMutableArray arrayWithObjects: @"Active",@"Bored", @"Chill", @"Happy",@"Hype", @"Lazy", @"Loving",@"Sad", @"Relax", @"Other", nil];
-    
+    //setting up delegates
+    self.captionField.delegate = self;
     self.genrePickerView.delegate = self;
     self.genrePickerView.dataSource = self;
     self.moodPickerView.delegate = self;
     self.moodPickerView.dataSource = self;
+    self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
+    //setting image picker for post optional image
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
-    
 }
 
 
+/**
+ *Returns String value of mood
+ */
 -(NSString *)moodToString:(MusicSharingAppMood)mood{
     switch(mood){
         case  MusicSharingAppMoodActive:
@@ -108,29 +112,57 @@
 
 
 - (IBAction)didTapScreen:(id)sender {
+    //dismiss keyboard when tapping screen
     [self.view endEditing:YES];
+}
+
+/**
+ *Cancel post
+ */
+- (IBAction)didTapCancel:(id)sender {
+    [self toFeed];
+}
+
+
+-(void)invalidLinkAlert{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.musicLinkField.text = @"";
+    }];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 
 - (IBAction)didTapPost:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.postButton.enabled = !self.postButton.enabled;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];//
+    [self.view endEditing:YES];
     NSString *song = self.musicLinkField.text;
-    if([song length]>=53){
+    //avoiding multiple posting of same post
+    self.postButton.enabled = !self.postButton.enabled;
+    
+    if([self.mood length]==0 || [self.genre length]==0 || [self.musicLinkField.text length]==0){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Required Fields." message:@"Mood, Genre, and Spotify Link are required for a post. Please, complete all required fields." preferredStyle:(UIAlertControllerStyleAlert)];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alert addAction:okAction];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }
+    //validating link
+    else if([song length]>=53 &&([[song substringToIndex:31] isEqualToString:@"https://open.spotify.com/track/"])){
         song = [song substringWithRange:NSMakeRange(31, 22)];
         [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
             if(error!=nil){
-                
-                
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
-                
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    self.musicLinkField.text = @"";
-                    
-                }];
-                
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:^{ }];
+                [self invalidLinkAlert];
             }else{
                 NSArray *artist = song[@"artists"];
                 NSDictionary *insideArtists = artist[0];
@@ -148,29 +180,26 @@
                         NSLog(@"Succesfully posted image.");
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self toFeed];
+                    }else if(error){
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"An error occurred while posting." preferredStyle:(UIAlertControllerStyleAlert)];
+                        
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        }];
+                        [alert addAction:okAction];
+                        
+                        [self presentViewController:alert animated:YES completion:^{
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }];
                     }
-                    //IF ERROR
                 }];
             }
         }];
+        
     }else{
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Spotify Link" message:@"The link provided for the song on spotify is invalid. Please, try again with a valid SONG spotify link." preferredStyle:(UIAlertControllerStyleAlert)];
-        
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.musicLinkField.text = @"";
-            
-        }];
-        
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }];
+        [self invalidLinkAlert];
     }
     
-    NSLog(@"Tapping post.");
     self.postButton.enabled = !self.postButton.enabled;
-    
 }
 
 
@@ -225,16 +254,20 @@
 }
 
 
-//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    NSUInteger maxTittleLenght = [textField.text length] +[string length] - range.length;
-//    if(maxTittleLenght>30){
-//        self.titleField.textColor = [UIColor redColor];
-//    }else{
-//        self.titleField.textColor = [UIColor blackColor];
-//    }
-//    return maxTittleLenght<=30;
-//}
+- (IBAction)didTapSelectGenre:(id)sender {
+    [self.genrePickerView reloadAllComponents];
+    [self.genrePickerView setHidden:NO];
+    [self.selectGenreButton setHidden:YES];
+    [self.selectMoodButton setHidden:YES];
+}
 
+
+- (IBAction)didTapSelectMood:(id)sender {
+    [self.moodPickerView reloadAllComponents];
+    [self.moodPickerView setHidden:NO];
+    [self.selectMoodButton setHidden:YES];
+    [self.selectGenreButton setHidden:YES];
+}
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
@@ -264,7 +297,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
-        self.mood= [self.moods objectAtIndex:row];
+        self.mood= [self moodToString:row];
         [self.moodPickerView setHidden:YES];
         [self.selectMoodButton setTitle:self.mood.capitalizedString forState:self.selectMoodButton.state];
         [self.selectMoodButton setHidden:NO];
@@ -281,39 +314,6 @@
 }
 
 
-- (IBAction)didTapCancel:(id)sender {
-    [self toFeed];
-}
-
-
--(void) toFeed{
-    SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HomeFeedVC *feedViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedController"];
-    
-    myDelegate.window.alpha = 0.25;
-    myDelegate.window.rootViewController = feedViewController;
-    
-    [UIView animateWithDuration:1 animations:^{
-        myDelegate.window.alpha = 1;
-    }];
-}
-
-
-- (IBAction)didTapSelectGenre:(id)sender {
-    [self.genrePickerView reloadAllComponents];
-    [self.genrePickerView setHidden:NO];
-    [self.selectGenreButton setHidden:YES];
-    [self.selectMoodButton setHidden:YES];
-}
-
-
-- (IBAction)didTapSelectMood:(id)sender {
-    [self.moodPickerView reloadAllComponents];
-    [self.moodPickerView setHidden:NO];
-    [self.selectMoodButton setHidden:YES];
-    [self.selectGenreButton setHidden:YES];
-}
 
 
 -(void)registerForKeyboardEvents{
@@ -349,6 +349,18 @@
 }
 
 
+-(void) toFeed{
+    SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    HomeFeedVC *feedViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedController"];
+    
+    myDelegate.window.alpha = 0.25;
+    myDelegate.window.rootViewController = feedViewController;
+    
+    [UIView animateWithDuration:1 animations:^{
+        myDelegate.window.alpha = 1;
+    }];
+}
 
 /*
  #pragma mark - Navigation

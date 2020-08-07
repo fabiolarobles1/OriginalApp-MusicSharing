@@ -15,6 +15,7 @@
 @interface SongInfoVC ()
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UIView *backgroudView;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @end
 
 @implementation SongInfoVC
@@ -30,9 +31,11 @@
     
     if(self.post){
         [self setWithPost:self.post];
+        [self.postButton setHidden:YES];
         [self.playButton setHidden:YES];
     }else{
         [self.playButton setHidden:NO];
+        [self.postButton setHidden:NO];
         [self setWithInfo:self.senderCell.songname artist:self.senderCell.artist album:self.senderCell.album songURI:self.senderCell.songURI albumURLString:self.senderCell.albumURLString];
     }
     

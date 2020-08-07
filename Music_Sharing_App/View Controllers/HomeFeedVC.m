@@ -17,10 +17,10 @@
 #import "DetailsVC.h"
 
 @interface HomeFeedVC () <UITableViewDelegate,UITableViewDataSource, UINavigationControllerDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (assign, nonatomic) int skipcount;
@@ -31,6 +31,7 @@
 @implementation HomeFeedVC
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self fetchPosts];
     [self.tableView reloadData];
 }
 
@@ -57,44 +58,95 @@
     UIEdgeInsets insets = self.tableView.contentInset;
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
-
     [self fetchPosts];
+    
+}
+
+
+-(PFQuery *)defineQuery{
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    return postQuery;
+}
+
+
+-(void)fetchPosts{
+    
+    if([self.refreshControl isRefreshing]){
+        self.skipcount = 0;
+    }
+    
+    // construct query
+    PFQuery *postQuery = [self defineQuery];
+    if(self.isMoreDataLoading){
+        postQuery.skip = self.skipcount;
+    }
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            NSLog(@"Post count = %lu", (unsigned long)self.posts.count);
+            
+            if(self.isMoreDataLoading){
+                [self.posts addObjectsFromArray:posts];
+            }else{
+                self.posts= [posts mutableCopy];
+            }
+            
+            //update flag
+            self.isMoreDataLoading = NO;
+            
+            // stop indicators
+            [self.refreshControl endRefreshing];
+            [self.loadingMoreView stopAnimating];
+            [self.tableView reloadData];
+            
+        } else {
+            NSLog(@"Error getting posts: %@", error.description);
+            
+            //alert when an error occurs fetching data
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"An error occured while trying to load feed. Please, try again." preferredStyle:(UIAlertControllerStyleAlert)];
+            
+            //creating cancel action
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"  style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                // doing nothing will dismiss the view
+            }];
+            //   adding cancel action to the alertController
+            [alert addAction:cancelAction];
+            
+            //creating OK action
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //try to load post again
+                [self fetchPosts];
+            }];
+            
+            //adding OK action to the alertController
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+                // stop indicators
+                [self.refreshControl endRefreshing];
+                [self.loadingMoreView stopAnimating];
+                
+            }];
+        }
+        if(self.posts.count == 0){
+            [self checkEmptyData:@"No posts yet."]; //
+        }else{
+            
+            [self.tableView.backgroundView setHidden:YES];
+            [self.tableView reloadData];
+            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        }
+    }];
 }
 
 
 - (IBAction)didTapCompose:(id)sender {
     [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
-}
-
-
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    HomePostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    Post *post = self.posts[indexPath.row];
-    [cell.postView setWithPost:post];
-    cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
-    cell.delegate= self;
-    [cell layoutIfNeeded];
-    
-    return cell;
-    
-}
-
-
--(void)postCell:(HomePostCell *)postCell didTap:(Post *)post{
-    self.post = post;
-    [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:postCell];
-}
-
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.posts.count;
-}
-
-
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    //Unselect cell after entering details
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -123,86 +175,6 @@
         myDelegate.window.alpha = 1;
     }];
     
-}
-
-
--(PFQuery *)defineQuery{
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
-    
-    return postQuery;
-}
-
-
--(void)fetchPosts{
-    // construct query
-    if([self.refreshControl isRefreshing]){
-        self.skipcount = 0;
-    }
-   
-    PFQuery *postQuery = [self defineQuery];
-    if(self.isMoreDataLoading){
-        postQuery.skip = self.skipcount;
-    }
-    
-    // fetch data asynchronously
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            
-            if(self.isMoreDataLoading){
-                [self.posts addObjectsFromArray:posts];
-            }else{
-                self.posts= [posts mutableCopy];
-            }
-            //update flag
-            self.isMoreDataLoading = NO;
-            
-            [self.tableView reloadData];
-            NSLog(@"Post count = %lu", (unsigned long)self.posts.count);
-            // stop indicators
-            [self.refreshControl endRefreshing];
-            [self.loadingMoreView stopAnimating];
-            [self.tableView reloadData];
-            
-        } else {
-            NSLog(@"Error getting posts: %@", error.description);
-            //ADD TO CHECK IF IT IS BECAUSE NO CONNECTION!!
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Load Feed" message:@"An error occured while trying to load feed. Please, try again." preferredStyle:(UIAlertControllerStyleAlert)];
-            
-            //creating cancel action
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"  style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                // doing nothing will dismiss the view
-            }];
-            //   adding cancel action to the alertController
-            [alert addAction:cancelAction];
-            
-            //creating OK action
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                //try to load post again
-                [self fetchPosts];
-            }];
-            
-            //adding OK action to the alertController
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:^{
-                // stop indicators
-                [self.refreshControl endRefreshing];
-                [self.loadingMoreView stopAnimating];
-                
-            }];
-        }
-        if(self.posts.count == 0){
-            [self checkEmptyData:@"No posts yet."];
-        }else{
-           
-            [self.tableView.backgroundView setHidden:YES];
-            [self.tableView reloadData];
-            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        }
-    }];
 }
 
 
@@ -250,6 +222,40 @@
     }
 }
 
+
+
+#pragma mark - Table View
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    //Unselect cell after entering details
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    HomePostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    Post *post = self.posts[indexPath.row];
+    [cell.postView setWithPost:post];
+    cell.postView.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    cell.delegate= self;
+    [cell layoutIfNeeded];
+    
+    return cell;
+    
+}
+
+
+-(void)postCell:(HomePostCell *)postCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"toDetailsVCSegue" sender:postCell];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -267,7 +273,5 @@
     }
     
 }
-
-
 
 @end

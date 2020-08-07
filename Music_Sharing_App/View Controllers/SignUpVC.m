@@ -29,6 +29,9 @@
     self.signUpButton.layer.cornerRadius = self.signUpButton.frame.size.height/2;
 }
 
+/**
+ *Registers a new user account
+ */
 -(void) registerUser{
     
     //initializing user
@@ -48,41 +51,31 @@
         
     }else{
         newUser.password = self.passwordField.text;
-    }
-    
-    //call sign up function on the object
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(error !=nil){
-            NSLog(@"Sign up user error: %@", error.description);
-            
-            if(error.code == 202){
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Username" message:@"The username is already taken. Please, try anpther one." preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    self.usernameField.text = @"";
-                }];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:^{ }];
+        
+        //call sign up function on the object
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if(error !=nil){
+                NSLog(@"Sign up user error: %@", error.description);
+                
+                if(error.code == 202){
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Username" message:@"The username is already taken. Please, try anpther one." preferredStyle:(UIAlertControllerStyleAlert)];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        self.usernameField.text = @"";
+                    }];
+                    [alert addAction:okAction];
+                    [self presentViewController:alert animated:YES completion:^{ }];
+                }
+            }else{
+                [self performSegueWithIdentifier:@"createProfile" sender:nil];
             }
-        }else{
-            [self performSegueWithIdentifier:@"createProfile" sender:nil];
-            
-//            NSLog(@"User registered succesfully.");
-//            SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            LoginVC *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-//            myDelegate.window.alpha = 0;
-//            myDelegate.window.rootViewController = loginViewController;
-//
-//            [UIView animateWithDuration:3 animations:^{
-//                myDelegate.window.alpha = 1;
-//            }];
-
-        }
-    }];
+        }];
+    }
 }
+
 
 - (IBAction)didTapSignUp:(id)sender {
     
+    //checks required fields
     if (!self.usernameField.hasText || !self.passwordField.hasText || !self.confirmPasswordField ){
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Required Fields" message:@" Username and password are required to create an account. Please fill all the information." preferredStyle:(UIAlertControllerStyleAlert)];
@@ -93,7 +86,6 @@
         
     }else{
         [self registerUser];
-        
     }
 }
 

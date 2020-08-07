@@ -21,20 +21,18 @@
 @end
 
 @implementation LoginVC
--(void)viewWillAppear:(BOOL)animated{
-    
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self.passwordField setSecureTextEntry:YES];
     self.loginButton.layer.cornerRadius = self.loginButton.frame.size.height/2;
     self.signUpButton.layer.cornerRadius = self.signUpButton.frame.size.height/2;
-
 }
 
-
+/**
+ *Logs in a user in the backgroud
+ */
 -(void) loginUser{
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
@@ -56,7 +54,6 @@
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:^{ }];
             
-            
         }else{
             NSLog(@"User logged in successfully.");
             [self performSegueWithIdentifier:@"toFeedSegue" sender:nil];
@@ -66,23 +63,23 @@
 
 
 - (IBAction)didTapScreen:(id)sender {
+    //dismiss keyboard when screen is tapped
     [self.view endEditing:YES];
 }
 
 
 - (IBAction)didTapLoginButton:(id)sender {
+    
+    //check required fields to login
     if (!self.usernameField.hasText || !self.passwordField.hasText ){
-        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Required Fields" message:@"Username and password are required to login. Please fill out all the information." preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { }];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:^{ }];
-        
     }else{
         [self loginUser];
     }
 }
-
 
 
 /*

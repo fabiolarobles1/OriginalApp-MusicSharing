@@ -12,20 +12,19 @@
 
 @dynamic postID;
 @dynamic createdAt;
-@dynamic userID;
 @dynamic author;
-@dynamic musicLink;//
-@dynamic caption;//
-@dynamic image;//
+@dynamic musicLink;
+@dynamic caption;
+@dynamic image;
 @dynamic likesCount;
 @dynamic commentsCount;
-@dynamic genre;//
-@dynamic mood;//
-@dynamic album;//
-@dynamic artist;//
-@dynamic songName;//
+@dynamic genre;
+@dynamic mood;
+@dynamic album;
+@dynamic artist;
+@dynamic songName;
 @dynamic albumCoverURLString;
-@dynamic songURI;//
+@dynamic songURI;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";

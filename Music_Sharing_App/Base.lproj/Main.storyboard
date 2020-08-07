@@ -1312,6 +1312,7 @@
                         <outlet property="artistLabel" destination="Uvh-ae-SJr" id="PLI-no-AS2"/>
                         <outlet property="backgroudView" destination="kkF-LB-Ewm" id="oo1-Lg-YVP"/>
                         <outlet property="playButton" destination="A0R-nR-PWl" id="J8B-Tj-f9F"/>
+                        <outlet property="postButton" destination="Vvd-tL-oQp" id="iy3-VW-r8i"/>
                         <outlet property="songNameLabel" destination="fiD-xB-CQw" id="FNe-tM-QfQ"/>
                     </connections>
                 </viewController>

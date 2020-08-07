@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeFeedVC : UIViewController <PostCellDelegate>
 
--(void) scrollViewDidScroll:(UIScrollView *)scrollView;
+-(void)logout;
 -(void)fetchPosts;
 -(PFQuery *)defineQuery;
--(void)logout;
 -(void)checkEmptyData:(NSString *)message;
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView;
 
 @end
 

@@ -18,17 +18,15 @@
    withProfilePic:(UIImage *)image
           withBio:(NSString *)bio
    withCompletion:(PFBooleanResultBlock)completion{
-    
-    
+
     if(image!=nil){
-        user.profilePic =  [self getPFFileFromImage:image];
+        user.profilePic = [self getPFFileFromImage:image];
     }else{
          user.profilePic = nil;
     }
     user.bio = bio;
     [user saveInBackgroundWithBlock:completion];
 }
-
 
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
@@ -42,7 +40,6 @@
     if (!imageData) {
         return nil;
     }
-    
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 

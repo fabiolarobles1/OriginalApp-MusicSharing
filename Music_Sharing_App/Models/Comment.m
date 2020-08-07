@@ -9,6 +9,7 @@
 #import "Comment.h"
 
 @implementation Comment
+
 @dynamic text;
 @dynamic author;
 @dynamic post;

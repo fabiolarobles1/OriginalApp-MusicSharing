@@ -13,10 +13,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ *Comment object
+ */
 @interface Comment : PFObject<PFSubclassing>
+
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) User *author;
 @property (nonatomic, strong) Post *post;
+
 @end
 
 NS_ASSUME_NONNULL_END

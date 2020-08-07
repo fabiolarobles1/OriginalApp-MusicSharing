@@ -125,27 +125,12 @@
     //setting like selected/unselected
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
     
-    //making relation of current post to user's liked post
-    User *user = [User currentUser];
-    PFRelation *relation = [user relationForKey:@"likes"];
-    
+    //making post like relation
     if([self.favoriteButton isSelected]){
-        self.post.likesCount +=1;
-        [relation addObject:self.post];
+        [self.post likePost:YES];
     }else{
-        self.post.likesCount -=1;
-        [relation removeObject:self.post];
+        [self.post likePost:NO];
     }
-    [self.post saveInBackground];
-    
-    //saving relation
-    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
-            NSLog(@"Relation succeded.");
-        }else{
-            NSLog(@"Error on relation: %@", error.description );
-        }
-    }];
     
     //updating like count on label
     self.likeCountLabel.text = [@(self.post.likesCount) stringValue];

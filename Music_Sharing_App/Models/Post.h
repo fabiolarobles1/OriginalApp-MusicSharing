@@ -43,6 +43,8 @@ withAlbumCoverURLString: (NSString *)albumCoverURLString
             withSongURI: ( NSString *)songURI
          withCompletion: ( PFBooleanResultBlock  _Nullable)completion;
 
+- (void) likePost:(BOOL)like;
+
 @end
 
 NS_ASSUME_NONNULL_END

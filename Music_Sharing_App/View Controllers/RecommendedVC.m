@@ -18,6 +18,7 @@
 #import "SceneDelegate.h"
 #import "LoginVC.h"
 
+
 @interface RecommendedVC ()
 @property (strong, nonatomic) NSString *songs;
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -92,7 +93,6 @@
             }];
         }
     }];
-    
 }
 
 
@@ -137,6 +137,9 @@
     NSArray *albumImage =album[@"images"];
     NSDictionary *image = albumImage[0];
     NSString *albumimageURL = [NSString stringWithFormat:@"%@", image[@"url"]];
+    
+    NSDictionary *spotifyURL = song[@"external_urls"];
+    cell.songSpotifyURL = spotifyURL[@"spotify"];
     cell.album =  [NSString stringWithFormat:@"%@",albumName];
     cell.artist = [NSString stringWithFormat:@"%@",insideArtists[@"name"]];
     cell.albumURLString = albumimageURL;
@@ -158,7 +161,6 @@
 
 
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -167,6 +169,7 @@
         RecommendedCell *tappedCell = sender;
         SongInfoVC *songInfoViewController = [segue destinationViewController];
         songInfoViewController.senderCell = tappedCell;
+        songInfoViewController.songSpotifyURL = tappedCell.songSpotifyURL;
     }
 }
 

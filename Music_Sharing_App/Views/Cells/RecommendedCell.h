@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *artist;
 @property (strong, nonatomic) NSString *albumURLString;
 @property (strong, nonatomic) NSString *songURI;
+@property (strong, nonatomic) NSString *songSpotifyURL;
         
 @end
 

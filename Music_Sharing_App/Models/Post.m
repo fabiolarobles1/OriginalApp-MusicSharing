@@ -32,7 +32,7 @@
 }
 
 + (void) createUserPost: ( NSString *)genre 
-               withMood: ( NSString *)mood   
+               withMood: ( NSString *)mood
                withLink: ( NSString *)musicLink
             withCaption: ( NSString * _Nullable)caption
               withImage: ( UIImage * _Nullable)image
@@ -79,5 +79,28 @@ withAlbumCoverURLString: ( NSString *)albumCoverURLString
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
+
+- (void)likePost:(BOOL)like{
+    //making relation of current post to user's liked post
+    User *user = [User currentUser];
+    PFRelation *relation = [user relationForKey:@"likes"];
+    if(like){
+        self.likesCount +=1;
+        [relation addObject:self];
+    }else{
+        self.likesCount -=1;
+        [relation removeObject:self];
+    }
+    [self saveInBackground];
+    
+    //saving relation
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            NSLog(@"Relation succeded.");
+        }else{
+            NSLog(@"Error on relation: %@", error.description );
+        }
+    }];
+}
 
 @end

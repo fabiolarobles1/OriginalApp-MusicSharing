@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) AppDelegate *delegate;
 @property (strong, nonatomic) NSMutableArray *genres;
-
+@property (strong, nonatomic) NSString *songURL;
 typedef NS_ENUM(NSUInteger, MusicSharingAppMood){
     MusicSharingAppMoodActive = 0,
     MusicSharingAppMoodBored,

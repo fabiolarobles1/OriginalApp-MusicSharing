@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "CommentView.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol DetailsViewDelegate;
@@ -52,7 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @protocol DetailsViewDelegate
-
 /**
  *Sets delegate of the view when tapping the info button
  */

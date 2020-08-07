@@ -24,8 +24,8 @@
 @property (strong, nonatomic) NSString *genre;
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 @property (weak, nonatomic) IBOutlet UITextField *musicLinkField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
 @property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
@@ -34,9 +34,16 @@
 @property (nonatomic) CGFloat offset;
 @property (nonatomic) BOOL captionSelected;
 
+
 @end
 
 @implementation ComposeVC
+
+-(void)viewWillAppear:(BOOL)animated{
+    if(self.songURL){
+        self.musicLinkField.text = self.songURL;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

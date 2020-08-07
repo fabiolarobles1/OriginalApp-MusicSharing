@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *albumLabel;
+@property (strong, nonatomic) NSString *songSpotifyURL;
 @property (weak, nonatomic) IBOutlet UIButton *addToSpotifyButton;
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) RecommendedCell *senderCell;

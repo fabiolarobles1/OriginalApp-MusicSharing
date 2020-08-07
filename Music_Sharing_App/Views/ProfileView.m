@@ -12,7 +12,6 @@
 
 @implementation ProfileView
 
-
 -(instancetype)initWithCoder:(NSCoder *)coder{
     self = [super initWithCoder:coder];
     if(self){

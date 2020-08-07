@@ -38,13 +38,14 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
     self.detailsView.delegate = self;
+    self.detailsView.commentView.delegate = self;
     [self.tableView setAllowsSelection:NO];
     [self.detailsView setView:self.post isFavorited:self.isFavorited];
     
     //Instead DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS?
-    self.commentLoad= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
-    
+    self.commentLoad= [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
 }
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [self.commentLoad invalidate];
@@ -52,7 +53,6 @@
 
 
 -(void)refreshComments{
-    
     PFQuery *commentQuery = [Comment query];
     [commentQuery whereKey:@"post" equalTo:self.post];
     [commentQuery includeKey:@"author"];
@@ -61,11 +61,12 @@
         if(error==nil){
             NSLog(@"Comments: %lu", (unsigned long)objects.count);
             self.comments = [objects mutableCopy];
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
     }];
-    
 }
+
+
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:YES];
 }
@@ -107,5 +108,9 @@
     [self performSegueWithIdentifier:@"toSongInfo" sender:nil];
 }
 
+
+- (void)commentView:(nonnull CommentView *)commentView didTap:(nonnull UIButton *)sendButton {
+    [self refreshComments];
+}
 
 @end

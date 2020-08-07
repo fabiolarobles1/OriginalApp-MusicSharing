@@ -9,7 +9,7 @@
 #import "CommentView.h"
 #import "Comment.h"
 #import <ChameleonFramework/Chameleon.h>
-@import Parse;
+#import <Parse/Parse.h>
 
 @interface CommentView() <UITextViewDelegate>
 
@@ -28,6 +28,7 @@
     }
     return self;
 }
+
 
 -(instancetype) initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -52,57 +53,70 @@
     self.commentTextField.clipsToBounds = true;
     self.sendButton.tintColor = [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
     self.commentTextField.delegate = self;
-   // self.sendButton.layer.cornerRadius = self.sendButton.layer.frame.size.height/4;
-    //self.sendButton.backgroundColor =  [UIColor colorWithComplementaryFlatColorOf:[UIColor colorWithHexString:@"09F0FA"]];
-   
+    
 }
 
+/**
+ *Hides add comment message when editing begins
+ */
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     [self.addCommentLabel setHidden:YES];
 }
 
+/**
+ *If comment field is empty puts "add comment" message again
+ */
 -(void)textViewDidEndEditing:(UITextView *)textView{
     if([[self.commentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0){
         [self.addCommentLabel setHidden:NO];
     }
 }
 
+
 - (IBAction)didTapSend:(id)sender {
+    
+    //avoids posting a empty comments
     if([[self.commentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0){
         [self.sendButton setEnabled:NO];
-        Post *post = self.post;
-        Comment *comment = [[Comment alloc]init];
-        comment.text =self.commentTextField.text;
-        comment.author = [User currentUser];
-        comment.post = post;
-        PFRelation *relation = [post relationForKey:@"comments"];
         
+        //creating comment
+        Comment *comment = [[Comment alloc]init];
+        comment.text = self.commentTextField.text;
+        comment.author = [User currentUser];
+        comment.post = self.post;
+        
+        //creating relation of comment to the post
+        PFRelation *relation = [self.post relationForKey:@"comments"];
+        
+        //sending to parse
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
-                post.commentsCount +=1;
+                self.post.commentsCount +=1;
                 [relation addObject:comment];
                 NSLog(@"The comment was saved!");
-                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+                [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                     if (succeeded) {
                         NSLog(@"Relation created");
                         
                     } else {
                         NSLog(@"Error on relation: %@", error.localizedDescription);
-                        //MAYBE ADDING AN ALERT
                     }
                 }];
             } else {
                 NSLog(@"Problem saving comment: %@", error.localizedDescription);
-                //MAYBE ADDING AN ALERT
             }
+            
+            //setting delegate
+            [self.delegate commentView:self didTap:self.sendButton];
         }];
-        
     }
-        [self.sendButton setEnabled:YES];
-        [self.commentView endEditing:YES];
-        self.commentTextField.text = @"";
-        [self.addCommentLabel setHidden:NO];
-  
+    
+    //reset to default empty comment view
+    [self.sendButton setEnabled:YES];
+    [self.commentView endEditing:YES];
+    self.commentTextField.text = @"";
+    [self.addCommentLabel setHidden:NO];
+    
 }
 
 

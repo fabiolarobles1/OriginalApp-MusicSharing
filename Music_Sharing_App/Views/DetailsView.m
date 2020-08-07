@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "SpotifyManager.h"
 #import <ChameleonFramework/Chameleon.h>
-@import Parse;
+
 
 @interface DetailsView()
 
@@ -93,25 +93,11 @@
 
 - (IBAction)didTapLike:(id)sender {
     [self.favoriteButton setSelected:!self.favoriteButton.selected];
-    User *user = [User currentUser];
-    PFRelation *relation = [user relationForKey:@"likes"];
-    
     if([self.favoriteButton isSelected]){
-        self.post.likesCount +=1;
-        [relation addObject:self.post];
+        [self.post likePost:YES];
     }else{
-        self.post.likesCount -=1;
-        [relation removeObject:self.post];
+        [self.post likePost:NO];
     }
-    
-    [self.post saveInBackground];
-    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
-            NSLog(@"Relation succeded.");
-        }else{
-            NSLog(@"Error on relation: %@", error.description );
-        }
-    }];
 }
 
 

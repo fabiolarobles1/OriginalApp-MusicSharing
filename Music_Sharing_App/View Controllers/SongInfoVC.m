@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "ComposeVC.h"
 
 @interface SongInfoVC ()
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -99,14 +100,20 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier]isEqualToString:@"toComposeSegue"]){
+        
+        UINavigationController *navigationController =[segue destinationViewController];
+        ComposeVC *composeViewController = (ComposeVC *) navigationController.topViewController;
+        composeViewController.songURL = self.songSpotifyURL;
+    }
 }
-*/
+
 
 @end

@@ -12,11 +12,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CommentViewDelegate;
+
+/**
+*Custom View with .xib file to create a comment on a post
+*/
 @interface CommentView : UIView
 
 @property (strong, nonatomic) IBOutlet UIView *commentView;
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) User *user;
+
+///Comment view delegate for protocol
+@property (weak, nonatomic) id<CommentViewDelegate> delegate;
+@end
+
+
+
+@protocol CommentViewDelegate
+/**
+ *Sets delegate of view when tapping send comment button
+ */
+-(void)commentView:(CommentView *)commentView didTap:(UIButton *)sendButton;
 @end
 
 NS_ASSUME_NONNULL_END

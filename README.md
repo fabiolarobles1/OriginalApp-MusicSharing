@@ -11,7 +11,7 @@ Original App Design Project
 
 ## Overview
 ### Description
-A social media to share music and be able to find and share new songs with anyone. Post your favorite song, add a picture describing the vibe of the song and get reccomendations based on you last posts. You are able to search for new music that people share and here the songs directly from the post.
+A social media to share music and be able to find and share new songs with anyone. Post your favorite song, add a picture describing the vibe of the song and get reccomendations based on you last posts. You are able to search for new music that people share and here the songs directly from the post. (App is connected to Spotify.)
 
 ### App Evaluation
 

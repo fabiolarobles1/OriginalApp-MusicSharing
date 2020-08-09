@@ -1123,17 +1123,17 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="su8-OU-IqO" customClass="DetailsVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nP0-LI-SLI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9x1-zT-TUL" customClass="PFImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-PZ-8Xy" customClass="DetailsView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="403"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="403"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZaN-Jl-3EN">
-                                <rect key="frame" x="0.0" y="403" width="414" height="322"/>
+                                <rect key="frame" x="0.0" y="491" width="414" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="138" id="BSN-z8-NWc" customClass="CommentCell">
@@ -1521,7 +1521,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="h7a-5W-5Yo"/>
-        <segue reference="47p-aw-afl"/>
+        <segue reference="nEh-27-HRL"/>
         <segue reference="9R1-Cw-C8f"/>
         <segue reference="PaD-We-OHZ"/>
     </inferredMetricsTieBreakers>

@@ -59,12 +59,12 @@
 
 
 -(void)fetchPosts{
-    
+     
     if(self.segmentIndex==0){
         [super fetchPosts];
         
     }else if(self.segmentIndex==1){
-
+        [self.posts removeAllObjects];
         [self.refreshControl beginRefreshing];
         PFQuery *query = [User query];
         [query whereKey:@"objectId" equalTo:[User currentUser].objectId];
@@ -88,7 +88,7 @@
         }];
         
     }else if(self.segmentIndex==2){
-        
+        [self.posts removeAllObjects];
         [self.refreshControl beginRefreshing];
         PFQuery *commentQuery = [Comment query];
         [commentQuery includeKey:@"author"];

@@ -29,6 +29,7 @@
     self.signUpButton.layer.cornerRadius = self.signUpButton.frame.size.height/2;
 }
 
+
 /**
  *Registers a new user account
  */
@@ -42,6 +43,15 @@
     
     if(![self.passwordField.text isEqual:self.confirmPasswordField.text]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Password Confirmation" message:@"Please, your confirmation password must be equal to your password to complete the register." preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.passwordField.text = @"";
+            self.confirmPasswordField.text = @"";
+        }];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:^{ }];
+        
+    }else if([[self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Password" message:@"Password cannot be whitespaces only, please insert a valid password." preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self.passwordField.text = @"";
             self.confirmPasswordField.text = @"";

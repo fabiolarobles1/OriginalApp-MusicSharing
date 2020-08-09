@@ -8,14 +8,16 @@
 
 #import "CreateProfileVC.h"
 #import "User.h"
-#import "MBProgressHUD.h"
 #import "SceneDelegate.h"
 #import "HomeFeedVC.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "DGActivityIndicatorView.h"
 
 @interface CreateProfileVC ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (weak, nonatomic) IBOutlet UILabel *addBioWatermarkLabel;
+@property (weak, nonatomic) IBOutlet DGActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 
 @end
@@ -45,8 +47,8 @@ BOOL imageDidChange = NO;
     if(self.userImage!=nil){
         [self.profilePicImageButton setImage:self.userImage forState:self.profilePicImageButton.state];
     }
- 
-   
+    
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
@@ -54,6 +56,10 @@ BOOL imageDidChange = NO;
         NSLog(@"Camera Not available.");
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+    
+    [self.activityIndicatorView setType:DGActivityIndicatorAnimationTypeLineScale];
+    [self.activityIndicatorView setTintColor:[UIColor colorWithHexString:@"1B3E5F" withAlpha:1.00]];
+    [self.activityIndicatorView setSize:50.0];
     
 }
 
@@ -64,17 +70,21 @@ BOOL imageDidChange = NO;
     [self.profilePicImageButton setImage:[UIImage systemImageNamed:@"person.circle.fill"] forState:self.profilePicImageButton.state];
 }
 
+
 -(void)textViewDidEndEditing:(UITextView *)textView{
     if(self.bioTextView.text.length == 0){
         [self.addBioWatermarkLabel setHidden:NO];
     }
 }
 
+
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     
-        [self.addBioWatermarkLabel setHidden:YES];
+    [self.addBioWatermarkLabel setHidden:YES];
     
 }
+
+
 - (IBAction)didTapScreen:(id)sender {
     [self.view endEditing:YES];
 }
@@ -95,60 +105,67 @@ BOOL imageDidChange = NO;
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 - (IBAction)didTapImageButton:(id)sender {
-     
-       if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-           
-           UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-           UIAlertAction *gallery = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-               [self presentViewController:self.imagePickerVC animated:YES completion:nil];
-           }];
-           [alert addAction:gallery];
-           
-           UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-               [self presentViewController:self.imagePickerVC animated:YES completion:nil];
-           }];
-           [alert addAction:camera];
-           
-           UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-           }];
-           
-           [alert addAction:cancel];
-           
-           [self presentViewController:alert animated:YES completion:^{
-               
-           }];
-       }
-       else {
-           NSLog(@"Camera NOT available.");
-           self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-           [self presentViewController:self.imagePickerVC animated:YES completion:nil];
-       }
-      
-      
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *gallery = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+        }];
+        [alert addAction:gallery];
+        
+        UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+        }];
+        [alert addAction:camera];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }
+    else {
+        NSLog(@"Camera NOT available.");
+        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+    }
 }
 
+
 - (IBAction)didTapSave:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.saveButton.enabled = !self.saveButton.enabled;
+    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimating];
     if(imageDidChange){
         [User updateUser:[User currentUser] withProfilePic:self.userImage withBio:self.bioTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){
                 NSLog(@"Succesfully posted image. %@", [User currentUser].profilePic);
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.activityIndicatorView setHidden:YES];
+                [self.activityIndicatorView stopAnimating];
                 [self toFeed];
             }else{
                 NSLog(@"ERROR: %@", error.description);
             }
+            self.saveButton.enabled = !self.saveButton.enabled;
         }];
     }else{
         [User currentUser].bio = self.bioTextView.text;
         [[User currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.activityIndicatorView setHidden:YES];
+                [self.activityIndicatorView stopAnimating];
                 [self toFeed];
             }
+            self.saveButton.enabled = !self.saveButton.enabled;
         }];
         
     }

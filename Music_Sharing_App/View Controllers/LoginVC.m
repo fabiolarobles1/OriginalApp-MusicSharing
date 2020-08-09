@@ -11,12 +11,14 @@
 #import "SpotifyManager.h"
 #import "User.h"
 #import "Chameleon.h"
+#import "DGActivityIndicatorView.h"
 
 @interface LoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet DGActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -28,6 +30,9 @@
     [self.passwordField setSecureTextEntry:YES];
     self.loginButton.layer.cornerRadius = self.loginButton.frame.size.height/2;
     self.signUpButton.layer.cornerRadius = self.signUpButton.frame.size.height/2;
+    [self.activityIndicatorView setType:DGActivityIndicatorAnimationTypeLineScale];
+    [self.activityIndicatorView setTintColor:[UIColor colorWithHexString:@"1B3E5F" withAlpha:1.00]];
+    [self.activityIndicatorView setSize:50.0];
 }
 
 /**
@@ -58,6 +63,10 @@
             NSLog(@"User logged in successfully.");
             [self performSegueWithIdentifier:@"toFeedSegue" sender:nil];
         }
+        
+        [self.loginButton setHidden:NO];
+        [self.activityIndicatorView setHidden:YES];
+        [self.activityIndicatorView stopAnimating];
     }];
 }
 
@@ -69,13 +78,19 @@
 
 
 - (IBAction)didTapLoginButton:(id)sender {
-    
+    [self.view endEditing:YES];
+    [self.loginButton setHidden:YES];
+    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimating];
     //check required fields to login
     if (!self.usernameField.hasText || !self.passwordField.hasText ){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Required Fields" message:@"Username and password are required to login. Please fill out all the information." preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { }];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:^{ }];
+        [self.loginButton setHidden:NO];
+        [self.activityIndicatorView setHidden:YES];
+        [self.activityIndicatorView stopAnimating];
     }else{
         [self loginUser];
     }

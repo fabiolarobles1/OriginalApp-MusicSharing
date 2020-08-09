@@ -50,6 +50,7 @@
 }
 
 -(void)fetchSongs{
+    [self.refreshControl beginRefreshing];
     User *user = [User currentUser];
     PFRelation *relation = [user relationForKey:@"posts"];
     PFQuery *postsQuery = [relation query];
@@ -59,7 +60,7 @@
         int count=0;
         if(objects.count==0){
             self.label.text = @"Sorry, we don't have any recommendations at the moment";
-            
+            [self.refreshControl endRefreshing];
         }else{
             for(Post *post in objects){
                 count++;
@@ -73,13 +74,14 @@
             
             [[SpotifyManager shared] getRecommendedSongs:self.appDelegate.sessionManager.session.accessToken songsCommaSeparated:self.songs completion:^(NSDictionary * _Nonnull songs, NSError * _Nonnull error) {
                 if(!error){
+                    [self.recommendedSongs removeAllObjects];
                     for(NSDictionary *dic in songs[@"tracks"]){
                         [self.recommendedSongs addObject:dic];
                     }
                     
                     NSLog(@"Songs: %ld", [self.recommendedSongs count]);
                 }else{
-                    NSLog(@"Weird: %@", error.description);
+                    NSLog(@"Error: %@", error.description);
                 }
                 [self.refreshControl endRefreshing];
                 [self.tableView reloadData];
@@ -158,7 +160,6 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.recommendedSongs.count;
 }
-
 
 
 #pragma mark - Navigation

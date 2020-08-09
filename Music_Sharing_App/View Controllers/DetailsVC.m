@@ -42,7 +42,6 @@
     [self.tableView setAllowsSelection:NO];
     [self.detailsView setView:self.post isFavorited:self.isFavorited];
     
-    //Instead DO DELEGATE FROM SEND BUTTON TO REFRESH COMMENTS?
     self.commentLoad= [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(refreshComments) userInfo:nil repeats:true];
 }
 
@@ -98,6 +97,7 @@
     
     return cell;
 }
+
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.comments.count;

@@ -11,7 +11,8 @@
 #import "HomeFeedVC.h"
 #import "Post.h"
 #import "SpotifyManager.h"
-#import "MBProgressHUD.h"
+#import "DGActivityIndicatorView.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface ComposeVC ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectGenreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectMoodButton;
 @property (weak, nonatomic) IBOutlet UILabel *addCaptionLabel;
+@property (weak, nonatomic) IBOutlet DGActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (strong, nonatomic) Post *post;
@@ -53,6 +55,10 @@
             NSLog(@"Error loading genres: %@", error);
         }
     }];
+    
+    [self.activityIndicatorView setType:DGActivityIndicatorAnimationTypeLineScale];
+    [self.activityIndicatorView setTintColor:[UIColor colorWithHexString:@"1B3E5F" withAlpha:1.00]];
+    [self.activityIndicatorView setSize:50.0];
 }
 
 
@@ -133,13 +139,15 @@
     [alert addAction:okAction];
     
     [self presentViewController:alert animated:YES completion:^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.activityIndicatorView setHidden:YES];
+        [self.activityIndicatorView stopAnimating];
     }];
 }
 
 
 - (IBAction)didTapPost:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];//
+    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimating];
     [self.view endEditing:YES];
     NSString *song = self.musicLinkField.text;
     //avoiding multiple posting of same post
@@ -153,7 +161,9 @@
         [alert addAction:okAction];
         
         [self presentViewController:alert animated:YES completion:^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.activityIndicatorView setHidden:YES];
+            [self.activityIndicatorView stopAnimating];
+            self.postButton.enabled = !self.postButton.enabled;
         }];
     }
     //validating link
@@ -162,6 +172,7 @@
         [[SpotifyManager shared] getSong:song accessToken:self.delegate.sessionManager.session.accessToken completion:^(NSDictionary * _Nonnull song, NSError * _Nonnull error) {
             if(error!=nil){
                 [self invalidLinkAlert];
+                self.postButton.enabled = !self.postButton.enabled;
             }else{
                 NSArray *artist = song[@"artists"];
                 NSDictionary *insideArtists = artist[0];
@@ -177,7 +188,8 @@
                 [Post createUserPost:self.genre withMood:self.mood withLink:self.musicLinkField.text withCaption:self.captionField.text withImage:self.postImage withAlbum: [NSString stringWithFormat:@"%@",albumName] withAlbumCoverURLString:imageURL withSong:[NSString stringWithFormat:@"%@",songName] withArtist:[NSString stringWithFormat:@"%@",insideArtists[@"name"]] withSongURI:songURI withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                     if(succeeded){
                         NSLog(@"Succesfully posted image.");
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self.activityIndicatorView setHidden:YES];
+                        [self.activityIndicatorView stopAnimating];
                         [self toFeed];
                     }else if(error){
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"An error occurred while posting." preferredStyle:(UIAlertControllerStyleAlert)];
@@ -187,18 +199,20 @@
                         [alert addAction:okAction];
                         
                         [self presentViewController:alert animated:YES completion:^{
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            [self.activityIndicatorView setHidden:YES];
+                            [self.activityIndicatorView stopAnimating];
                         }];
                     }
+                    self.postButton.enabled = !self.postButton.enabled;
                 }];
             }
         }];
         
     }else{
         [self invalidLinkAlert];
+        self.postButton.enabled = !self.postButton.enabled;
     }
     
-    self.postButton.enabled = !self.postButton.enabled;
 }
 
 

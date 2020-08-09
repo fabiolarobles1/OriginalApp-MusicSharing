@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="o94-aM-fWY">
-                    <rect key="frame" x="10" y="10" width="347" height="84"/>
+                    <rect key="frame" x="10" y="8" width="347" height="88"/>
                     <color key="backgroundColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -51,11 +51,11 @@
                 <constraint firstItem="GcZ-U8-d89" firstAttribute="centerY" secondItem="o94-aM-fWY" secondAttribute="centerY" id="EN9-fB-kA9"/>
                 <constraint firstAttribute="trailing" secondItem="GcZ-U8-d89" secondAttribute="trailing" constant="10" id="M9L-ga-Sxd"/>
                 <constraint firstItem="o94-aM-fWY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Q9N-bj-6EM"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="o94-aM-fWY" secondAttribute="bottom" constant="10" id="VD6-8N-DbV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="o94-aM-fWY" secondAttribute="bottom" constant="8" id="VD6-8N-DbV"/>
                 <constraint firstItem="RqD-LZ-JOp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="YXw-I8-FaV"/>
                 <constraint firstItem="GcZ-U8-d89" firstAttribute="leading" secondItem="o94-aM-fWY" secondAttribute="trailing" constant="5" id="iIQ-Kt-33Z"/>
                 <constraint firstItem="RqD-LZ-JOp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="p1Q-xi-lIp"/>
-                <constraint firstItem="o94-aM-fWY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="wlz-l0-rmH"/>
+                <constraint firstItem="o94-aM-fWY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="wlz-l0-rmH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

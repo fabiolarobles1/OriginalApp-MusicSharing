@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import <ChameleonFramework/Chameleon.h>
 #import "ComposeVC.h"
+#import "SpotifyManager.h"
 
 @interface SongInfoVC ()
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -78,14 +79,8 @@
 - (IBAction)didTapPlayButton:(id)sender {
     [self.playButton setSelected:!self.playButton.isSelected];
     [self.appDelegate.appRemote connect];
-    if(self.playButton.isSelected){
-    [self.appDelegate.appRemote.playerAPI play:self.songURI callback:^(id  _Nullable result, NSError * _Nullable error) {
-    }];
-    }else{
-        [self.appDelegate.appRemote.playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-            
-        }];
-    }
+    
+    [[SpotifyManager shared] playSong:self.songURI play:self.playButton.isSelected appDelegate:self.appDelegate];
 }
 
 

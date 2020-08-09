@@ -36,7 +36,6 @@
 @property (nonatomic) CGFloat initialY;
 @property (nonatomic) CGFloat offset;
 
-
 @end
 
 @implementation ComposeVC
@@ -55,6 +54,7 @@
         }
     }];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,7 +80,6 @@
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
 }
-
 
 /**
  *Returns String value of mood
@@ -269,6 +268,7 @@
     [self.selectGenreButton setHidden:YES];
 }
 
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
@@ -282,6 +282,7 @@
         return self.genres.count;
     }
 }
+
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if([pickerView.restorationIdentifier isEqualToString:@"moodPicker"]){
@@ -310,16 +311,12 @@
         [self.selectMoodButton setHidden:NO];
         
     }
-    
 }
-
-
 
 
 -(void)registerForKeyboardEvents{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
 }
 
 
@@ -334,13 +331,14 @@
     
 }
 
+
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     [self.addCaptionLabel setHidden:YES];
     [UIView animateWithDuration:.5 animations:^{
         self.fullView.frame = CGRectMake(self.fullView.frame.origin.x, self.initialY - self.offset/2, self.fullView.frame.size.width, self.fullView.frame.size.height);
     }];
-    
 }
+
 
 -(void)textViewDidEndEditing:(UITextField *)textField{
     if([[self.captionField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0){

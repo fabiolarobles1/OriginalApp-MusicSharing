@@ -53,6 +53,7 @@
     self.profileImageView.file = user.profilePic;
     [self.profileImageView loadInBackground];
     self.bioLabel.text = user.bio;
+    [self.user fetchIfNeeded];
     self.usernameLabel.text = [@"@" stringByAppendingString:user.username];
 }
 

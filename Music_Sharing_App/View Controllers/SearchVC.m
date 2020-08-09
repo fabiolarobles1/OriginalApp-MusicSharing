@@ -74,9 +74,11 @@
     return cell;
 }
 
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredData.count;
 }
+
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if(searchText.length !=0){
@@ -137,19 +139,22 @@
         NSLog(@"%@", self.filteredData);
     }else{
         self.filteredData = self.data;
-        
     }
     [self.tableView reloadData];
 }
 
+
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     self.searchBar.showsCancelButton = YES;
 }
+
+
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     self.searchBar.showsCancelButton = NO;
     self.searchBar.text = @"";
     [self.searchBar resignFirstResponder];
 }
+
 
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -179,8 +184,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
     if([[segue identifier] isEqualToString:@"toDetailsVCSegue"]){
         DetailsVC *detailViewController = [segue destinationViewController];
         detailViewController.post = self.post;

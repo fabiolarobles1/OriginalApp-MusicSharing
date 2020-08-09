@@ -22,8 +22,6 @@
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSMutableArray *posts;
-@property (assign, nonatomic) BOOL isMoreDataLoading;
-@property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic) Post *post;
 
 @end
@@ -78,7 +76,7 @@
     if([self.refreshControl isRefreshing]){
         self.skipcount = 0;
     }
-    
+    [self.refreshControl beginRefreshing];
     // construct query
     PFQuery *postQuery = [self defineQuery];
     if(self.isMoreDataLoading){
@@ -202,7 +200,7 @@
         
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
-            self.skipcount +=20;    
+            self.skipcount +=20;
             self.isMoreDataLoading = YES;
             
             // Update position of loadingMoreView, and start loading indicator

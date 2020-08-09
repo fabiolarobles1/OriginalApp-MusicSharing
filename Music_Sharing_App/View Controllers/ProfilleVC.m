@@ -27,10 +27,9 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
-@property (assign, nonatomic) BOOL isMoreDataLoading;
-@property (assign, nonatomic) int skipcount;
 @property (strong, nonatomic) Post *post;
 @property (nonatomic) NSInteger segmentIndex;
+@property (strong, nonatomic) User *user;
 @property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 
 @end
@@ -39,14 +38,117 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.profileView.delegate = self;
     [self.profileView setWithUser:[User currentUser]];
     [self.tableView reloadData];
-    // self.editProfileButton.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
-    
+    self.isMoreDataLoading = NO;
+    self.skipcount = 0;
     
 }
+
+
+-(PFQuery *)defineQuery{
+    PFQuery *postQuery = [Post query];
+    [postQuery whereKey:@"author" equalTo:[User currentUser]];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    return postQuery;
+}
+
+
+-(void)fetchPosts{
+    
+    if(self.segmentIndex==0){
+        [super fetchPosts];
+        
+    }else if(self.segmentIndex==1){
+
+        [self.refreshControl beginRefreshing];
+        PFQuery *query = [User query];
+        [query whereKey:@"objectId" equalTo:[User currentUser].objectId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray<User *> *_Nullable objects, NSError * _Nullable error) {
+            for(User *user in objects){
+                PFRelation *relation = [user relationForKey:@"likes"];
+                PFQuery *relationQuery = [relation query];
+                [relationQuery includeKey:@"author"];
+                [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+                    self.posts = [objects mutableCopy];
+                    [self.tableView reloadData];
+                    [self.refreshControl endRefreshing];
+                    if(self.posts.count == 0){
+                        [super checkEmptyData:@"No likes yet."];
+                    }else{
+                        [self.tableView.backgroundView setHidden:YES];
+                        [self.tableView reloadData];
+                    }
+                }];
+            }
+        }];
+        
+    }else if(self.segmentIndex==2){
+        
+        [self.refreshControl beginRefreshing];
+        PFQuery *commentQuery = [Comment query];
+        [commentQuery includeKey:@"author"];
+        [commentQuery includeKey:@"post"];
+        [commentQuery orderByDescending:@"createdAt"];
+        [commentQuery findObjectsInBackgroundWithBlock:^(NSArray<Comment *> * _Nullable objects, NSError * _Nullable error) {
+            for(Comment *comment in objects){
+                if([comment.author.objectId isEqualToString:[User currentUser].objectId]){
+                    [self.posts addObject:comment];
+                }
+            }
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+            if(self.posts.count == 0){
+                [super checkEmptyData:@"No comments yet."];
+            }else{
+                [self.tableView.backgroundView setHidden:YES];
+                [self.tableView reloadData];
+            }
+        }];
+    }
+}
+
+
+- (IBAction)didTapLogout:(id)sender {
+    [super logout];
+}
+
+
+- (IBAction)didTapAddButton:(id)sender {
+    [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
+}
+
+
+- (IBAction)didTapEdit:(id)sender {
+    [self performSegueWithIdentifier:@"toEditProfile" sender:nil];
+}
+
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView{
+    [super scrollViewDidScroll:scrollView];
+}
+
+
+-(void)profileView:(ProfileView *)profileView didTap:(UISegmentedControl *)segmentedControl{
+    NSLog(@"Selected: %ld", (long)segmentedControl.selectedSegmentIndex);
+    self.segmentIndex = segmentedControl.selectedSegmentIndex;
+    [self.posts removeAllObjects];
+    [self.tableView reloadData];
+    [self fetchPosts];
+}
+
+
+-(void)postCell:(HomePostCell *)postCell didTap:(Post *)post{
+    [super postCell:postCell didTap:post];
+}
+
+
+#pragma mark - Table View
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if(self.segmentIndex == 2){
         CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
@@ -78,99 +180,6 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     //Unselect cell after entering details
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)postCell:(HomePostCell *)postCell didTap:(Post *)post{
-    [super postCell:postCell didTap:post];
-}
-
-- (IBAction)didTapLogout:(id)sender {
-    [super logout];
-}
-
--(PFQuery *)defineQuery{
-    PFQuery *postQuery = [Post query];
-    [postQuery whereKey:@"author" equalTo:[User currentUser]];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
-    return postQuery;
-}
-
-
-- (IBAction)didTapAddButton:(id)sender {
-    [self performSegueWithIdentifier:@"toComposeSegue" sender:nil];
-}
-
-- (IBAction)didTapEdit:(id)sender {
-    [self performSegueWithIdentifier:@"toEditProfile" sender:nil];
-}
-
--(void)fetchPosts{
-    [self.posts removeAllObjects]; //maybe not
-    
-    if(self.segmentIndex==0){
-        [super fetchPosts];
-        
-    }else if(self.segmentIndex==1){
-        [self.tableView reloadData];
-        [self.refreshControl beginRefreshing];
-        PFQuery *query = [User query];
-        [query whereKey:@"objectId" equalTo:[User currentUser].objectId];
-        [query findObjectsInBackgroundWithBlock:^(NSArray<User *> *_Nullable objects, NSError * _Nullable error) {
-            for(User *user in objects){
-                PFRelation *relation = [user relationForKey:@"likes"];
-                PFQuery *relationQuery = [relation query];
-                [relationQuery includeKey:@"author"];
-                [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
-                    self.posts = [objects mutableCopy];
-                    [self.tableView reloadData];
-                    [self.refreshControl endRefreshing];
-                    if(self.posts.count == 0){
-                        [super checkEmptyData:@"No likes yet."];
-                    }else{
-                        [self.tableView.backgroundView setHidden:YES];
-                        [self.tableView reloadData];
-                    }
-                }];
-            }
-        }];
-    }else if(self.segmentIndex==2){
-        [self.tableView reloadData];
-        [self.refreshControl beginRefreshing];
-        PFQuery *commentQuery = [Comment query];
-        [commentQuery includeKey:@"author"];
-        [commentQuery includeKey:@"post"];
-        [commentQuery orderByDescending:@"createdAt"];
-        [commentQuery findObjectsInBackgroundWithBlock:^(NSArray<Comment *> * _Nullable objects, NSError * _Nullable error) {
-            for(Comment *comment in objects){
-                if([comment.author.objectId isEqualToString:[User currentUser].objectId]){
-                    [self.posts addObject:comment];
-                }
-            }
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-            if(self.posts.count == 0){
-                [super checkEmptyData:@"No comments yet."];
-            }else{
-                [self.tableView.backgroundView setHidden:YES];
-                [self.tableView reloadData];
-            }
-        }];
-    }
-    
-    
-}
-
--(void) scrollViewDidScroll:(UIScrollView *)scrollView{
-    [super scrollViewDidScroll:scrollView];
-}
-
--(void)profileView:(ProfileView *)profileView didTap:(UISegmentedControl *)segmentedControl{
-    NSLog(@"Selected: %ld", (long)segmentedControl.selectedSegmentIndex);
-    self.segmentIndex = segmentedControl.selectedSegmentIndex;
-    [self fetchPosts];
-    
 }
 
 
@@ -206,8 +215,8 @@
             [detailViewController.detailsView.favoriteButton setSelected:detailViewController.isFavorited];
         }];
         [detailViewController refreshComments];
-   }
-
+    }
+    
 }
 
 

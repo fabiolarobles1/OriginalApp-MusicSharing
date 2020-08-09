@@ -13,7 +13,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeFeedVC : UIViewController <PostCellDelegate>
-
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (assign, nonatomic) int skipcount;
 -(void)logout;
 -(void)fetchPosts;
 -(PFQuery *)defineQuery;

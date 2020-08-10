@@ -707,7 +707,10 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vft-Xu-bP8">
-                                <rect key="frame" x="321" y="10" width="73" height="29"/>
+                                <rect key="frame" x="319" y="10" width="75" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="g0p-Ec-Hk0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <state key="normal" title="Edit Profile">
                                     <color key="titleColor" red="0.08235294118" green="0.1843137255" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1522,7 +1525,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="h7a-5W-5Yo"/>
         <segue reference="nEh-27-HRL"/>
-        <segue reference="9R1-Cw-C8f"/>
+        <segue reference="1cg-tU-Zyb"/>
         <segue reference="PaD-We-OHZ"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -18,6 +18,7 @@
 #import "SearchFilterVC.h"
 #import "SceneDelegate.h"
 #import "LoginVC.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface SearchVC ()
 
@@ -36,7 +37,7 @@
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
     self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
+    self.searchBar.tintColor = [UIColor colorWithComplementaryFlatColorOf: [UIColor colorWithRed:0.00 green:0.90 blue:1.00 alpha:1.00]];
     [self fetchPosts];
 }
 

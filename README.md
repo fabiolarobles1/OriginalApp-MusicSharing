@@ -11,19 +11,21 @@ Original App Design Project
 
 ## Overview
 ### Description
-A social media to share music, meet people based on your music taste and be able to find and share new playlists with anyone. Post your favorite song or playlist, add a picture describing the vibe of the song/playlist. Be able to search for new music that people share.
+A social media to share music and be able to find and share new songs with anyone. Post your favorite song, add a picture describing the vibe of the song and get reccomendations based on you last posts. You are able to search for new music that people share and here the songs directly from the post. (App is connected to Spotify.)
 
 ### App Evaluation
 
-- **Category:** Social/Music
-- **Mobile:** Mobile first experience, uses camera to add picture to post. At first feed will be designed for mobile devices. 
-- **Story:** Allows users to share music and new sounds with friends, also share playlists and thoughts on how songs make them feel. 
+- **Category:** Social/Music Streaming
+
+- **Mobile:** Mobile first experience, uses camera to add picture to post. At first feed will be designed for mobile devices. To be able to hear songs, the user needs to have a mobile device with Spotify (Premium) intalled. 
+
+- **Story:** Allows users to share new sounds with friends, also share pictures and thoughts on how songs make them feel. 
 
 - **Market:** Anyone who is willing to share their music selection and appreciate the value of one good song with others.
 
-- **Habit:** User will be able to access the app and post / share at any time. Also search for something new to hear based on shared playlists / songs.
+- **Habit:** User will be able to access the app and post / share at any time. Also search for something new to hear based on shared songs or in the recommended view and listen to the songs.
 
-- **Scope:** This app will aloud you to share music and playlists  from streaming plataforms such as Spotify or Apple Music. Also links to songs or music videos, etc.. You have the option to add a picture in the post. The post will have an structure but there will be room for comments. Eventually it would be a navigable app so it is easier to search for new songs.
+- **Scope:** This app will aloud you to share music from Spotify . You have the option to add a picture in the post. The post will have an structure but there will be room for comments. It is a navigable app so it is easier to search for new songs and filter the search based on the field that you want. If you have Spotify Premium you will be able to listen to the songs directly from the app. Aside from finding new sounds based on what people are posting, you can find new sounds that are exclusively recommended for you based on your posts. 
 
 ## Product Spec
 
@@ -39,15 +41,15 @@ A social media to share music, meet people based on your music taste and be able
 * user can add an optional picture to the post
 * user can like posts
 * user can tap on post and view details
-* user can search for posts (e.g. songs, playlists)
+* user can search for posts (e.g. songs, genre, mood...)
 
 **Optional Nice-to-have Stories**
 * user can comment/reply to other user's post
 * user view comments on post in the details screen
 * user can see their profile
-* use Spotify API to render playlist 
+* use Spotify API to play songs
 * user can search for other users
-* user can follow/unfollow other users
+* user can follow/unfollow other users(future feature)
 
 
 
@@ -67,8 +69,7 @@ A social media to share music, meet people based on your music taste and be able
     * user can add an optional picture to the post
 * Search
     * user can search for other users
-    * user can follow/unfollow other users
-    * user can search for posts (e.g. songs, playlists)
+    * user can search for posts (e.g. songs, mood, genre...)
 
 ### 3. Navigation
 
@@ -77,6 +78,8 @@ A social media to share music, meet people based on your music taste and be able
 * Stream
 * Creation
 * Search 
+* Profile
+* Recommended
 
 **Flow Navigation** (Screen to Screen)
 
@@ -85,21 +88,20 @@ A social media to share music, meet people based on your music taste and be able
 * Register Screen
    => Stream
 * Stream
-    => Details Screen.
+   => Details Screen.
 * Creation 
-    => Stream (after post is finished)
+   => Stream (after post is finished)
 * Search
-     => Details of searched user or post (if completed).
-    
+    => Details of searched user or post (if completed).
+* Profile
+    => Details
+    => Edit Profile
+* Recommended
+    => Creation
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
 <img src="https://github.com/fabiolarobles1/OriginalApp-MusicSharing/blob/master/20200707_132242.jpg?raw=true" width=800>
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 
 
 ## Schema 
@@ -130,7 +132,6 @@ A social media to share music, meet people based on your music taste and be able
    | username      | String   | user's screenname |
    | posts         | Arrays   | Array of all the user's posts |
    | password      | String   |user's login password |
-   | email         | String   | user's email address |
    
    
 ### Networking
@@ -149,6 +150,3 @@ A social media to share music, meet people based on your music taste and be able
       - (Delete) Delete existing comment
    - Search Screen
       - (Read/GET) Query posts that meet search constrains
-
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
